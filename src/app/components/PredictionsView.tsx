@@ -65,8 +65,8 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     setLoadingSpotData(true);
     const conditionsMap: Record<number, any> = {};
 
-    // Fetch data for each spot (limit to top 10 to avoid too many API calls)
-    const spotsToFetch = spots.slice(0, 10);
+    // Fetch data for each spot (limit to top 15 to balance coverage vs. API timeouts)
+    const spotsToFetch = spots.slice(0, 15);
 
     // Add timeout wrapper for each fetch
     const fetchWithTimeout = async (spot: any) => {
@@ -351,17 +351,17 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     })
     .slice(0, 10); // Show top 10 spots
 
-  // Fetch spot-specific ocean data on mount and when filter or species changes
+  // Fetch spot-specific ocean data for the SORTED top 10 spots
   useEffect(() => {
     // Fetch general ocean data first
     fetchGeneralOceanData();
 
-    // Then fetch spot-specific data
-    if (filteredHotspots.length > 0) {
-      const topSpots = filteredHotspots.slice(0, 10);
-      fetchSpotOceanData(topSpots);
+    // Fetch data for the TOP 10 AFTER SORTING
+    if (sortedHotspots.length > 0) {
+      console.log('Fetching ocean data for sorted top 10 spots:', sortedHotspots.slice(0, 10).map(s => s.name));
+      fetchSpotOceanData(sortedHotspots.slice(0, 10));
     }
-  }, [spotFilter, preferences.preferredSpecies]); // Runs on mount + when these change
+  }, [spotFilter, preferences.preferredSpecies.join(',')]); // Runs on mount + when these change
 
   const hotspots = sortedHotspots.map(spot => {
     // Use spot-specific ocean conditions if available, otherwise fall back to general conditions
