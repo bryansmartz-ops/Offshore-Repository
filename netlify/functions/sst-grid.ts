@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions';
 
 const ERDDAP_BASE_URL = 'https://coastwatch.pfeg.noaa.gov/erddap';
-
+// Force deploy
 // Known structure locations (canyons, lumps, wrecks)
 const KNOWN_STRUCTURE = [
   { name: 'Norfolk Canyon Tip', lat: 37.083, lon: -74.75, depth: '100 fathom', type: 'canyon' },
