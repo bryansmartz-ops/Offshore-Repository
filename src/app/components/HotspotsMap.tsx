@@ -1,4 +1,5 @@
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Circle, Polyline } from 'react-leaflet';
 import { LatLngExpression, Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -9,9 +10,12 @@ interface Hotspot {
   loranCoordinates?: string;
   distance: number;
   confidence: number;
-  lat: number;
-  lon: number;
+  lat?: number;
+  lon?: number;
   sst?: number;
+  conditions?: {
+    sst?: string;
+  };
 }
 
 interface HotspotsMapProps {
@@ -23,6 +27,37 @@ interface HotspotsMapProps {
 
 // Ocean City Inlet coordinates
 const OCEAN_CITY_INLET: LatLngExpression = [38.328, -75.089];
+
+// Known fishing structures and canyons (Mid-Atlantic)
+const KNOWN_STRUCTURES = [
+  { name: "Poor Man's Canyon", lat: 38.45, lon: -73.95, depth: "600-1200ft", type: 'canyon' },
+  { name: "Great Gull Bank", lat: 38.75, lon: -73.5, depth: "100-180ft", type: 'bank' },
+  { name: "Jackspot", lat: 38.58, lon: -73.75, depth: "240ft", type: 'lump' },
+  { name: "Tea Cup", lat: 38.35, lon: -74.25, depth: "180ft", type: 'lump' },
+  { name: "Norfolk Canyon", lat: 37.0, lon: -74.5, depth: "600-2000ft", type: 'canyon' },
+  { name: "Washington Canyon", lat: 38.15, lon: -73.8, depth: "800-2400ft", type: 'canyon' },
+  { name: "Baltimore Canyon", lat: 38.3, lon: -73.7, depth: "600-1800ft", type: 'canyon' },
+  { name: "Wilmington Canyon", lat: 38.5, lon: -73.3, depth: "600-1500ft", type: 'canyon' },
+  { name: "Poor Man's South", lat: 38.35, lon: -74.0, depth: "500-900ft", type: 'canyon' },
+  { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
+];
+
+// Bathymetry contour lines (simplified - key depths for Mid-Atlantic)
+const DEPTH_CONTOURS = [
+  { depth: 100, color: '#94a3b8', label: '100ft - Inshore' },
+  { depth: 600, color: '#64748b', label: '600ft - Canyon Edge' },
+  { depth: 1200, color: '#475569', label: '1200ft - Deep Canyon' },
+];
+
+// SST color scale
+const getSSTColor = (temp: number) => {
+  if (temp >= 78) return '#dc2626'; // Hot - Red
+  if (temp >= 75) return '#f97316'; // Warm - Orange
+  if (temp >= 72) return '#facc15'; // Good - Yellow
+  if (temp >= 68) return '#22c55e'; // Cool - Green
+  if (temp >= 65) return '#3b82f6'; // Cold - Blue
+  return '#1e40af'; // Very Cold - Dark Blue
+};
 
 // Distance rings (in meters - 1 nautical mile = 1852 meters)
 const DISTANCE_RINGS = [
@@ -63,6 +98,24 @@ const inletIcon = new Icon({
   popupAnchor: [0, -16]
 });
 
+// Structure marker (canyons, banks, lumps)
+const createStructureIcon = (type: string) => {
+  const color = type === 'canyon' ? '#a855f7' : type === 'bank' ? '#06b6d4' : '#eab308';
+  const symbol = type === 'canyon' ? 'C' : type === 'bank' ? 'B' : 'L';
+
+  return new Icon({
+    iconUrl: `data:image/svg+xml;base64,${btoa(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="${color}" stroke="white" stroke-width="2"/>
+        <text x="12" y="16" font-size="12" font-weight="bold" fill="white" text-anchor="middle">${symbol}</text>
+      </svg>
+    `)}`,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12]
+  });
+};
+
 // Helper to parse DMS coordinates to decimal
 function parseDMSCoordinates(coordString: string): { lat: number; lon: number } | null {
   const latMatch = coordString.match(/(\d+)°(\d+)'([NS])/);
@@ -80,13 +133,29 @@ function parseDMSCoordinates(coordString: string): { lat: number; lon: number } 
 }
 
 export default function HotspotsMap({ hotspots, selectedPrimary, selectedSecondary, onSelectHotspot }: HotspotsMapProps) {
+  // Layer toggles
+  const [showStructures, setShowStructures] = useState(true);
+  const [showDistanceRings, setShowDistanceRings] = useState(true);
+  const [showSSTColors, setShowSSTColors] = useState(true);
+
   // Convert hotspots to include parsed coordinates
   const hotspotsWithCoords = hotspots.map((spot, index) => {
     const coords = parseDMSCoordinates(spot.coordinates);
+
+    // Extract SST value from conditions.sst string like "72°F"
+    let sstValue = spot.sst || 70;
+    if (spot.conditions?.sst) {
+      const match = spot.conditions.sst.match(/(\d+\.?\d*)/);
+      if (match) {
+        sstValue = parseFloat(match[1]);
+      }
+    }
+
     return {
       ...spot,
-      lat: coords?.lat || 0,
-      lon: coords?.lon || 0,
+      lat: coords?.lat || spot.lat || 0,
+      lon: coords?.lon || spot.lon || 0,
+      sst: sstValue,
       rank: index + 1
     };
   }).filter(spot => spot.lat !== 0 && spot.lon !== 0);
@@ -114,7 +183,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           />
 
           {/* Distance rings from Ocean City Inlet */}
-          {DISTANCE_RINGS.map((ring) => (
+          {showDistanceRings && DISTANCE_RINGS.map((ring) => (
             <Circle
               key={ring.distance}
               center={OCEAN_CITY_INLET}
@@ -187,40 +256,160 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                           <p className="font-semibold text-green-600">{spot.confidence}%</p>
                         </div>
                       </div>
+                      <div className="mt-2 pt-2 border-t">
+                        <p className="text-gray-500">SST</p>
+                        <div className="flex items-center gap-2">
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: getSSTColor(spot.sst || 70) }}
+                          ></div>
+                          <p className="font-semibold" style={{ color: getSSTColor(spot.sst || 70) }}>
+                            {spot.sst?.toFixed(1)}°F
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Popup>
               </Marker>
             );
           })}
+
+          {/* Known fishing structures */}
+          {showStructures && KNOWN_STRUCTURES.map((structure) => (
+            <Marker
+              key={structure.name}
+              position={[structure.lat, structure.lon]}
+              icon={createStructureIcon(structure.type)}
+            >
+              <Popup>
+                <div className="text-sm min-w-[180px]">
+                  <p className="font-bold text-purple-700 mb-1">{structure.name}</p>
+                  <div className="space-y-1 text-xs text-gray-600">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Type:</span>
+                      <span className="font-semibold capitalize">{structure.type}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Depth:</span>
+                      <span className="font-semibold">{structure.depth}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2 pt-2 border-t">
+                      Known fishing structure - Check for nearby SST breaks
+                    </p>
+                  </div>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
+          {/* SST color circles on hotspots */}
+          {showSSTColors && hotspotsWithCoords.map((spot) => {
+            const sstColor = getSSTColor(spot.sst || 70);
+            return (
+              <Circle
+                key={`sst-${spot.id}`}
+                center={[spot.lat, spot.lon]}
+                radius={3704} // ~2nm radius for visual impact
+                pathOptions={{
+                  color: sstColor,
+                  fillColor: sstColor,
+                  fillOpacity: 0.25,
+                  weight: 2,
+                  opacity: 0.6
+                }}
+              />
+            );
+          })}
         </MapContainer>
 
+        {/* Layer Controls */}
+        <div className="absolute top-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] space-y-2">
+          <p className="font-semibold mb-2 text-white">Map Layers</p>
+          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+            <input
+              type="checkbox"
+              checked={showDistanceRings}
+              onChange={(e) => setShowDistanceRings(e.target.checked)}
+              className="rounded"
+            />
+            <span>Distance Rings</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+            <input
+              type="checkbox"
+              checked={showStructures}
+              onChange={(e) => setShowStructures(e.target.checked)}
+              className="rounded"
+            />
+            <span>Known Structure</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+            <input
+              type="checkbox"
+              checked={showSSTColors}
+              onChange={(e) => setShowSSTColors(e.target.checked)}
+              className="rounded"
+            />
+            <span>SST Overlay</span>
+          </label>
+        </div>
+
         {/* Legend */}
-        <div className="absolute bottom-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000]">
-          <p className="font-semibold mb-2 text-white">Distance from Inlet</p>
-          <div className="space-y-1">
-            {DISTANCE_RINGS.map((ring) => (
-              <div key={ring.distance} className="flex items-center gap-2">
-                <div
-                  className="w-4 h-0.5"
-                  style={{ backgroundColor: ring.color, opacity: 0.8 }}
-                />
-                <span className="text-slate-300">{ring.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 pt-3 border-t border-slate-700 space-y-1">
+        <div className="absolute bottom-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] max-w-[200px]">
+          <p className="font-semibold mb-2 text-white">Hotspots</p>
+          <div className="space-y-1 mb-3">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-green-500"></div>
-              <span className="text-slate-300">Primary Target</span>
+              <span className="text-slate-300">Primary</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-              <span className="text-slate-300">Secondary/Backup</span>
+              <span className="text-slate-300">Secondary</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-orange-500"></div>
-              <span className="text-slate-300">Other Hotspots</span>
+              <span className="text-slate-300">Others</span>
+            </div>
+          </div>
+
+          <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Structures</p>
+          <div className="space-y-1 mb-3">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-purple-500 rounded"></div>
+              <span className="text-slate-300">Canyon</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-cyan-500 rounded"></div>
+              <span className="text-slate-300">Bank</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+              <span className="text-slate-300">Lump/Ridge</span>
+            </div>
+          </div>
+
+          <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">SST Scale</p>
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-2 bg-red-600"></div>
+              <span className="text-slate-300">78°F+ Hot</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-2 bg-orange-500"></div>
+              <span className="text-slate-300">75-78°F Warm</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-2 bg-yellow-400"></div>
+              <span className="text-slate-300">72-75°F Good</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-2 bg-green-500"></div>
+              <span className="text-slate-300">68-72°F Cool</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-2 bg-blue-600"></div>
+              <span className="text-slate-300">&lt;68°F Cold</span>
             </div>
           </div>
         </div>
