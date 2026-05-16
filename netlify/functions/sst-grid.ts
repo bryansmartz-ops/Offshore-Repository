@@ -44,9 +44,21 @@ export const handler: Handler = async (event) => {
       'White Marlin': { min: 72, max: 82, optimal: 77 },
       'Blue Marlin': { min: 74, max: 86, optimal: 80 },
       'Swordfish': { min: 65, max: 75, optimal: 70 },
+      'Sailfish': { min: 75, max: 85, optimal: 80 },
+      // Generic fallbacks for backwards compatibility
+      'Tuna': { min: 60, max: 78, optimal: 70 }, // Blended range for all tunas
+      'Marlin': { min: 72, max: 86, optimal: 78 }, // Blended range for all marlins
     };
 
-    const targetPref = speciesPrefs[targetSpecies] || speciesPrefs['Mahi-Mahi'];
+    let targetPref = speciesPrefs[targetSpecies];
+
+    // If species not found, log warning and use default
+    if (!targetPref) {
+      console.log(`Warning: Species "${targetSpecies}" not found in preferences, using Mahi-Mahi defaults`);
+      targetPref = speciesPrefs['Mahi-Mahi'];
+    } else {
+      console.log(`Using temperature preferences for ${targetSpecies}: ${targetPref.min}-${targetPref.max}°F (optimal: ${targetPref.optimal}°F)`);
+    }
 
     // Fetch SST grid from NOAA ERDDAP
     // Stride must be integer (number of points to skip), not decimal degrees
@@ -125,15 +137,15 @@ export const handler: Handler = async (event) => {
         const maxTemp = Math.max(...temps);
         const gradient = maxTemp - minTemp;
 
-        // Temperature break detected
-        if (gradient >= 2) {
+        // Temperature break detected (lowered threshold from 2°F to 1.5°F)
+        if (gradient >= 1.5) {
           breaks.push({
             lat: point.lat,
             lon: point.lon,
             coldSide: minTemp,
             warmSide: maxTemp,
             gradient: gradient,
-            strength: gradient >= 4 ? 'major' : 'moderate'
+            strength: gradient >= 3 ? 'major' : 'moderate'
           });
         }
       }
@@ -232,22 +244,40 @@ export const handler: Handler = async (event) => {
       }
     }
 
-    // 3. Major breaks without structure (still good)
-    const majorBreaksOnly = breaks.filter(b => b.strength === 'major' && b.warmSide >= targetPref.min);
-    for (const breakPoint of majorBreaksOnly.slice(0, 5)) {
+    // 3. All breaks without structure (major and moderate)
+    const allBreaksOnly = breaks.filter(b =>
+      (b.warmSide >= targetPref.min - 5 || b.coldSide >= targetPref.min - 5) // Within 5°F of target range
+    );
+    for (const breakPoint of allBreaksOnly.slice(0, 8)) {
       if (!hotspots.some(h => Math.abs(h.lat - breakPoint.lat) <= 0.05 && Math.abs(h.lon - breakPoint.lon) <= 0.05)) {
+        // Find nearest structure for reference
+        let nearestStructure = null;
+        let minDistance = Infinity;
+        for (const s of KNOWN_STRUCTURE) {
+          const dist = Math.sqrt(Math.pow(s.lat - breakPoint.lat, 2) + Math.pow(s.lon - breakPoint.lon, 2));
+          if (dist < minDistance) {
+            minDistance = dist;
+            nearestStructure = s;
+          }
+        }
+
+        const distanceNm = minDistance * 60; // Convert degrees to nautical miles (rough)
+        const locationRef = nearestStructure && distanceNm < 30
+          ? `near ${nearestStructure.name} (${distanceNm.toFixed(0)}nm)`
+          : `at ${formatCoord(breakPoint.lat, 'lat')} ${formatCoord(breakPoint.lon, 'lon')}`;
+
         hotspots.push({
-          name: `Open Water Break`,
+          name: `${breakPoint.strength === 'major' ? 'Major' : 'Moderate'} Break ${locationRef}`,
           lat: breakPoint.lat,
           lon: breakPoint.lon,
           sst: breakPoint.warmSide,
-          confidence: 85,
+          confidence: breakPoint.strength === 'major' ? 85 : 78,
           type: 'break',
           reasons: [
-            `MAJOR ${breakPoint.gradient.toFixed(1)}°F temperature break`,
+            `${breakPoint.gradient.toFixed(1)}°F temperature break (${breakPoint.strength})`,
             `${breakPoint.coldSide.toFixed(1)}°F → ${breakPoint.warmSide.toFixed(1)}°F gradient`,
             `Prime feeding zone - predators hunt the break`,
-            `Warm side ideal for ${targetSpecies}`
+            nearestStructure ? `${distanceNm.toFixed(0)}nm from ${nearestStructure.name}` : 'Open water location'
           ],
           break: {
             gradient: breakPoint.gradient,
@@ -308,4 +338,12 @@ export const handler: Handler = async (event) => {
 
 function celsiusToFahrenheit(celsius: number): number {
   return Math.round((celsius * 9/5 + 32) * 10) / 10;
+}
+
+function formatCoord(decimal: number, type: 'lat' | 'lon'): string {
+  const absolute = Math.abs(decimal);
+  const degrees = Math.floor(absolute);
+  const minutes = Math.floor((absolute - degrees) * 60);
+  const direction = type === 'lat' ? (decimal >= 0 ? 'N' : 'S') : (decimal >= 0 ? 'E' : 'W');
+  return `${degrees}°${minutes}'${direction}`;
 }
