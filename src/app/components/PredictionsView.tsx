@@ -226,6 +226,9 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
       confidence: spot.confidence,
       species: preferences.preferredSpecies, // All hotspots match target species
       reasons: spot.reasons,
+      sst: spot.sst, // Include numeric SST for map overlay
+      lat: spot.lat, // Include coords for map
+      lon: spot.lon,
       conditions: {
         sst: `${spot.sst}°F`,
         current: oceanConditions?.currentSpeed ? `${oceanConditions.currentSpeed} kts ${oceanConditions.currentDirection}` : '1.5 kts SW',
@@ -367,14 +370,7 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
           {showMap && (
             <HotspotsMap
-              hotspots={displayHotspots.map((spot, index) => {
-                const originalSpot = hotspotsInRange[index];
-                return {
-                  ...spot,
-                  lat: originalSpot.lat,
-                  lon: originalSpot.lon
-                };
-              })}
+              hotspots={displayHotspots}
               selectedPrimary={selectedPrimary}
               selectedSecondary={selectedSecondary}
               onSelectHotspot={(index) => {

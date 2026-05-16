@@ -140,21 +140,32 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
 
   // Convert hotspots to include parsed coordinates
   const hotspotsWithCoords = hotspots.map((spot, index) => {
-    const coords = parseDMSCoordinates(spot.coordinates);
+    // Use coordinates if lat/lon not directly available
+    let lat = spot.lat || 0;
+    let lon = spot.lon || 0;
 
-    // Extract SST value from conditions.sst string like "72°F"
-    let sstValue = spot.sst || 70;
-    if (spot.conditions?.sst) {
+    if ((!lat || !lon) && spot.coordinates) {
+      const coords = parseDMSCoordinates(spot.coordinates);
+      lat = coords?.lat || 0;
+      lon = coords?.lon || 0;
+    }
+
+    // Extract SST value - prefer numeric sst, fallback to parsing conditions.sst
+    let sstValue = spot.sst;
+    if (!sstValue && spot.conditions?.sst) {
       const match = spot.conditions.sst.match(/(\d+\.?\d*)/);
       if (match) {
         sstValue = parseFloat(match[1]);
       }
     }
+    sstValue = sstValue || 70; // Default fallback
+
+    console.log(`Hotspot ${spot.name}: lat=${lat}, lon=${lon}, sst=${sstValue}`);
 
     return {
       ...spot,
-      lat: coords?.lat || spot.lat || 0,
-      lon: coords?.lon || spot.lon || 0,
+      lat,
+      lon,
       sst: sstValue,
       rank: index + 1
     };
@@ -197,6 +208,26 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               }}
             />
           ))}
+
+          {/* SST color circles on hotspots - RENDER BEFORE MARKERS */}
+          {showSSTColors && hotspotsWithCoords.map((spot) => {
+            const sstColor = getSSTColor(spot.sst);
+            console.log(`Drawing SST circle for ${spot.name}: color=${sstColor}, sst=${spot.sst}, lat=${spot.lat}, lon=${spot.lon}`);
+            return (
+              <Circle
+                key={`sst-${spot.id}`}
+                center={[spot.lat, spot.lon]}
+                radius={7408} // ~4nm diameter (2nm radius) for better visibility
+                pathOptions={{
+                  color: sstColor,
+                  fillColor: sstColor,
+                  fillOpacity: 0.3,
+                  weight: 3,
+                  opacity: 0.8
+                }}
+              />
+            );
+          })}
 
           {/* Ocean City Inlet marker */}
           <Marker position={OCEAN_CITY_INLET} icon={inletIcon}>
@@ -302,25 +333,6 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               </Popup>
             </Marker>
           ))}
-
-          {/* SST color circles on hotspots */}
-          {showSSTColors && hotspotsWithCoords.map((spot) => {
-            const sstColor = getSSTColor(spot.sst || 70);
-            return (
-              <Circle
-                key={`sst-${spot.id}`}
-                center={[spot.lat, spot.lon]}
-                radius={3704} // ~2nm radius for visual impact
-                pathOptions={{
-                  color: sstColor,
-                  fillColor: sstColor,
-                  fillOpacity: 0.25,
-                  weight: 2,
-                  opacity: 0.6
-                }}
-              />
-            );
-          })}
         </MapContainer>
 
         {/* Layer Controls */}
