@@ -49,10 +49,48 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
 
   const effectiveSpeed = vesselSpeed * speedMultipliers[weatherImpact];
 
+  // Helper: Calculate distance between two coordinates (Haversine formula)
+  const calculateDistance = (coord1: string, coord2: string): number => {
+    const parseCoord = (coord: string) => {
+      // Parse DMS format like "38°19'N 75°05'W"
+      const latMatch = coord.match(/(\d+)°(\d+)'([NS])/);
+      const lonMatch = coord.match(/(\d+)°(\d+)'([EW])/);
+
+      if (!latMatch || !lonMatch) return null;
+
+      const lat = parseInt(latMatch[1]) + parseInt(latMatch[2]) / 60;
+      const lon = parseInt(lonMatch[1]) + parseInt(lonMatch[2]) / 60;
+
+      return {
+        lat: latMatch[3] === 'S' ? -lat : lat,
+        lon: lonMatch[3] === 'W' ? -lon : lon
+      };
+    };
+
+    const c1 = parseCoord(coord1);
+    const c2 = parseCoord(coord2);
+
+    if (!c1 || !c2) return 0;
+
+    const R = 3440.065; // Earth's radius in nautical miles
+    const dLat = (c2.lat - c1.lat) * (Math.PI / 180);
+    const dLon = (c2.lon - c1.lon) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(c1.lat * (Math.PI / 180)) * Math.cos(c2.lat * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
   // Calculate times
-  const primaryTravelTime = primarySpot ? (primarySpot.distance / effectiveSpeed) * 60 : 0; // minutes
-  const secondaryTravelTime = secondarySpot ? (secondarySpot.distance / effectiveSpeed) * 60 : 0;
-  const primaryToSecondaryDistance = 14.8; // nautical miles
+  const primaryTravelTime = primarySpot ? (primarySpot.distance / effectiveSpeed) * 60 : 0; // minutes from inlet
+  const secondaryTravelTime = secondarySpot ? (secondarySpot.distance / effectiveSpeed) * 60 : 0; // minutes from inlet
+
+  // Calculate distance FROM PRIMARY TO SECONDARY (not from inlet!)
+  const primaryToSecondaryDistance = primarySpot && secondarySpot
+    ? calculateDistance(primarySpot.coordinates, secondarySpot.coordinates)
+    : 0;
   const primaryToSecondaryTime = (primaryToSecondaryDistance / effectiveSpeed) * 60;
 
   const calculateTime = (startTime: string, minutesToAdd: number) => {
@@ -263,8 +301,8 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
               <p className="text-sm font-medium mt-1">{secondarySpot.name}</p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-slate-400">Distance</p>
-            <p className="font-bold text-orange-400">{secondarySpot.distance} mi</p>
+            <p className="text-xs text-slate-400">From Primary</p>
+            <p className="font-bold text-orange-400">{primaryToSecondaryDistance.toFixed(1)} nm</p>
           </div>
         </div>
 
@@ -278,12 +316,12 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
             <span className="font-medium">{secondarySpot.depth}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-400">Travel Time:</span>
-            <span className="font-medium">{Math.round(secondaryTravelTime)} min (direct)</span>
+            <span className="text-slate-400">From Primary:</span>
+            <span className="font-medium">{primaryToSecondaryDistance.toFixed(1)} nm / {Math.round(primaryToSecondaryTime)} min</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-400">From Primary:</span>
-            <span className="font-medium">{Math.round(primaryToSecondaryTime)} min</span>
+            <span className="text-slate-400">From Inlet:</span>
+            <span className="font-medium text-slate-500">{secondarySpot.distance} nm / {Math.round(secondaryTravelTime)} min</span>
           </div>
         </div>
 
