@@ -416,7 +416,11 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
         'Satellite data shows favorable conditions',
       ],
       conditions: {
-        sst: conditions?.sst ? `${conditions.sst}°F` : (spot.type === 'inshore' ? '71°F' : spot.type === 'midrange' ? '72°F' : '73°F'),
+        sst: (() => {
+          const sstValue = conditions?.sst ? `${conditions.sst}°F` : (spot.type === 'inshore' ? '71°F' : spot.type === 'midrange' ? '72°F' : '73°F');
+          console.log(`🎯 Display SST for ${spot.name}: conditions.sst=${conditions?.sst}, final="${sstValue}"`);
+          return sstValue;
+        })(),
         current: conditions?.currentSpeed ? `${conditions.currentSpeed} kts ${conditions.currentDirection}` : (spot.type === 'inshore' ? '1.0 kts E' : spot.type === 'midrange' ? '1.5 kts SW' : '2.0 kts S'),
         depth: spot.depth,
         chlorophyll: conditions?.chlorophyll
