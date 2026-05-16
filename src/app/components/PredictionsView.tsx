@@ -349,7 +349,7 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
       return bFinalScore - aFinalScore;
     })
-    .slice(0, 20); // Show top 20 spots
+    .slice(0, 10); // Show top 10 spots
 
   // Fetch spot-specific ocean data on mount and when filter or species changes
   useEffect(() => {
