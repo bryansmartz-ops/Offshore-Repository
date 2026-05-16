@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { TrendingUp, MapPin, Fish, Zap, Clock, Navigation2, AlertTriangle, Flame } from 'lucide-react';
+import { TrendingUp, MapPin, Fish, Zap, Clock, Navigation2, AlertTriangle, Flame, Map } from 'lucide-react';
 import DataSourceCard from './DataSourceCard';
 import HotspotCard from './HotspotCard';
 import FloatPlan from './FloatPlan';
 import TideCard from './TideCard';
 import MoonSolunarCard from './MoonSolunarCard';
 import PressureCard from './PressureCard';
+import HotspotsMap from './HotspotsMap';
 import { getOceanConditions, parseCoordinates } from '../../utils/oceanData';
 import { getSolunarPeriods } from '../../utils/solunar';
 import { getSSTGridHotspots, type SSTHotspot } from '../../utils/sstGrid';
@@ -35,6 +36,9 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
   // User-selected primary and secondary spots for Float Plan
   const [selectedPrimary, setSelectedPrimary] = useState<number | null>(null); // hotspot index
   const [selectedSecondary, setSelectedSecondary] = useState<number | null>(null); // hotspot index
+
+  // Map view toggle
+  const [showMap, setShowMap] = useState(false);
 
   // Calculate solunar data (moon phase and feeding periods)
   const solunarData = getSolunarPeriods(new Date(), 38.328, -75.089); // Ocean City coordinates
@@ -349,6 +353,43 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
           </div>
         )}
       </div>
+
+      {/* Map View */}
+      {displayHotspots.length > 0 && (
+        <div className="px-4 mb-4">
+          <button
+            onClick={() => setShowMap(!showMap)}
+            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 mb-3"
+          >
+            <Map size={20} />
+            {showMap ? 'Hide Tactical Map' : 'Show Tactical Map'}
+          </button>
+
+          {showMap && (
+            <HotspotsMap
+              hotspots={displayHotspots.map((spot, index) => {
+                const originalSpot = hotspotsInRange[index];
+                return {
+                  ...spot,
+                  lat: originalSpot.lat,
+                  lon: originalSpot.lon
+                };
+              })}
+              selectedPrimary={selectedPrimary}
+              selectedSecondary={selectedSecondary}
+              onSelectHotspot={(index) => {
+                if (selectedPrimary === index) {
+                  handleSetPrimary(index);
+                } else if (selectedSecondary === index) {
+                  handleSetSecondary(index);
+                } else {
+                  handleSetPrimary(index);
+                }
+              }}
+            />
+          )}
+        </div>
+      )}
 
       {/* Environmental Cards */}
       <div className="px-4 space-y-3">
