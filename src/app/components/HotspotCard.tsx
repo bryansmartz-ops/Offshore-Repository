@@ -6,6 +6,7 @@ interface Hotspot {
   id: number;
   name: string;
   coordinates: string;
+  loranCoordinates?: string;
   distance: number;
   travelTime: number;
   confidence: number;
@@ -131,9 +132,17 @@ export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpeci
             </div>
             <div className="flex-1">
               <h3 className="font-semibold mb-1">{hotspot.name}</h3>
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <MapPin size={12} />
-                <span>{hotspot.coordinates}</span>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-xs text-slate-400">
+                  <MapPin size={12} />
+                  <span>{hotspot.coordinates}</span>
+                </div>
+                {hotspot.loranCoordinates && (
+                  <div className="flex items-center gap-2 text-xs text-slate-400">
+                    <Navigation size={12} />
+                    <span>9960: {hotspot.loranCoordinates}</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

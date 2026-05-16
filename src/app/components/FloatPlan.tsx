@@ -25,6 +25,7 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
   const primarySpot = hotspots[0] ? {
     name: hotspots[0].name,
     coordinates: hotspots[0].coordinates,
+    loranCoordinates: hotspots[0].loranCoordinates,
     distance: hotspots[0].distance,
     depth: hotspots[0].conditions?.depth || 'Variable',
     features: hotspots[0].reasons?.slice(0, 3) || ['Dynamic hotspot', 'Real-time SST data'],
@@ -34,6 +35,7 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
   const secondarySpot = hotspots[1] ? {
     name: hotspots[1].name,
     coordinates: hotspots[1].coordinates,
+    loranCoordinates: hotspots[1].loranCoordinates,
     distance: hotspots[1].distance,
     depth: hotspots[1].conditions?.depth || 'Variable',
     features: hotspots[1].reasons?.slice(0, 3) || ['Dynamic hotspot', 'Real-time SST data'],
@@ -238,9 +240,14 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
         </div>
 
         <div className="space-y-2 mb-3">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-400">Coordinates:</span>
-            <span className="font-mono">{primarySpot.coordinates}</span>
+          <div className="text-sm">
+            <span className="text-slate-400 block mb-1">Coordinates:</span>
+            <div className="font-mono space-y-0.5">
+              <div>{primarySpot.coordinates}</div>
+              {primarySpot.loranCoordinates && (
+                <div className="text-xs text-slate-400">9960: {primarySpot.loranCoordinates}</div>
+              )}
+            </div>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-slate-400">Depth:</span>
@@ -307,9 +314,14 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
         </div>
 
         <div className="space-y-2 mb-3">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-400">Coordinates:</span>
-            <span className="font-mono">{secondarySpot.coordinates}</span>
+          <div className="text-sm">
+            <span className="text-slate-400 block mb-1">Coordinates:</span>
+            <div className="font-mono space-y-0.5">
+              <div>{secondarySpot.coordinates}</div>
+              {secondarySpot.loranCoordinates && (
+                <div className="text-xs text-slate-400">9960: {secondarySpot.loranCoordinates}</div>
+              )}
+            </div>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-slate-400">Depth:</span>

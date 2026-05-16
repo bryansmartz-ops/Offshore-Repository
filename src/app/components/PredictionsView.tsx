@@ -9,6 +9,7 @@ import PressureCard from './PressureCard';
 import { getOceanConditions, parseCoordinates } from '../../utils/oceanData';
 import { getSolunarPeriods } from '../../utils/solunar';
 import { getSSTGridHotspots, type SSTHotspot } from '../../utils/sstGrid';
+import { latLonToLoran, formatLoran } from '../../utils/loran';
 
 interface Preferences {
   vesselSpeed: string;
@@ -209,29 +210,33 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
   ];
 
   // Convert hotspots to display format
-  const displayHotspots = hotspotsInRange.slice(0, 10).map((spot, index) => ({
-    id: index,
-    name: spot.name,
-    coordinates: spot.coordinates,
-    distance: spot.distance,
-    travelTime: spot.travelTime,
-    confidence: spot.confidence,
-    species: preferences.preferredSpecies, // All hotspots match target species
-    reasons: spot.reasons,
-    conditions: {
-      sst: `${spot.sst}°F`,
-      current: oceanConditions?.currentSpeed ? `${oceanConditions.currentSpeed} kts ${oceanConditions.currentDirection}` : '1.5 kts SW',
-      depth: 'Variable',
-      chlorophyll: oceanConditions?.chlorophyll ? `${oceanConditions.chlorophyll.toFixed(1)} mg/m³` : 'Medium'
-    },
-    sstBreak: spot.break ? {
-      gradient: spot.break.gradient,
-      coldSide: spot.break.coldSide,
-      warmSide: spot.break.warmSide,
-      strength: spot.break.strength,
-      description: `${spot.break.gradient.toFixed(1)}°F ${spot.break.strength} break`
-    } : null
-  }));
+  const displayHotspots = hotspotsInRange.slice(0, 10).map((spot, index) => {
+    const loranCoords = latLonToLoran(spot.lat, spot.lon);
+    return {
+      id: index,
+      name: spot.name,
+      coordinates: spot.coordinates,
+      loranCoordinates: formatLoran(loranCoords),
+      distance: spot.distance,
+      travelTime: spot.travelTime,
+      confidence: spot.confidence,
+      species: preferences.preferredSpecies, // All hotspots match target species
+      reasons: spot.reasons,
+      conditions: {
+        sst: `${spot.sst}°F`,
+        current: oceanConditions?.currentSpeed ? `${oceanConditions.currentSpeed} kts ${oceanConditions.currentDirection}` : '1.5 kts SW',
+        depth: 'Variable',
+        chlorophyll: oceanConditions?.chlorophyll ? `${oceanConditions.chlorophyll.toFixed(1)} mg/m³` : 'Medium'
+      },
+      sstBreak: spot.break ? {
+        gradient: spot.break.gradient,
+        coldSide: spot.break.coldSide,
+        warmSide: spot.break.warmSide,
+        strength: spot.break.strength,
+        description: `${spot.break.gradient.toFixed(1)}°F ${spot.break.strength} break`
+      } : null
+    };
+  });
 
   return (
     <div className="pb-20">
