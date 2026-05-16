@@ -18,7 +18,7 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    onst { buoyId = '44009', lat: latStr, lon: lonStr } = event.queryStringParameters || {};
+    const { buoyId = '44009', lat: latStr, lon: lonStr } = event.queryStringParameters || {};
 
 // Convert coordinates to numbers
 const lat = latStr ? parseFloat(latStr) : null;
