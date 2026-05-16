@@ -44,14 +44,16 @@ export default function SettingsView({ preferences, onSave, user, isSyncing, onS
 
   const popularSpecies = [
     'Mahi-Mahi',
-    'Tuna',
+    'Yellowfin Tuna',
+    'Bluefin Tuna',
     'Wahoo',
+    'White Marlin',
+    'Blue Marlin',
+    'Swordfish',
     'Sailfish',
-    'Marlin',
     'Grouper',
     'Snapper',
     'Kingfish',
-    'Swordfish',
     'Amberjack',
   ];
 

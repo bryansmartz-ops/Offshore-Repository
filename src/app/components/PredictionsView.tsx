@@ -307,6 +307,8 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
           hotspots={displayHotspots}
           vesselSpeed={vesselSpeed}
           launchLocation={preferences.launchLocation}
+          fuelBurnRate={fuelBurnRate}
+          fuelCapacity={fuelCapacity}
         />
       </div>
     </div>

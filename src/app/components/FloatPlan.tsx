@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Anchor, Clock, Navigation2, AlertTriangle, CheckCircle, Radio, MapPin } from 'lucide-react';
 
 interface FloatPlanProps {
+  hotspots: any[];
   vesselSpeed: number;
-  fuelBurnRate: number;
   launchLocation: string;
+  fuelBurnRate?: number;
+  fuelCapacity?: number;
 }
 
-export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }: FloatPlanProps) {
+export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelBurnRate = 0, fuelCapacity = 0 }: FloatPlanProps) {
   const [weatherImpact, setWeatherImpact] = useState<'good' | 'moderate' | 'rough'>('good');
   const [departureTime, setDepartureTime] = useState('06:00');
 
@@ -19,29 +21,24 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
     lon: -75.09
   };
 
-  // Primary Fishing Spot - Poor Man's Canyon / Temperature Break
-  const primarySpot = {
-    name: 'Poor Man\'s Canyon - Temp Break',
-    coordinates: '38°31\'N 74°28\'W',
-    lat: 38.517,
-    lon: -74.467,
-    distance: 30.2,
-    depth: '600-900 ft',
-    features: ['Canyon edge', 'SST break', 'Current convergence'],
-    targetSpecies: ['Yellowfin Tuna', 'Mahi-Mahi', 'White Marlin']
-  };
+  // Use dynamic hotspots from predictions
+  const primarySpot = hotspots[0] ? {
+    name: hotspots[0].name,
+    coordinates: hotspots[0].coordinates,
+    distance: hotspots[0].distance,
+    depth: hotspots[0].conditions?.depth || 'Variable',
+    features: hotspots[0].reasons?.slice(0, 3) || ['Dynamic hotspot', 'Real-time SST data'],
+    targetSpecies: hotspots[0].species || []
+  } : null;
 
-  // Secondary Spot - Great Gull Bank / Reef Structure
-  const secondarySpot = {
-    name: 'Great Gull Bank',
-    coordinates: '38°27\'N 74°45\'W',
-    lat: 38.45,
-    lon: -74.75,
-    distance: 17.5,
-    depth: '90-120 ft',
-    features: ['Reef structure', 'Inshore aggregations', 'Protected from NE winds'],
-    targetSpecies: ['Mahi-Mahi', 'Flounder', 'Sea Bass']
-  };
+  const secondarySpot = hotspots[1] ? {
+    name: hotspots[1].name,
+    coordinates: hotspots[1].coordinates,
+    distance: hotspots[1].distance,
+    depth: hotspots[1].conditions?.depth || 'Variable',
+    features: hotspots[1].reasons?.slice(0, 3) || ['Dynamic hotspot', 'Real-time SST data'],
+    targetSpecies: hotspots[1].species || []
+  } : null;
 
   // Speed adjustments based on weather
   const speedMultipliers = {
@@ -53,8 +50,8 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
   const effectiveSpeed = vesselSpeed * speedMultipliers[weatherImpact];
 
   // Calculate times
-  const primaryTravelTime = (primarySpot.distance / effectiveSpeed) * 60; // minutes
-  const secondaryTravelTime = (secondarySpot.distance / effectiveSpeed) * 60;
+  const primaryTravelTime = primarySpot ? (primarySpot.distance / effectiveSpeed) * 60 : 0; // minutes
+  const secondaryTravelTime = secondarySpot ? (secondarySpot.distance / effectiveSpeed) * 60 : 0;
   const primaryToSecondaryDistance = 14.8; // nautical miles
   const primaryToSecondaryTime = (primaryToSecondaryDistance / effectiveSpeed) * 60;
 
@@ -69,8 +66,9 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
   // Calculate fuel consumption
   const totalTripTime = primaryTravelTime + 300 + primaryTravelTime; // out + fishing + return (minutes)
   const totalTripHours = totalTripTime / 60;
-  const estimatedFuel = (totalTripHours * fuelBurnRate).toFixed(1);
-  const fuelWithReserve = (parseFloat(estimatedFuel) * 1.3).toFixed(1); // 30% reserve
+  const hasFuelData = fuelBurnRate > 0;
+  const estimatedFuel = hasFuelData ? (totalTripHours * fuelBurnRate).toFixed(1) : '0';
+  const fuelWithReserve = hasFuelData ? (parseFloat(estimatedFuel) * 1.3).toFixed(1) : '0'; // 30% reserve
 
   const timeline = {
     departure: departureTime,
@@ -83,6 +81,19 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
     returnHome: calculateTime(departureTime, primaryTravelTime + 300 + primaryTravelTime)
   };
 
+  // Don't show float plan if no hotspots available
+  if (!primarySpot && !secondarySpot) {
+    return (
+      <div className="bg-slate-800 rounded-xl p-4">
+        <div className="flex items-center gap-3 mb-2">
+          <Anchor className="text-blue-400" size={24} />
+          <h2 className="font-semibold text-lg">Float Plan</h2>
+        </div>
+        <p className="text-sm text-slate-400">No fishing spots available. Waiting for SST grid scan...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-slate-800 rounded-xl p-4 space-y-4">
       {/* Header */}
@@ -91,7 +102,7 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
           <Anchor className="text-blue-400" size={24} />
           <div>
             <h2 className="font-semibold text-lg">Float Plan</h2>
-            <p className="text-xs text-slate-400">Ocean City, MD Offshore</p>
+            <p className="text-xs text-slate-400">Ocean City, MD Offshore - Dynamic Hotspots</p>
           </div>
         </div>
         <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium">
@@ -142,18 +153,24 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-slate-400">Fuel Burn</span>
-              <span className="font-semibold">{fuelBurnRate} gph</span>
+              <span className="font-semibold">{hasFuelData ? `${fuelBurnRate} gph` : 'Not set'}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-slate-400">Est. Fuel</span>
-              <span className="font-semibold text-orange-400">{estimatedFuel} gal</span>
+              <span className="font-semibold text-orange-400">{hasFuelData ? `${estimatedFuel} gal` : 'N/A'}</span>
             </div>
           </div>
         </div>
-        <div className="mt-3 pt-3 border-t border-slate-700 flex items-center justify-between text-sm">
-          <span className="text-slate-400">With 30% Reserve:</span>
-          <span className="font-bold text-orange-300">{fuelWithReserve} gal needed</span>
-        </div>
+        {hasFuelData ? (
+          <div className="mt-3 pt-3 border-t border-slate-700 flex items-center justify-between text-sm">
+            <span className="text-slate-400">With 30% Reserve:</span>
+            <span className="font-bold text-orange-300">{fuelWithReserve} gal needed</span>
+          </div>
+        ) : (
+          <div className="mt-3 pt-3 border-t border-slate-700 text-xs text-slate-500 text-center">
+            Configure fuel burn rate in Settings to see fuel estimates
+          </div>
+        )}
       </div>
 
       {/* Home Port */}
@@ -235,14 +252,15 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
       </div>
 
       {/* Secondary Destination */}
-      <div className="bg-orange-900/30 border-l-4 border-orange-500 rounded-lg p-4">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <h3 className="font-semibold flex items-center gap-2">
-              <span className="bg-orange-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span>
-              Secondary Spot (Backup)
-            </h3>
-            <p className="text-sm font-medium mt-1">{secondarySpot.name}</p>
+      {secondarySpot && (
+        <div className="bg-orange-900/30 border-l-4 border-orange-500 rounded-lg p-4">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="font-semibold flex items-center gap-2">
+                <span className="bg-orange-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm">2</span>
+                Secondary Spot (Backup)
+              </h3>
+              <p className="text-sm font-medium mt-1">{secondarySpot.name}</p>
           </div>
           <div className="text-right">
             <p className="text-xs text-slate-400">Distance</p>
@@ -284,6 +302,7 @@ export default function FloatPlan({ vesselSpeed, fuelBurnRate, launchLocation }:
           Target: {secondarySpot.targetSpecies.join(', ')}
         </div>
       </div>
+      )}
 
       {/* Decision Point #2 */}
       <div className="bg-yellow-900/30 border-l-4 border-yellow-500 rounded-lg p-3">
