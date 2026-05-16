@@ -123,15 +123,22 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     };
   });
 
+  // Filter by distance (100nm max from Ocean City Inlet - tournament limit)
+  const MAX_DISTANCE_NM = 100;
+  const hotspotsWithinDistance = hotspotsWithDistance.filter(spot => spot.distance <= MAX_DISTANCE_NM);
+
   // Filter by fuel range if specified
   const hotspotsInRange = hasFuelData
-    ? hotspotsWithDistance.filter(spot => {
+    ? hotspotsWithinDistance.filter(spot => {
         const roundTripDistance = spot.distance * 2;
         const roundTripTime = roundTripDistance / vesselSpeed;
         const fuelNeeded = roundTripTime * fuelBurnRate;
         return fuelNeeded <= usableFuel;
       })
-    : hotspotsWithDistance;
+    : hotspotsWithinDistance;
+
+  // Track how many were filtered out by distance
+  const distanceFiltered = hotspotsWithDistance.length - hotspotsWithinDistance.length;
 
   // Real NOAA data sources with live status
   const dataSourceStatus = [
@@ -212,13 +219,13 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
                 <p className="font-bold text-orange-400">{gridStats.breaksFound}</p>
               </div>
               <div>
-                <p className="text-slate-400">Warm Zones</p>
-                <p className="font-bold text-green-400">{gridStats.warmZones}</p>
+                <p className="text-slate-400">Within 100nm</p>
+                <p className="font-bold text-green-400">{hotspotsWithinDistance.length}</p>
               </div>
             </div>
             {gridStats.targetTempRange && (
               <p className="text-xs text-slate-400 text-center mt-2">
-                Target: {preferences.preferredSpecies[0]} • {gridStats.targetTempRange}
+                Target: {preferences.preferredSpecies[0]} • {gridStats.targetTempRange} • ≤100nm limit
               </p>
             )}
           </div>
@@ -253,12 +260,18 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
             <Flame size={18} className="text-orange-500" />
             Top {displayHotspots.length} Dynamic Hotspots
           </h3>
-          {hasFuelData && (
-            <div className="text-xs text-slate-400">
-              Max Range: {maxRange} nm
-            </div>
-          )}
+          <div className="text-right text-xs text-slate-400">
+            <div>≤100nm from inlet</div>
+            {hasFuelData && <div>Fuel range: {maxRange}nm</div>}
+          </div>
         </div>
+
+        {/* Distance filter notice */}
+        {distanceFiltered > 0 && (
+          <div className="bg-blue-900/30 border border-blue-600/30 rounded-lg p-2 mb-3 text-xs text-blue-300">
+            ℹ️ {distanceFiltered} hotspot{distanceFiltered > 1 ? 's' : ''} beyond 100nm tournament limit (not shown)
+          </div>
+        )}
 
         {loading ? (
           <div className="bg-slate-800 rounded-lg p-8 text-center">
