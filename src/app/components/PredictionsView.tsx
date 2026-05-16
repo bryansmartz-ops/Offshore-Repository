@@ -94,7 +94,8 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
     await Promise.all(spotsToFetch.map(fetchWithTimeout));
 
-    setSpotConditions(conditionsMap);
+    // Merge new data with existing spotConditions instead of replacing
+    setSpotConditions(prev => ({ ...prev, ...conditionsMap }));
     setLoadingSpotData(false);
   };
 
@@ -353,9 +354,6 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
   // Fetch spot-specific ocean data for LIKELY TOP CANDIDATES (offshore + matching species)
   useEffect(() => {
-    // Fetch general ocean data first
-    fetchGeneralOceanData();
-
     // Strategy: Fetch data for spots most likely to rank in top 10
     // Priority: offshore spots with matching species, then all offshore, then midrange
     if (filteredHotspots.length > 0) {
@@ -369,8 +367,12 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
       // Combine: matching offshore + remaining offshore + some midrange (max 20 total to avoid timeouts)
       const topCandidates = [...new Set([...matchingOffshore, ...allOffshore, ...midrange])].slice(0, 20);
 
-      console.log(`Fetching ocean data for ${topCandidates.length} priority spots:`, topCandidates.map(s => s.name));
-      fetchSpotOceanData(topCandidates);
+      // Only fetch if we don't already have data for these spots
+      const spotsNeedingData = topCandidates.filter(spot => !spotConditions[spot.id]);
+      if (spotsNeedingData.length > 0) {
+        console.log(`Fetching ocean data for ${spotsNeedingData.length} priority spots:`, spotsNeedingData.map(s => s.name));
+        fetchSpotOceanData(spotsNeedingData);
+      }
     }
   }, [spotFilter, preferences.preferredSpecies.join(',')]); // Runs on mount + when these change
 
