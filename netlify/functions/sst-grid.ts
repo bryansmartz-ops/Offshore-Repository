@@ -49,8 +49,9 @@ export const handler: Handler = async (event) => {
     const targetPref = speciesPrefs[targetSpecies] || speciesPrefs['Mahi-Mahi'];
 
     // Fetch SST grid from NOAA ERDDAP
-    // Start with smaller grid for testing: 0.1 degree spacing (~6nm)
-    const stride = 0.1;
+    // Stride must be integer (number of points to skip), not decimal degrees
+    // Native resolution is ~0.01 degrees, so stride=10 gives ~0.1 degree spacing (~6nm)
+    const stride = 10;
     const gridUrl = `${ERDDAP_BASE_URL}/griddap/jplMURSST41.json?analysed_sst[(last)][(${minLat}):${stride}:(${maxLat})][(${minLon}):${stride}:(${maxLon})]`;
 
     console.log('Fetching SST grid from ERDDAP:', gridUrl);
