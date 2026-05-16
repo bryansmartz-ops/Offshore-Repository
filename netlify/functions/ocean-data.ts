@@ -75,10 +75,10 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
             const response = await fetch(url);
             if (response.ok) {
               const data = await response.json();
-              const sstKelvin = data.table.rows[0][3];
+              const sstCelsius = data.table.rows[0][3];  // Already in Celsius!
               return {
                 name: point.name,
-                temp: celsiusToFahrenheit(sstKelvin - 273.15)
+                temp: celsiusToFahrenheit(sstCelsius)
               };
             }
           } catch {
