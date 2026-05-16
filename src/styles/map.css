@@ -1,0 +1,11 @@
+/* Custom styles for map SST labels */
+.sst-label.leaflet-tooltip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.sst-label.leaflet-tooltip::before {
+  display: none;
+}
