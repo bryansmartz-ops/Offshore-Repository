@@ -32,6 +32,10 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
   const [gridStats, setGridStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  // User-selected primary and secondary spots for Float Plan
+  const [selectedPrimary, setSelectedPrimary] = useState<number | null>(null); // hotspot index
+  const [selectedSecondary, setSelectedSecondary] = useState<number | null>(null); // hotspot index
+
   // Calculate solunar data (moon phase and feeding periods)
   const solunarData = getSolunarPeriods(new Date(), 38.328, -75.089); // Ocean City coordinates
 
@@ -139,6 +143,43 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
   // Track how many were filtered out by distance
   const distanceFiltered = hotspotsWithDistance.length - hotspotsWithinDistance.length;
+
+  // Auto-select top 2 spots on initial load
+  useEffect(() => {
+    if (hotspotsInRange.length > 0 && selectedPrimary === null) {
+      setSelectedPrimary(0); // Top spot
+      if (hotspotsInRange.length > 1) {
+        setSelectedSecondary(1); // Second spot
+      }
+    }
+  }, [hotspotsInRange.length]);
+
+  // Handler to set/clear primary/secondary selections
+  const handleSetPrimary = (index: number) => {
+    if (selectedPrimary === index) {
+      // Clicking same primary clears it
+      setSelectedPrimary(null);
+    } else {
+      setSelectedPrimary(index);
+      // If this was the secondary, clear secondary
+      if (selectedSecondary === index) {
+        setSelectedSecondary(null);
+      }
+    }
+  };
+
+  const handleSetSecondary = (index: number) => {
+    if (selectedSecondary === index) {
+      // Clicking same secondary clears it
+      setSelectedSecondary(null);
+    } else {
+      setSelectedSecondary(index);
+      // If this was the primary, clear primary
+      if (selectedPrimary === index) {
+        setSelectedPrimary(null);
+      }
+    }
+  };
 
   // Real NOAA data sources with live status
   const dataSourceStatus = [
@@ -295,6 +336,10 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
                 preferredSpecies={preferences.preferredSpecies}
                 fuelCapacity={fuelCapacity}
                 fuelBurnRate={fuelBurnRate}
+                isPrimary={selectedPrimary === index}
+                isSecondary={selectedSecondary === index}
+                onSetPrimary={() => handleSetPrimary(index)}
+                onSetSecondary={() => handleSetSecondary(index)}
               />
             ))}
           </div>
@@ -317,7 +362,10 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
           preferences={preferences}
         />
         <FloatPlan
-          hotspots={displayHotspots}
+          hotspots={[
+            selectedPrimary !== null ? displayHotspots[selectedPrimary] : null,
+            selectedSecondary !== null ? displayHotspots[selectedSecondary] : null
+          ].filter(Boolean)}
           vesselSpeed={vesselSpeed}
           launchLocation={preferences.launchLocation}
           fuelBurnRate={fuelBurnRate}

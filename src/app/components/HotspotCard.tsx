@@ -27,9 +27,13 @@ interface HotspotCardProps {
   preferredSpecies: string[];
   fuelCapacity: number;
   fuelBurnRate: number;
+  isPrimary?: boolean;
+  isSecondary?: boolean;
+  onSetPrimary?: () => void;
+  onSetSecondary?: () => void;
 }
 
-export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpecies, fuelCapacity, fuelBurnRate }: HotspotCardProps) {
+export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpecies, fuelCapacity, fuelBurnRate, isPrimary, isSecondary, onSetPrimary, onSetSecondary }: HotspotCardProps) {
   const [expanded, setExpanded] = useState(false);
 
   const matchingSpecies = hotspot.species.filter((s) =>
@@ -59,10 +63,20 @@ export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpeci
 
   return (
     <div className={`bg-slate-800 rounded-xl overflow-hidden border-2 ${
-      rank === 1 && isWithinRange ? 'border-yellow-500' :
+      isPrimary ? 'border-green-500 shadow-lg shadow-green-500/20' :
+      isSecondary ? 'border-blue-500 shadow-lg shadow-blue-500/20' :
       !isWithinRange && hasFuelData ? 'border-red-600' :
-      'border-transparent'
+      'border-slate-700'
     }`}>
+      {/* Selection Status Banner */}
+      {(isPrimary || isSecondary) && (
+        <div className={`px-4 py-2 flex items-center gap-2 text-sm font-semibold ${
+          isPrimary ? 'bg-green-600' : 'bg-blue-600'
+        }`}>
+          <Navigation size={16} />
+          <span>{isPrimary ? '🎯 PRIMARY TARGET' : '🔄 SECONDARY/BACKUP'}</span>
+        </div>
+      )}
       {/* Fuel Warning Banner */}
       {hasFuelData && !isWithinRange && (
         <div className="bg-red-600 px-4 py-2 flex items-center gap-2 text-sm">
@@ -167,6 +181,40 @@ export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpeci
             ))}
           </div>
         </div>
+
+        {/* Float Plan Selection Buttons */}
+        {(onSetPrimary || onSetSecondary) && !isPrimary && !isSecondary && (
+          <div className="grid grid-cols-2 gap-2 mb-2">
+            {onSetPrimary && (
+              <button
+                onClick={onSetPrimary}
+                className="bg-green-600 hover:bg-green-700 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1"
+              >
+                <Navigation size={14} />
+                Set as Primary
+              </button>
+            )}
+            {onSetSecondary && (
+              <button
+                onClick={onSetSecondary}
+                className="bg-blue-600 hover:bg-blue-700 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1"
+              >
+                <Navigation size={14} />
+                Set as Backup
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Clear Selection if already selected */}
+        {(isPrimary || isSecondary) && (
+          <button
+            onClick={isPrimary ? onSetPrimary : onSetSecondary}
+            className="w-full bg-slate-600 hover:bg-slate-500 py-2 rounded-lg text-xs font-medium mb-2"
+          >
+            ✕ Clear Selection
+          </button>
+        )}
 
         {/* Expand/Collapse Button */}
         <button
