@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { TrendingUp, MapPin, Fish, Zap, Clock, Navigation2, AlertTriangle, Flame } from 'lucide-react';
 import DataSourceCard from './DataSourceCard';
 import HotspotCard from './HotspotCard';
-import TripPlanner from './TripPlanner';
 import FloatPlan from './FloatPlan';
 import TideCard from './TideCard';
 import MoonSolunarCard from './MoonSolunarCard';
@@ -356,11 +355,6 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
             trend={oceanConditions.pressureTrend}
           />
         )}
-        <TripPlanner
-          hotspots={displayHotspots}
-          vesselSpeed={vesselSpeed}
-          preferences={preferences}
-        />
         <FloatPlan
           hotspots={[
             selectedPrimary !== null ? displayHotspots[selectedPrimary] : null,
