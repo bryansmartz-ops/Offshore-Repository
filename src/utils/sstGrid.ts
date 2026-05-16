@@ -32,10 +32,10 @@ interface SSTGridResponse {
 
 export async function getSSTGridHotspots(
   targetSpecies: string,
-  minLat: number = 36.5,
-  maxLat: number = 39.5,
-  minLon: number = -75,
-  maxLon: number = -73
+  minLat: number = 36.0,
+  maxLat: number = 40.0,
+  minLon: number = -75.5,
+  maxLon: number = -72.0
 ): Promise<SSTGridResponse | null> {
   try {
     const url = `/.netlify/functions/sst-grid?minLat=${minLat}&maxLat=${maxLat}&minLon=${minLon}&maxLon=${maxLon}&targetSpecies=${encodeURIComponent(targetSpecies)}`;
