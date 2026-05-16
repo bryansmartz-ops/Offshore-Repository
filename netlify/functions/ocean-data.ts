@@ -86,20 +86,6 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
   }
 }
 
-      // Fetch Chlorophyll-a concentration
-      try {
-        const chlorUrl = `${ERDDAP_BASE_URL}/griddap/erdMH1chla8day.json?chlorophyll[(last)][(${lat})][(${lon})]`;
-        const chlorResponse = await fetch(chlorUrl);
-
-        if (chlorResponse.ok) {
-          const chlorData = await chlorResponse.json();
-          chlorophyll = parseFloat(chlorData.table.rows[0][3]); // mg/m³
-        }
-      } catch (error) {
-        console.error('Chlorophyll fetch failed:', error);
-      }
-    }
-
     // Fetch tide predictions for Ocean City Inlet
     let tides = [];
     try {
