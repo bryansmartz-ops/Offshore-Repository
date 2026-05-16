@@ -94,8 +94,15 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
     await Promise.all(spotsToFetch.map(fetchWithTimeout));
 
+    console.log('📊 Fetched conditions for spot IDs:', Object.keys(conditionsMap));
+    console.log('📊 Full conditionsMap:', conditionsMap);
+
     // Merge new data with existing spotConditions instead of replacing
-    setSpotConditions(prev => ({ ...prev, ...conditionsMap }));
+    setSpotConditions(prev => {
+      const merged = { ...prev, ...conditionsMap };
+      console.log('📊 Updated spotConditions now contains IDs:', Object.keys(merged));
+      return merged;
+    });
     setLoadingSpotData(false);
   };
 
@@ -379,6 +386,13 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
   const hotspots = sortedHotspots.map(spot => {
     // Use spot-specific ocean conditions if available, otherwise fall back to general conditions
     const conditions = spotConditions[spot.id] || oceanConditions;
+
+    // Debug: Log what we're using
+    if (!spotConditions[spot.id]) {
+      console.log(`⚠️ Spot ${spot.name} (ID: ${spot.id}) has NO spot-specific data, using fallback SST: ${oceanConditions?.sst || 'N/A'}°F`);
+    } else {
+      console.log(`✓ Spot ${spot.name} (ID: ${spot.id}) has spot-specific SST: ${spotConditions[spot.id].sst}°F`);
+    }
 
     return {
       ...spot,
