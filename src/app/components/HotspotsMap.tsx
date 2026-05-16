@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle, Polyline } from 'react-leaflet';
-import { LatLngExpression, Icon } from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
+import { LatLngExpression, Icon, DivIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 interface Hotspot {
@@ -136,7 +136,10 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   // Layer toggles
   const [showStructures, setShowStructures] = useState(true);
   const [showDistanceRings, setShowDistanceRings] = useState(true);
-  const [showSSTColors, setShowSSTColors] = useState(true);
+  const [showSSTColors, setShowSSTColors] = useState(false); // Default off when heatmap is on
+  const [showSSTLabels, setShowSSTLabels] = useState(true);
+  const [showSSTHeatmap, setShowSSTHeatmap] = useState(true);
+  const [sstOpacity, setSSTOpacity] = useState(0.6);
 
   // Convert hotspots to include parsed coordinates
   const hotspotsWithCoords = hotspots.map((spot, index) => {
@@ -159,8 +162,6 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
       }
     }
     sstValue = sstValue || 70; // Default fallback
-
-    console.log(`Hotspot ${spot.name}: lat=${lat}, lon=${lon}, sst=${sstValue}`);
 
     return {
       ...spot,
@@ -209,21 +210,39 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
           ))}
 
-          {/* SST color circles on hotspots - RENDER BEFORE MARKERS */}
+          {/* SST Heatmap - Large gradient circles creating RipChart-style effect */}
+          {showSSTHeatmap && hotspotsWithCoords.map((spot) => {
+            const sstColor = getSSTColor(spot.sst);
+            return (
+              <Circle
+                key={`sst-heatmap-${spot.id}`}
+                center={[spot.lat, spot.lon]}
+                radius={14816} // ~8nm diameter for gradient overlap effect
+                pathOptions={{
+                  color: sstColor,
+                  fillColor: sstColor,
+                  fillOpacity: sstOpacity * 0.4,
+                  weight: 0,
+                  opacity: 0
+                }}
+              />
+            );
+          })}
+
+          {/* SST color circles on hotspots - smaller precise circles */}
           {showSSTColors && hotspotsWithCoords.map((spot) => {
             const sstColor = getSSTColor(spot.sst);
-            console.log(`Drawing SST circle for ${spot.name}: color=${sstColor}, sst=${spot.sst}, lat=${spot.lat}, lon=${spot.lon}`);
             return (
               <Circle
                 key={`sst-${spot.id}`}
                 center={[spot.lat, spot.lon]}
-                radius={7408} // ~4nm diameter (2nm radius) for better visibility
+                radius={3704} // ~2nm diameter for precise marking
                 pathOptions={{
                   color: sstColor,
                   fillColor: sstColor,
-                  fillOpacity: 0.3,
-                  weight: 3,
-                  opacity: 0.8
+                  fillOpacity: 0.5,
+                  weight: 2,
+                  opacity: 0.9
                 }}
               />
             );
@@ -244,6 +263,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           {hotspotsWithCoords.map((spot, index) => {
             const isPrimary = selectedPrimary === index;
             const isSecondary = selectedSecondary === index;
+            const sstColor = getSSTColor(spot.sst);
 
             return (
               <Marker
@@ -254,6 +274,31 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                   click: () => onSelectHotspot?.(index)
                 }}
               >
+                {/* Permanent SST label */}
+                {showSSTLabels && (
+                  <Tooltip
+                    permanent
+                    direction="top"
+                    offset={[0, -20]}
+                    className="sst-label"
+                  >
+                    <div
+                      style={{
+                        backgroundColor: sstColor,
+                        color: 'white',
+                        padding: '4px 8px',
+                        borderRadius: '4px',
+                        fontWeight: 'bold',
+                        fontSize: '12px',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      {spot.sst.toFixed(1)}°F
+                    </div>
+                  </Tooltip>
+                )}
+
                 <Popup>
                   <div className="text-sm min-w-[200px]">
                     <div className="flex items-center gap-2 mb-2">
@@ -336,7 +381,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
         </MapContainer>
 
         {/* Layer Controls */}
-        <div className="absolute top-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] space-y-2">
+        <div className="absolute top-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] space-y-2 max-w-[200px]">
           <p className="font-semibold mb-2 text-white">Map Layers</p>
           <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
             <input
@@ -356,15 +401,53 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
             <span>Known Structure</span>
           </label>
-          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
-            <input
-              type="checkbox"
-              checked={showSSTColors}
-              onChange={(e) => setShowSSTColors(e.target.checked)}
-              className="rounded"
-            />
-            <span>SST Overlay</span>
-          </label>
+
+          <div className="border-t border-slate-700 pt-2 mt-2">
+            <p className="font-semibold mb-2 text-white text-xs">SST Display</p>
+            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+              <input
+                type="checkbox"
+                checked={showSSTHeatmap}
+                onChange={(e) => setShowSSTHeatmap(e.target.checked)}
+                className="rounded"
+              />
+              <span>SST Heatmap</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+              <input
+                type="checkbox"
+                checked={showSSTColors}
+                onChange={(e) => setShowSSTColors(e.target.checked)}
+                className="rounded"
+              />
+              <span>SST Circles</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+              <input
+                type="checkbox"
+                checked={showSSTLabels}
+                onChange={(e) => setShowSSTLabels(e.target.checked)}
+                className="rounded"
+              />
+              <span>Temp Labels</span>
+            </label>
+
+            {showSSTHeatmap && (
+              <div className="mt-2 pt-2 border-t border-slate-700">
+                <label className="text-slate-300 text-xs">
+                  Opacity: {Math.round(sstOpacity * 100)}%
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={sstOpacity * 100}
+                  onChange={(e) => setSSTOpacity(parseInt(e.target.value) / 100)}
+                  className="w-full mt-1"
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Legend */}
