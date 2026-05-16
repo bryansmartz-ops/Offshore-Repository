@@ -49,20 +49,38 @@ export const handler: Handler = async (event) => {
     const targetPref = speciesPrefs[targetSpecies] || speciesPrefs['Mahi-Mahi'];
 
     // Fetch SST grid from NOAA ERDDAP
-    // Grid stride: ~0.05 degrees (~3nm spacing) for balance between coverage and speed
-    const gridUrl = `${ERDDAP_BASE_URL}/griddap/jplMURSST41.json?analysed_sst[(last)][(${minLat}):0.05:(${maxLat})][(${minLon}):0.05:(${maxLon})]`;
+    // Start with smaller grid for testing: 0.1 degree spacing (~6nm)
+    const stride = 0.1;
+    const gridUrl = `${ERDDAP_BASE_URL}/griddap/jplMURSST41.json?analysed_sst[(last)][(${minLat}):${stride}:(${maxLat})][(${minLon}):${stride}:(${maxLon})]`;
 
-    console.log('Fetching SST grid from ERDDAP...');
-    const gridResponse = await fetch(gridUrl);
+    console.log('Fetching SST grid from ERDDAP:', gridUrl);
+
+    // Add timeout for ERDDAP (can be slow)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
+    const gridResponse = await fetch(gridUrl, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    console.log('ERDDAP response status:', gridResponse.status);
 
     if (!gridResponse.ok) {
-      throw new Error(`ERDDAP returned ${gridResponse.status}`);
+      const errorText = await gridResponse.text();
+      console.error('ERDDAP error response:', errorText);
+      throw new Error(`ERDDAP returned ${gridResponse.status}: ${errorText.substring(0, 200)}`);
     }
 
     const gridData = await gridResponse.json();
-    const rows = gridData.table.rows; // Each row: [time, lat, lon, sst_celsius]
+    console.log('ERDDAP response received, parsing...');
 
-    console.log(`Received ${rows.length} SST data points`);
+    const rows = gridData.table?.rows || []; // Each row: [time, lat, lon, sst_celsius]
+
+    console.log(`Received ${rows.length} SST data points from ERDDAP`);
+
+    if (rows.length === 0) {
+      console.error('ERDDAP returned 0 data points - grid query may be invalid');
+      throw new Error('No SST data available from ERDDAP - check query parameters');
+    }
 
     // Convert grid to searchable format
     interface GridPoint {
@@ -76,6 +94,8 @@ export const handler: Handler = async (event) => {
       lon: row[2],
       sst: celsiusToFahrenheit(row[3])
     }));
+
+    console.log(`Converted ${grid.length} grid points to Fahrenheit`);
 
     // Find temperature breaks (gradients > 2°F over ~3nm)
     const breaks: Array<{
@@ -126,6 +146,12 @@ export const handler: Handler = async (event) => {
     );
 
     console.log(`Found ${warmZones.length} points in target temp range (${targetPref.min}-${targetPref.max}°F)`);
+
+    // Log SST range in grid for debugging
+    const sstValues = grid.map(p => p.sst);
+    const minSST = Math.min(...sstValues);
+    const maxSST = Math.max(...sstValues);
+    console.log(`SST range in grid: ${minSST.toFixed(1)}°F to ${maxSST.toFixed(1)}°F`);
 
     // Generate hotspots by combining breaks + warm zones + structure
     const hotspots: Array<{
@@ -234,6 +260,13 @@ export const handler: Handler = async (event) => {
 
     // Sort by confidence (breaks + structure rank highest)
     hotspots.sort((a, b) => b.confidence - a.confidence);
+
+    console.log(`Generated ${hotspots.length} total hotspots`);
+    console.log(`Returning top ${Math.min(15, hotspots.length)} hotspots`);
+
+    if (hotspots.length > 0) {
+      console.log('Top hotspot:', hotspots[0].name, hotspots[0].confidence + '%');
+    }
 
     return {
       statusCode: 200,
