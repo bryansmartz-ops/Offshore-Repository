@@ -65,8 +65,8 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     setLoadingSpotData(true);
     const conditionsMap: Record<number, any> = {};
 
-    // Fetch data for each spot (limit to top 15 to balance coverage vs. API timeouts)
-    const spotsToFetch = spots.slice(0, 15);
+    // Fetch data for each spot (limit to top 20 to get accurate data before sorting)
+    const spotsToFetch = spots.slice(0, 20);
 
     // Add timeout wrapper for each fetch
     const fetchWithTimeout = async (spot: any) => {
@@ -351,15 +351,26 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     })
     .slice(0, 10); // Show top 10 spots
 
-  // Fetch spot-specific ocean data for the SORTED top 10 spots
+  // Fetch spot-specific ocean data for LIKELY TOP CANDIDATES (offshore + matching species)
   useEffect(() => {
     // Fetch general ocean data first
     fetchGeneralOceanData();
 
-    // Fetch data for the TOP 10 AFTER SORTING
-    if (sortedHotspots.length > 0) {
-      console.log('Fetching ocean data for sorted top 10 spots:', sortedHotspots.slice(0, 10).map(s => s.name));
-      fetchSpotOceanData(sortedHotspots.slice(0, 10));
+    // Strategy: Fetch data for spots most likely to rank in top 10
+    // Priority: offshore spots with matching species, then all offshore, then midrange
+    if (filteredHotspots.length > 0) {
+      const matchingOffshore = filteredHotspots.filter(spot =>
+        spot.type === 'offshore' &&
+        spot.species.some(s => preferences.preferredSpecies.includes(s))
+      );
+      const allOffshore = filteredHotspots.filter(spot => spot.type === 'offshore');
+      const midrange = filteredHotspots.filter(spot => spot.type === 'midrange').slice(0, 5);
+
+      // Combine: matching offshore + remaining offshore + some midrange (max 20 total to avoid timeouts)
+      const topCandidates = [...new Set([...matchingOffshore, ...allOffshore, ...midrange])].slice(0, 20);
+
+      console.log(`Fetching ocean data for ${topCandidates.length} priority spots:`, topCandidates.map(s => s.name));
+      fetchSpotOceanData(topCandidates);
     }
   }, [spotFilter, preferences.preferredSpecies.join(',')]); // Runs on mount + when these change
 
