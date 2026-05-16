@@ -1,0 +1,92 @@
+import { useState } from 'react';
+import { Navigation, Waves, Fish, MapPin, AlertCircle, Menu, Settings, Target } from 'lucide-react';
+import Dashboard from './components/Dashboard';
+import WeatherView from './components/WeatherView';
+import TideView from './components/TideView';
+import CatchLog from './components/CatchLog';
+import WaypointsView from './components/WaypointsView';
+import SettingsView from './components/SettingsView';
+import PredictionsView from './components/PredictionsView';
+import InstallPWA from './components/InstallPWA';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('predictions');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [userPreferences, setUserPreferences] = useState({
+    vesselSpeed: '25',
+    fuelBurnRate: '0',
+    fuelCapacity: '0',
+    launchLocation: 'Ocean City, MD Inlet',
+    preferredSpecies: ['Mahi-Mahi', 'Tuna', 'Wahoo'],
+    seaSurfaceTemp: { min: '68', max: '78' },
+  });
+
+  const tabs = [
+    { id: 'predictions', label: 'Predict', icon: Target },
+    { id: 'dashboard', label: 'Dashboard', icon: Navigation },
+    { id: 'catch', label: 'Catch Log', icon: Fish },
+    { id: 'waypoints', label: 'Waypoints', icon: MapPin },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ];
+
+  return (
+    <div className="size-full bg-slate-900 text-white flex flex-col">
+      {/* Header */}
+      <header className="bg-blue-600 p-4 flex items-center justify-between">
+        <h1 className="font-semibold text-xl">Tactical Offshore</h1>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="p-2 hover:bg-blue-700 rounded-lg"
+        >
+          <Menu size={24} />
+        </button>
+      </header>
+
+      {/* Emergency Banner */}
+      <div className="bg-red-600 px-4 py-2 flex items-center gap-2 text-sm">
+        <AlertCircle size={16} />
+        <span>Emergency: Hold SOS for 3s</span>
+      </div>
+
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto">
+        {activeTab === 'predictions' && <PredictionsView preferences={userPreferences} />}
+        {activeTab === 'dashboard' && <Dashboard preferences={userPreferences} />}
+        {activeTab === 'weather' && <WeatherView />}
+        {activeTab === 'tides' && <TideView />}
+        {activeTab === 'catch' && <CatchLog />}
+        {activeTab === 'waypoints' && <WaypointsView />}
+        {activeTab === 'settings' && (
+          <SettingsView
+            preferences={userPreferences}
+            onSave={setUserPreferences}
+          />
+        )}
+      </main>
+
+      {/* Bottom Navigation */}
+      <nav className="bg-slate-800 border-t border-slate-700 flex justify-around p-2">
+        {tabs.map((tab) => {
+          const Icon = tab.icon;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
+                activeTab === tab.id
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Icon size={20} />
+              <span className="text-xs">{tab.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* PWA Install Prompt */}
+      <InstallPWA />
+    </div>
+  );
+}

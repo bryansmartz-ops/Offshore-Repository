@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><gpx xmlns="http://www.topografix.com/GPX/1/0" xmlns:h="http://www.humminbird.com" creator="Humminbird PC 4.5.8 [Build20180329001]" version="1.0">
+<time>2019-08-11T23:17:19.314Z</time>
+<bounds maxlat="39.493800000" maxlon="-73.171200000" minlat="37.033333000" minlon="-75.167131000"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="38.383500000" lon="-74.980000000">
+<ele>0.000</ele>
+<name>IsleWight</name>
+<cmt>IsleWight</cmt>
+<desc>IsleWight</desc>
+<sym>Wreck</sym><extensions><h:id>66</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="38.316500000" lon="-74.942500000">
+<ele>0.000</ele>
+<name>Craven</name>
+<cmt>Craven</cmt>
+<desc>Craven</desc>
+<sym>Wreck</sym><extensions><h:id>89</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="38.272750000" lon="-75.078000000">
+<ele>0.000</ele>
+<name>Blockoys</name>
+<cmt>Blockoys</cmt>
+<desc>Blockoys</desc>
+<sym>Wreck</sym><extensions><h:id>103</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+<wpt lat="38.280200000" lon="-75.075750000">
+<ele>0.000</ele>
+<name>Pipe</name>
+<cmt>Pipe</cmt>
+<desc>Pipe</desc>
+<sym>Wreck</sym><extensions><h:id>109</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+<wpt lat="38.356000000" lon="-75.061483000">
+<ele>0.000</ele>
+<name>Ironlady1</name>
+<cmt>Ironlady1</cmt>
+<desc>Ironlady1</desc>
+<sym>Wreck</sym><extensions><h:id>117</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.355483000" lon="-75.062033000">
+<ele>0.000</ele>
+<name>Ironlady2</name>
+<cmt>Ironlady2</cmt>
+<desc>Ironlady2</desc>
+<sym>Wreck</sym><extensions><h:id>118</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.353333000" lon="-75.056833000">
+<ele>0.000</ele>
+<name>AmerTowers</name>
+<cmt>AmerTowers</cmt>
+<desc>AmerTowers</desc>
+<sym>Wreck</sym><extensions><h:id>119</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.351667000" lon="-75.056833000">
+<ele>0.000</ele>
+<name>Ironlady3</name>
+<cmt>Ironlady3</cmt>
+<desc>Ironlady3</desc>
+<sym>Wreck</sym><extensions><h:id>120</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.350167000" lon="-75.057000000">
+<ele>0.000</ele>
+<name>Kiln</name>
+<cmt>Kiln</cmt>
+<desc>Kiln</desc>
+<sym>Wreck</sym><extensions><h:id>121</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.383500000" lon="-74.980000000">
+<ele>0.000</ele>
+<name>IsleWight</name>
+<cmt>IsleWight</cmt>
+<desc>IsleWight</desc>
+<sym>Wreck</sym><extensions><h:id>122</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.382917000" lon="-74.978833000">
+<ele>0.000</ele>
+<name>Sheareef</name>
+<cmt>Sheareef</cmt>
+<desc>Sheareef</desc>
+<sym>Wreck</sym><extensions><h:id>123</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.382917000" lon="-74.978833000">
+<ele>0.000</ele>
+<name>Baynard</name>
+<cmt>Baynard</cmt>
+<desc>Baynard</desc>
+<sym>Wreck</sym><extensions><h:id>124</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.381667000" lon="-74.983167000">
+<ele>0.000</ele>
+<name>IOWreef</name>
+<cmt>IOWreef</cmt>
+<desc>IOWreef</desc>
+<sym>Wreck</sym><extensions><h:id>125</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.378883000" lon="-74.977250000">
+<ele>0.000</ele>
+<name>Ironlady4</name>
+<cmt>Ironlady4</cmt>
+<desc>Ironlady4</desc>
+<sym>Wreck</sym><extensions><h:id>126</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.379350000" lon="-74.977517000">
+<ele>0.000</ele>
+<name>Ironlady5</name>
+<cmt>Ironlady5</cmt>
+<desc>Ironlady5</desc>
+<sym>Wreck</sym><extensions><h:id>127</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.378733000" lon="-74.977850000">
+<ele>0.000</ele>
+<name>Ironlady6</name>
+<cmt>Ironlady6</cmt>
+<desc>Ironlady6</desc>
+<sym>Wreck</sym><extensions><h:id>128</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.383317000" lon="-74.978750000">
+<ele>0.000</ele>
+<name>Rickreef</name>
+<cmt>Rickreef</cmt>
+<desc>Rickreef</desc>
+<sym>Wreck</sym><extensions><h:id>129</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.382683000" lon="-74.982667000">
+<ele>0.000</ele>
+<name>Branch</name>
+<cmt>Branch</cmt>
+<desc>Branch</desc>
+<sym>Wreck</sym><extensions><h:id>130</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.383333000" lon="-74.978750000">
+<ele>0.000</ele>
+<name>Roehlreef</name>
+<cmt>Roehlreef</cmt>
+<desc>Roehlreef</desc>
+<sym>Wreck</sym><extensions><h:id>131</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.383167000" lon="-74.978750000">
+<ele>0.000</ele>
+<name>Roelhl2</name>
+<cmt>Roelhl2</cmt>
+<desc>Roelhl2</desc>
+<sym>Wreck</sym><extensions><h:id>132</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.381883000" lon="-74.975283000">
+<ele>0.000</ele>
+<name>SERreef</name>
+<cmt>SERreef</cmt>
+<desc>SERreef</desc>
+<sym>Wreck</sym><extensions><h:id>133</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.380833000" lon="-74.976667000">
+<ele>0.000</ele>
+<name>Rehman</name>
+<cmt>Rehman</cmt>
+<desc>Rehman</desc>
+<sym>Wreck</sym><extensions><h:id>134</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.335767000" lon="-74.917550000">
+<ele>0.000</ele>
+<name>Ironlady7</name>
+<cmt>Ironlady7</cmt>
+<desc>Ironlady7</desc>
+<sym>Wreck</sym><extensions><h:id>135</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.328333000" lon="-74.937433000">
+<ele>0.000</ele>
+<name>Camreef</name>
+<cmt>Camreef</cmt>
+<desc>Camreef</desc>
+<sym>Wreck</sym><extensions><h:id>136</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.327400000" lon="-74.938167000">
+<ele>0.000</ele>
+<name>Topsecret</name>
+<cmt>Topsecret</cmt>
+<desc>Topsecret</desc>
+<sym>Wreck</sym><extensions><h:id>137</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.324950000" lon="-74.939767000">
+<ele>0.000</ele>
+<name>Sippels</name>
+<cmt>Sippels</cmt>
+<desc>Sippels</desc>
+<sym>Wreck</sym><extensions><h:id>138</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.322233000" lon="-74.940533000">
+<ele>0.000</ele>
+<name>blueberry</name>
+<cmt>blueberry</cmt>
+<desc>blueberry</desc>
+<sym>Wreck</sym><extensions><h:id>139</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.315733000" lon="-74.942467000">
+<ele>0.000</ele>
+<name>Ryderreef</name>
+<cmt>Ryderreef</cmt>
+<desc>Ryderreef</desc>
+<sym>Wreck</sym><extensions><h:id>140</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.330183000" lon="-74.936817000">
+<ele>0.000</ele>
+<name>Eaglescout</name>
+<cmt>Eaglescout</cmt>
+<desc>Eaglescout</desc>
+<sym>Wreck</sym><extensions><h:id>141</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.323967000" lon="-74.939783000">
+<ele>0.000</ele>
+<name>Petereef</name>
+<cmt>Petereef</cmt>
+<desc>Petereef</desc>
+<sym>Wreck</sym><extensions><h:id>142</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.321333000" lon="-74.941000000">
+<ele>0.000</ele>
+<name>Gorman</name>
+<cmt>Gorman</cmt>
+<desc>Gorman</desc>
+<sym>Wreck</sym><extensions><h:id>143</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.318667000" lon="-74.941867000">
+<ele>0.000</ele>
+<name>Landenreef</name>
+<cmt>Landenreef</cmt>
+<desc>Landenreef</desc>
+<sym>Wreck</sym><extensions><h:id>144</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.316500000" lon="-74.942500000">
+<ele>0.000</ele>
+<name>Craven</name>
+<cmt>Craven</cmt>
+<desc>Craven</desc>
+<sym>Wreck</sym><extensions><h:id>145</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.093050000" lon="-74.813617000">
+<ele>0.000</ele>
+<name>jackdotN</name>
+<cmt>jackdotN</cmt>
+<desc>jackdotN</desc>
+<sym>Wreck</sym><extensions><h:id>146</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.090717000" lon="-74.813033000">
+<ele>0.000</ele>
+<name>JackdotS</name>
+<cmt>JackdotS</cmt>
+<desc>JackdotS</desc>
+<sym>Wreck</sym><extensions><h:id>147</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.087833000" lon="-74.815500000">
+<ele>0.000</ele>
+<name>StAnnsE</name>
+<cmt>StAnnsE</cmt>
+<desc>StAnnsE</desc>
+<sym>Wreck</sym><extensions><h:id>148</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.087383000" lon="-74.809250000">
+<ele>0.000</ele>
+<name>StAnnsW</name>
+<cmt>StAnnsW</cmt>
+<desc>StAnnsW</desc>
+<sym>Wreck</sym><extensions><h:id>149</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.091567000" lon="-74.811267000">
+<ele>0.000</ele>
+<name>Cook</name>
+<cmt>Cook</cmt>
+<desc>Cook</desc>
+<sym>Wreck</sym><extensions><h:id>150</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.089833000" lon="-74.808833000">
+<ele>0.000</ele>
+<name>BenelliBlocks</name>
+<cmt>BenelliBlocks</cmt>
+<desc>BenelliBlocks</desc>
+<sym>Wreck</sym><extensions><h:id>151</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.282833000" lon="-75.074500000">
+<ele>0.000</ele>
+<name>Barge2</name>
+<cmt>Barge2</cmt>
+<desc>Barge2</desc>
+<sym>Wreck</sym><extensions><h:id>152</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.276383000" lon="-75.078750000">
+<ele>0.000</ele>
+<name>Pipeclusters1</name>
+<cmt>Pipeclusters1</cmt>
+<desc>Pipeclusters1</desc>
+<sym>Wreck</sym><extensions><h:id>153</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.280933000" lon="-75.076983000">
+<ele>0.000</ele>
+<name>Pipeclusters2</name>
+<cmt>Pipeclusters2</cmt>
+<desc>Pipeclusters2</desc>
+<sym>Wreck</sym><extensions><h:id>154</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.280883000" lon="-75.076667000">
+<ele>0.000</ele>
+<name>Pipeclusters3</name>
+<cmt>Pipeclusters3</cmt>
+<desc>Pipeclusters3</desc>
+<sym>Wreck</sym><extensions><h:id>155</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.279767000" lon="-75.076017000">
+<ele>0.000</ele>
+<name>Pyramid</name>
+<cmt>Pyramid</cmt>
+<desc>Pyramid</desc>
+<sym>Wreck</sym><extensions><h:id>156</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.279367000" lon="-75.075717000">
+<ele>0.000</ele>
+<name>Kelly2</name>
+<cmt>Kelly2</cmt>
+<desc>Kelly2</desc>
+<sym>Wreck</sym><extensions><h:id>157</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.276383000" lon="-75.078750000">
+<ele>0.000</ele>
+<name>Ironlady8</name>
+<cmt>Ironlady8</cmt>
+<desc>Ironlady8</desc>
+<sym>Wreck</sym><extensions><h:id>158</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.272750000" lon="-75.078000000">
+<ele>0.000</ele>
+<name>Blockoys</name>
+<cmt>Blockoys</cmt>
+<desc>Blockoys</desc>
+<sym>Wreck</sym><extensions><h:id>159</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.259583000" lon="-75.073833000">
+<ele>0.000</ele>
+<name>Applebarge</name>
+<cmt>Applebarge</cmt>
+<desc>Applebarge</desc>
+<sym>Wreck</sym><extensions><h:id>160</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.276500000" lon="-75.078667000">
+<ele>0.000</ele>
+<name>Barges18</name>
+<cmt>Barges18</cmt>
+<desc>Barges18</desc>
+<sym>Wreck</sym><extensions><h:id>161</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.280583000" lon="-75.075683000">
+<ele>0.000</ele>
+<name>Lotsblocks</name>
+<cmt>Lotsblocks</cmt>
+<desc>Lotsblocks</desc>
+<sym>Wreck</sym><extensions><h:id>162</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.280000000" lon="-75.075833000">
+<ele>0.000</ele>
+<name>lotsblocksS</name>
+<cmt>lotsblocksS</cmt>
+<desc>lotsblocksS</desc>
+<sym>Wreck</sym><extensions><h:id>163</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.279983000" lon="-75.075533000">
+<ele>0.000</ele>
+<name>KellyReef1</name>
+<cmt>KellyReef1</cmt>
+<desc>KellyReef1</desc>
+<sym>Wreck</sym><extensions><h:id>164</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.280200000" lon="-75.075750000">
+<ele>0.000</ele>
+<name>Pipe</name>
+<cmt>Pipe</cmt>
+<desc>Pipe</desc>
+<sym>Wreck</sym><extensions><h:id>165</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.670583000" lon="-74.995300000">
+<ele>0.000</ele>
+<name>De1</name>
+<cmt>De1</cmt>
+<desc>De1</desc>
+<sym>Wreck</sym><extensions><h:id>166</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.667700000" lon="-74.992683000">
+<ele>0.000</ele>
+<name>de2</name>
+<cmt>de2</cmt>
+<desc>de2</desc>
+<sym>Wreck</sym><extensions><h:id>167</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.669183000" lon="-74.993133000">
+<ele>0.000</ele>
+<name>de3</name>
+<cmt>de3</cmt>
+<desc>de3</desc>
+<sym>Wreck</sym><extensions><h:id>168</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.672517000" lon="-74.994250000">
+<ele>0.000</ele>
+<name>De3</name>
+<cmt>De3</cmt>
+<desc>De3</desc>
+<sym>Wreck</sym><extensions><h:id>169</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.670517000" lon="-74.992350000">
+<ele>0.000</ele>
+<name>de4</name>
+<cmt>de4</cmt>
+<desc>de4</desc>
+<sym>Wreck</sym><extensions><h:id>170</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.671283000" lon="-75.003567000">
+<ele>0.000</ele>
+<name>de5</name>
+<cmt>de5</cmt>
+<desc>de5</desc>
+<sym>Wreck</sym><extensions><h:id>171</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="38.286166667" lon="-74.939500000">
+<ele>0.000</ele>
+<name>jjreef2</name>
+<cmt>jjreef2</cmt>
+<desc>jjreef2</desc>
+<sym>Fish</sym><extensions><h:id>228</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.286916667" lon="-74.937833333">
+<ele>0.000</ele>
+<name>fortereef</name>
+<cmt>fortereef</cmt>
+<desc>fortereef</desc>
+<sym>Fish</sym><extensions><h:id>229</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.286916667" lon="-74.937833333">
+<ele>0.000</ele>
+<name>rieef</name>
+<cmt>rieef</cmt>
+<desc>rieef</desc>
+<sym>Fish</sym><extensions><h:id>230</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.200000000" lon="-74.626667000">
+<ele>0.000</ele>
+<name>20 Fathom Fingers</name>
+<cmt>Description: 20 Fathom Fingers&lt;br /&gt;&lt;br /&gt;38° 12' 00" N 74° 37' 36" W&lt;br /&gt;22 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.200000 -74.626667</cmt>
+<desc>Description: 20 Fathom Fingers&lt;br /&gt;&lt;br /&gt;38° 12' 00" N 74° 37' 36" W&lt;br /&gt;22 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.200000 -74.626667</desc>
+<sym>Fish</sym><extensions><h:id>231</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.461667000" lon="-74.401983000">
+<ele>0.000</ele>
+<name>800 Square</name>
+<cmt>Description: 800 Square&lt;br /&gt;Degrees Minutes Seconds 37°27'42.0000", 074°24'07.1400"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.461667 -74.401983</cmt>
+<desc>Description: 800 Square&lt;br /&gt;Degrees Minutes Seconds 37°27'42.0000", 074°24'07.1400"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.461667 -74.401983</desc>
+<sym>Fish</sym><extensions><h:id>232</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.974167000" lon="-74.910556000">
+<ele>0.000</ele>
+<name>A. Loran</name>
+<cmt>Description: A. Loran&lt;br /&gt;&lt;br /&gt;37° 58' 27" N 74° 54' 38" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.974167 -74.910556</cmt>
+<desc>Description: A. Loran&lt;br /&gt;&lt;br /&gt;37° 58' 27" N 74° 54' 38" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.974167 -74.910556</desc>
+<sym>Fish</sym><extensions><h:id>233</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.982778000" lon="-74.983889000">
+<ele>0.000</ele>
+<name>A.G.</name>
+<cmt>Description: A.G.&lt;br /&gt;37° 58' 58" N	74° 59' 02" W&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.982778 -74.983889</cmt>
+<desc>Description: A.G.&lt;br /&gt;37° 58' 58" N	74° 59' 02" W&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.982778 -74.983889</desc>
+<sym>Fish</sym><extensions><h:id>234</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.145500000" lon="-74.939667000">
+<ele>0.000</ele>
+<name>African Queen - Wreck</name>
+<cmt>Description: African Queen - Wreck38° 08' 43.8" N	74° 56' 22.8" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.145500 -74.939667</cmt>
+<desc>Description: African Queen - Wreck38° 08' 43.8" N	74° 56' 22.8" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.145500 -74.939667</desc>
+<sym>Fish</sym><extensions><h:id>235</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.283456000" lon="-74.132917000">
+<ele>0.000</ele>
+<name>Altair</name>
+<cmt>Description: Altair	&lt;br /&gt;38° 17' 00.44" N 74° 07' 58.5" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.283456 -74.132917</cmt>
+<desc>Description: Altair	&lt;br /&gt;38° 17' 00.44" N 74° 07' 58.5" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.283456 -74.132917</desc>
+<sym>Fish</sym><extensions><h:id>236</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.322500000" lon="-74.164333000">
+<ele>0.000</ele>
+<name>Arlene</name>
+<cmt>Description: Arlene	38° 19' 21" N	74° 09' 51.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.322500 -74.164333</cmt>
+<desc>Description: Arlene	38° 19' 21" N	74° 09' 51.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.322500 -74.164333</desc>
+<sym>Fish</sym><extensions><h:id>237</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.918333000" lon="-75.056500000">
+<ele>0.000</ele>
+<name>Atlantic Mist</name>
+<cmt>Description: Atlantic Mist	&lt;br /&gt;37° 55' 06" N	75° 03' 23.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.918333 -75.056500</cmt>
+<desc>Description: Atlantic Mist	&lt;br /&gt;37° 55' 06" N	75° 03' 23.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.918333 -75.056500</desc>
+<sym>Fish</sym><extensions><h:id>238</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.126667000" lon="-73.791667000">
+<ele>0.000</ele>
+<name>Baltimore Canyon 100 Fathom Bight</name>
+<cmt>Description: Baltimore Canyon 100 Fathom Bight	38° 07' 36" N	73° 47' 30" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.126667 -73.791667</cmt>
+<desc>Description: Baltimore Canyon 100 Fathom Bight	38° 07' 36" N	73° 47' 30" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.126667 -73.791667</desc>
+<sym>Fish</sym><extensions><h:id>239</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.245000000" lon="-73.846111000">
+<ele>0.000</ele>
+<name>Baltimore Canyon 100 Fathom Tip</name>
+<cmt>Description: Baltimore Canyon 100 Fathom Tip&lt;br /&gt;38° 14' 42" N 73° 50' 36" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.245000 -73.846111</cmt>
+<desc>Description: Baltimore Canyon 100 Fathom Tip&lt;br /&gt;38° 14' 42" N 73° 50' 36" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.245000 -73.846111</desc>
+<sym>Fish</sym><extensions><h:id>240</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.100000000" lon="-73.818333000">
+<ele>0.000</ele>
+<name>Baltimore Canyon 500 Fathom Tip</name>
+<cmt>Description: Baltimore Canyon 500 Fathom Tip	38° 06' 00" N	73° 49' 06" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.100000 -73.818333</cmt>
+<desc>Description: Baltimore Canyon 500 Fathom Tip	38° 06' 00" N	73° 49' 06" W&lt;br /&gt;58 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.100000 -73.818333</desc>
+<sym>Fish</sym><extensions><h:id>241</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.954444000" lon="-74.997500000">
+<ele>0.000</ele>
+<name>Barge</name>
+<cmt>Description: Barge	37°  57' 16" N	74°  59' 51" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.954444 -74.997500</cmt>
+<desc>Description: Barge	37°  57' 16" N	74°  59' 51" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.954444 -74.997500</desc>
+<sym>Fish</sym><extensions><h:id>242</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.966792000" lon="-75.144153000">
+<ele>0.000</ele>
+<name>Barnstable</name>
+<cmt>Description: Barnstable	&lt;br /&gt;37° 58' 00.45" N	75° 08' 38.95" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.966792 -75.144153</cmt>
+<desc>Description: Barnstable	&lt;br /&gt;37° 58' 00.45" N	75° 08' 38.95" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.966792 -75.144153</desc>
+<sym>Fish</sym><extensions><h:id>243</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.286944000" lon="-74.894444000">
+<ele>0.000</ele>
+<name>Bass Grounds</name>
+<cmt>Description: Bass Grounds 38° 17' 13" N 74° 53' 40" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.286944 -74.894444</cmt>
+<desc>Description: Bass Grounds 38° 17' 13" N 74° 53' 40" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.286944 -74.894444</desc>
+<sym>Fish</sym><extensions><h:id>244</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.296944000" lon="-74.893889000">
+<ele>0.000</ele>
+<name>Bass  Wreck</name>
+<cmt>Description: Bass Grounds Wreck 38° 17' 49" N 74° 53' 38" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.296944 -74.893889</cmt>
+<desc>Description: Bass Grounds Wreck 38° 17' 49" N 74° 53' 38" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.296944 -74.893889</desc>
+<sym>Fish</sym><extensions><h:id>245</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.145000000" lon="-74.939722000">
+<ele>0.000</ele>
+<name>Bertha Penrod</name>
+<cmt>Description: Bertha Penrod	38° 08' 42" N	74° 56' 23" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.145000 -74.939722</cmt>
+<desc>Description: Bertha Penrod	38° 08' 42" N	74° 56' 23" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.145000 -74.939722</desc>
+<sym>Fish</sym><extensions><h:id>246</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.205278000" lon="-74.915556000">
+<ele>0.000</ele>
+<name>Big Tautog</name>
+<cmt>Description: Big Tautog	38° 12' 19" N	74° 54' 56" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.205278 -74.915556</cmt>
+<desc>Description: Big Tautog	38° 12' 19" N	74° 54' 56" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.205278 -74.915556</desc>
+<sym>Fish</sym><extensions><h:id>247</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.988056000" lon="-74.996944000">
+<ele>0.000</ele>
+<name>Boiler Wreck</name>
+<cmt>Description: Boiler Wreck &lt;br /&gt;37° 59' 17" N 74° 59' 49" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.988056 -74.996944</cmt>
+<desc>Description: Boiler Wreck &lt;br /&gt;37° 59' 17" N 74° 59' 49" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.988056 -74.996944</desc>
+<sym>Fish</sym><extensions><h:id>248</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.983056000" lon="-74.953611000">
+<ele>0.000</ele>
+<name>Butters</name>
+<cmt>Description: Butters (Inshore W.Q. Shoal)	37° 58' 59" N	74° 57' 13" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.983056 -74.953611</cmt>
+<desc>Description: Butters (Inshore W.Q. Shoal)	37° 58' 59" N	74° 57' 13" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.983056 -74.953611</desc>
+<sym>Fish</sym><extensions><h:id>249</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.954167000" lon="-74.923889000">
+<ele>0.000</ele>
+<name>Capt. Bunting</name>
+<cmt>Description: Capt. Bunting	&lt;br /&gt;37° 57' 15" N	74° 55' 26" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.954167 -74.923889</cmt>
+<desc>Description: Capt. Bunting	&lt;br /&gt;37° 57' 15" N	74° 55' 26" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.954167 -74.923889</desc>
+<sym>Fish</sym><extensions><h:id>250</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.283447000" lon="-75.028792000">
+<ele>0.000</ele>
+<name>Carpenas</name>
+<cmt>Description: Carpenas 38° 17' 00.41" N 75° 01' 43.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.283447 -75.028792</cmt>
+<desc>Description: Carpenas 38° 17' 00.41" N 75° 01' 43.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.283447 -75.028792</desc>
+<sym>Fish</sym><extensions><h:id>251</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.378444000" lon="-74.979622000">
+<ele>0.000</ele>
+<name>Carpender</name>
+<cmt>Description: Carpender &lt;br /&gt;38° 22' 42.4" N 74° 58' 46.64" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.378444 -74.979622</cmt>
+<desc>Description: Carpender &lt;br /&gt;38° 22' 42.4" N 74° 58' 46.64" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.378444 -74.979622</desc>
+<sym>Fish</sym><extensions><h:id>252</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.233333000" lon="-74.445000000">
+<ele>0.000</ele>
+<name>Chicken Bone</name>
+<cmt>Description: Chicken Bone 38° 14' 00" N 74° 26' 42" W&lt;br /&gt;30 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.233333 -74.445000</cmt>
+<desc>Description: Chicken Bone 38° 14' 00" N 74° 26' 42" W&lt;br /&gt;30 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.233333 -74.445000</desc>
+<sym>Fish</sym><extensions><h:id>253</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.975953000" lon="-75.167131000">
+<ele>0.000</ele>
+<name>China Arrow</name>
+<cmt>Description: China Arrow &lt;br /&gt;37° 58' 33.43" N 75° 10' 01.67" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.975953 -75.167131</cmt>
+<desc>Description: China Arrow &lt;br /&gt;37° 58' 33.43" N 75° 10' 01.67" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.975953 -75.167131</desc>
+<sym>Fish</sym><extensions><h:id>254</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.901667000" lon="-74.140000000">
+<ele>0.000</ele>
+<name>Cigar</name>
+<cmt>Description: Cigar &lt;br /&gt;38° 54' 06" N 74° 08' 24" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.901667 -74.140000</cmt>
+<desc>Description: Cigar &lt;br /&gt;38° 54' 06" N 74° 08' 24" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.901667 -74.140000</desc>
+<sym>Fish</sym><extensions><h:id>255</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.352892000" lon="-74.880172000">
+<ele>0.000</ele>
+<name>City of Orleans</name>
+<cmt>Description: City of Orleans &lt;br /&gt;38° 21' 10.41" N 74° 52' 48.62" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.352892 -74.880172</cmt>
+<desc>Description: City of Orleans &lt;br /&gt;38° 21' 10.41" N 74° 52' 48.62" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.352892 -74.880172</desc>
+<sym>Fish</sym><extensions><h:id>256</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.141037000" lon="-75.037125000">
+<ele>0.000</ele>
+<name>Courageous</name>
+<cmt>Description: Courageous &lt;br /&gt;38° 10' 11.42" N 75° 02' 13.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.141037 -75.037125</cmt>
+<desc>Description: Courageous &lt;br /&gt;38° 10' 11.42" N 75° 02' 13.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.141037 -75.037125</desc>
+<sym>Fish</sym><extensions><h:id>257</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.949133000" lon="-75.096050000">
+<ele>0.000</ele>
+<name>DAVID ATTWATER</name>
+<cmt>Description: DAVID ATTWATER&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 37.9491333°, 075.0960500°&lt;br /&gt;Degrees Minutes	37°56.94800', 075°05.76300'&lt;br /&gt;Degrees Minutes Seconds 37°56'56.8800", 075°05'45.7800"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.949133 -75.096050</cmt>
+<desc>Description: DAVID ATTWATER&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 37.9491333°, 075.0960500°&lt;br /&gt;Degrees Minutes	37°56.94800', 075°05.76300'&lt;br /&gt;Degrees Minutes Seconds 37°56'56.8800", 075°05'45.7800"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.949133 -75.096050</desc>
+<sym>Fish</sym><extensions><h:id>258</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.800000000" lon="-74.406667000">
+<ele>0.000</ele>
+<name>East Lump</name>
+<cmt>Description: East Lump &lt;br /&gt;38° 48' 00" N 74° 24' 24" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.800000 -74.406667</cmt>
+<desc>Description: East Lump &lt;br /&gt;38° 48' 00" N 74° 24' 24" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.800000 -74.406667</desc>
+<sym>Fish</sym><extensions><h:id>259</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.590000000" lon="-74.083333000">
+<ele>0.000</ele>
+<name>Elephant Trunk</name>
+<cmt>Description: Elephant Trunk 38° 35' 24" N 74° 05' 00" W&lt;br /&gt;49 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.590000 -74.083333</cmt>
+<desc>Description: Elephant Trunk 38° 35' 24" N 74° 05' 00" W&lt;br /&gt;49 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.590000 -74.083333</desc>
+<sym>Fish</sym><extensions><h:id>260</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.412056000" lon="-74.836836000">
+<ele>0.000</ele>
+<name>Elizabeth Palmer</name>
+<cmt>Description: Elizabeth Palmer &lt;br /&gt;38° 24' 43.4" N 74° 50' 12.61" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.412056 -74.836836</cmt>
+<desc>Description: Elizabeth Palmer &lt;br /&gt;38° 24' 43.4" N 74° 50' 12.61" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.412056 -74.836836</desc>
+<sym>Fish</sym><extensions><h:id>261</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.265392000" lon="-74.034347000">
+<ele>0.000</ele>
+<name>Esther Ann</name>
+<cmt>Description: Esther Ann &lt;br /&gt;38° 15' 55.41" N 75° 02' 03.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.265392 -74.034347</cmt>
+<desc>Description: Esther Ann &lt;br /&gt;38° 15' 55.41" N 75° 02' 03.65" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.265392 -74.034347</desc>
+<sym>Fish</sym><extensions><h:id>262</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.444444000" lon="-74.948889000">
+<ele>0.000</ele>
+<name>Fenwick Island Shoal</name>
+<cmt>Description: Fenwick Island Shoal &lt;br /&gt;38° 26' 40" N 74° 56' 56" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.444444 -74.948889</cmt>
+<desc>Description: Fenwick Island Shoal &lt;br /&gt;38° 26' 40" N 74° 56' 56" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.444444 -74.948889</desc>
+<sym>Fish</sym><extensions><h:id>263</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.056717000" lon="-74.746600000">
+<ele>0.000</ele>
+<name>GOLF COURSE</name>
+<cmt>Description: GOLF COURSE&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.0567167°, 074.7466000°&lt;br /&gt;Degrees Minutes	38°03.40300', 074°44.79600'&lt;br /&gt;Degrees Minutes Seconds 38°03'24.1800", 074°44'47.7600"&lt;br /&gt;UTM	43S 477769mE 4212138mN&lt;br /&gt;MGRS	43SDC7776912138&lt;br /&gt;Grid North	-0.2°&lt;br /&gt;Maidenhead	MM78IB93OO26&lt;br /&gt;GEOREF	SJQJ44790340&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.056717 -74.746600</cmt>
+<desc>Description: GOLF COURSE&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.0567167°, 074.7466000°&lt;br /&gt;Degrees Minutes	38°03.40300', 074°44.79600'&lt;br /&gt;Degrees Minutes Seconds 38°03'24.1800", 074°44'47.7600"&lt;br /&gt;UTM	43S 477769mE 4212138mN&lt;br /&gt;MGRS	43SDC7776912138&lt;br /&gt;Grid North	-0.2°&lt;br /&gt;Maidenhead	MM78IB93OO26&lt;br /&gt;GEOREF	SJQJ44790340&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.056717 -74.746600</desc>
+<sym>Fish</sym><extensions><h:id>264</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.090675000" lon="-74.810169000">
+<ele>0.000</ele>
+<name>Gordon S. Cook</name>
+<cmt>Description: Gordon S. Cook &lt;br /&gt;38° 05' 26.43" N 74° 48' 36.61" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.090675 -74.810169</cmt>
+<desc>Description: Gordon S. Cook &lt;br /&gt;38° 05' 26.43" N 74° 48' 36.61" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.090675 -74.810169</desc>
+<sym>Fish</sym><extensions><h:id>265</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.206667000" lon="-74.733333000">
+<ele>0.000</ele>
+<name> EAST REEF</name>
+<cmt>Description: GREAT EASTERN REEF&lt;br /&gt;Degrees Minutes Seconds 38°12'24.0000", 074°43'60.0000"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.206667 -74.733333</cmt>
+<desc>Description: GREAT EASTERN REEF&lt;br /&gt;Degrees Minutes Seconds 38°12'24.0000", 074°43'60.0000"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.206667 -74.733333</desc>
+<sym>Fish</sym><extensions><h:id>266</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.273333000" lon="-75.000500000">
+<ele>0.000</ele>
+<name>GREAT GULL</name>
+<cmt>Description: GREAT GULL&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.2733333°, 075.0005000°&lt;br /&gt;Degrees Minutes	38°16.40000', 075°00.03000'&lt;br /&gt;Degrees Minutes Seconds 38°16'24.0000", 075°00'01.8000"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.273333 -75.000500</cmt>
+<desc>Description: GREAT GULL&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.2733333°, 075.0005000°&lt;br /&gt;Degrees Minutes	38°16.40000', 075°00.03000'&lt;br /&gt;Degrees Minutes Seconds 38°16'24.0000", 075°00'01.8000"&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.273333 -75.000500</desc>
+<sym>Fish</sym><extensions><h:id>267</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.291000000" lon="-74.999278000">
+<ele>0.000</ele>
+<name>Gull Shoal Wreck</name>
+<cmt>Description: Gull Shoal Wreck &lt;br /&gt;38° 17' 27.6" N 74° 59' 57.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.291000 -74.999278</cmt>
+<desc>Description: Gull Shoal Wreck &lt;br /&gt;38° 17' 27.6" N 74° 59' 57.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.291000 -74.999278</desc>
+<sym>Fish</sym><extensions><h:id>268</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.198333000" lon="-74.408333000">
+<ele>0.000</ele>
+<name>Hambone</name>
+<cmt>Description: Hambone 38° 11' 54" N 74° 24' 30" W&lt;br /&gt;32 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.198333 -74.408333</cmt>
+<desc>Description: Hambone 38° 11' 54" N 74° 24' 30" W&lt;br /&gt;32 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.198333 -74.408333</desc>
+<sym>Fish</sym><extensions><h:id>269</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.306233000" lon="-74.891617000">
+<ele>0.000</ele>
+<name>HARRISON GROUP WRECK</name>
+<cmt>Description: HARRISON GROUP WRECK	&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3062333°, 074.8916167°&lt;br /&gt;Degrees Minutes	38°18.37400', 074°53.49700'&lt;br /&gt;Degrees Minutes Seconds 38°18'22.4400", 074°53'29.8200"&lt;br /&gt;UTM	43S 490523mE 4239798mN&lt;br /&gt;MGRS	43SDC9052339798&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63XL89&lt;br /&gt;GEOREF	SJQJ53491837&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.306233 -74.891617</cmt>
+<desc>Description: HARRISON GROUP WRECK	&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3062333°, 074.8916167°&lt;br /&gt;Degrees Minutes	38°18.37400', 074°53.49700'&lt;br /&gt;Degrees Minutes Seconds 38°18'22.4400", 074°53'29.8200"&lt;br /&gt;UTM	43S 490523mE 4239798mN&lt;br /&gt;MGRS	43SDC9052339798&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63XL89&lt;br /&gt;GEOREF	SJQJ53491837&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.306233 -74.891617</desc>
+<sym>Fish</sym><extensions><h:id>270</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.115000000" lon="-74.286667000">
+<ele>0.000</ele>
+<name>Hotdog</name>
+<cmt>Description: Hotdog &lt;br /&gt;38° 06' 54" N 74° 17' 12" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.115000 -74.286667</cmt>
+<desc>Description: Hotdog &lt;br /&gt;38° 06' 54" N 74° 17' 12" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.115000 -74.286667</desc>
+<sym>Fish</sym><extensions><h:id>271</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.607884000" lon="-75.064087000">
+<ele>0.000</ele>
+<name>Indian River Inlet</name>
+<cmt>Description: &lt;strong&gt;Indian River Inlet&lt;/strong&gt;&lt;br /&gt;Part of the Delaware State Park, located approximately 15 miles north of Ocean City on Route 1. Use sand fleas for tautog - bucktails for blues.&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.607884 -75.064087</cmt>
+<desc>Description: &lt;strong&gt;Indian River Inlet&lt;/strong&gt;&lt;br /&gt;Part of the Delaware State Park, located approximately 15 miles north of Ocean City on Route 1. Use sand fleas for tautog - bucktails for blues.&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.607884 -75.064087</desc>
+<sym>Fish</sym><extensions><h:id>272</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.391667000" lon="-74.933333000">
+<ele>0.000</ele>
+<name>ISLE OF WIGHT SHOAL</name>
+<cmt>Description: ISLE OF WIGHT SHOAL	&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 	38.3916667°, 074.9333333°&lt;br /&gt;Degrees Minutes	38°23.50000', 074°56.00000'&lt;br /&gt;Degrees Minutes Seconds 	38°23'30.0000", 074°56'00.0000&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.391667 -74.933333</cmt>
+<desc>Description: ISLE OF WIGHT SHOAL	&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 	38.3916667°, 074.9333333°&lt;br /&gt;Degrees Minutes	38°23.50000', 074°56.00000'&lt;br /&gt;Degrees Minutes Seconds 	38°23'30.0000", 074°56'00.0000&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.391667 -74.933333</desc>
+<sym>Fish</sym><extensions><h:id>273</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.086667000" lon="-74.751667000">
+<ele>0.000</ele>
+<name>Jackspot</name>
+<cmt>Description: Jackspot 38° 05' 12" N 74° 45' 06" W&lt;br /&gt;21 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.086667 -74.751667</cmt>
+<desc>Description: Jackspot 38° 05' 12" N 74° 45' 06" W&lt;br /&gt;21 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.086667 -74.751667</desc>
+<sym>Fish</sym><extensions><h:id>274</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.292614000" lon="-74.999622000">
+<ele>0.000</ele>
+<name>Jones Port</name>
+<cmt>Description: Jones Port &lt;br /&gt;38° 17' 33.41" N 74° 59' 58.64" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.292614 -74.999622</cmt>
+<desc>Description: Jones Port &lt;br /&gt;38° 17' 33.41" N 74° 59' 58.64" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.292614 -74.999622</desc>
+<sym>Fish</sym><extensions><h:id>275</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.304867000" lon="-74.889250000">
+<ele>0.000</ele>
+<name>KATHLEEN RIGGIN WRECK</name>
+<cmt>Description: KATHLEEN RIGGIN WRECK&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3048667°, 074.8892500°&lt;br /&gt;Degrees Minutes	38°18.29200', 074°53.35500'&lt;br /&gt;Degrees Minutes Seconds 38°18'17.5200", 074°53'21.3000"&lt;br /&gt;UTM	43S 490316mE 4239647mN&lt;br /&gt;MGRS	43SDC9031639647&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63RE00&lt;br /&gt;GEOREF	SJQJ53351829&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.304867 -74.889250</cmt>
+<desc>Description: KATHLEEN RIGGIN WRECK&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3048667°, 074.8892500°&lt;br /&gt;Degrees Minutes	38°18.29200', 074°53.35500'&lt;br /&gt;Degrees Minutes Seconds 38°18'17.5200", 074°53'21.3000"&lt;br /&gt;UTM	43S 490316mE 4239647mN&lt;br /&gt;MGRS	43SDC9031639647&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63RE00&lt;br /&gt;GEOREF	SJQJ53351829&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.304867 -74.889250</desc>
+<sym>Fish</sym><extensions><h:id>276</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.974444000" lon="-74.924444000">
+<ele>0.000</ele>
+<name>Lightship (Wreck)</name>
+<cmt>Description: Lightship (Wreck) &lt;br /&gt;37° 55' 28" N 74° 55' 28" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.974444 -74.924444</cmt>
+<desc>Description: Lightship (Wreck) &lt;br /&gt;37° 55' 28" N 74° 55' 28" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.974444 -74.924444</desc>
+<sym>Fish</sym><extensions><h:id>277</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.030833000" lon="-74.902778000">
+<ele>0.000</ele>
+<name>Loran 2854</name>
+<cmt>Description: A. Loran 2854&lt;br /&gt;38° 01' 51" N	74° 54' 10" W&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.030833 -74.902778</cmt>
+<desc>Description: A. Loran 2854&lt;br /&gt;38° 01' 51" N	74° 54' 10" W&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.030833 -74.902778</desc>
+<sym>Fish</sym><extensions><h:id>278</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.375000000" lon="-74.391667000">
+<ele>0.000</ele>
+<name>MASSEYS CANYON</name>
+<cmt>Description: MASSEYS CANYON&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Calculated Values - based on Degrees Lat Long to seven decimal places.&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3750000°, 074.3916667°&lt;br /&gt;Degrees Minutes	38°22.50000', 074°23.50000'&lt;br /&gt;Degrees Minutes Seconds 38°22'30.0000", 074°23'30.0000"&lt;br /&gt;UTM	43S 446862mE 4247598mN&lt;br /&gt;MGRS	43SDC4686247598&lt;br /&gt;Grid North	-0.4°&lt;br /&gt;Maidenhead	MM78EJ70AA00&lt;br /&gt;GEOREF	SJQJ23502250&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.375000 -74.391667</cmt>
+<desc>Description: MASSEYS CANYON&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Calculated Values - based on Degrees Lat Long to seven decimal places.&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3750000°, 074.3916667°&lt;br /&gt;Degrees Minutes	38°22.50000', 074°23.50000'&lt;br /&gt;Degrees Minutes Seconds 38°22'30.0000", 074°23'30.0000"&lt;br /&gt;UTM	43S 446862mE 4247598mN&lt;br /&gt;MGRS	43SDC4686247598&lt;br /&gt;Grid North	-0.4°&lt;br /&gt;Maidenhead	MM78EJ70AA00&lt;br /&gt;GEOREF	SJQJ23502250&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.375000 -74.391667</desc>
+<sym>Fish</sym><extensions><h:id>279</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.816667000" lon="-74.478333000">
+<ele>0.000</ele>
+<name>Middle Lump</name>
+<cmt>Description: Middle Lump &lt;br /&gt;38° 49' 00" N 74° 28' 42" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.816667 -74.478333</cmt>
+<desc>Description: Middle Lump &lt;br /&gt;38° 49' 00" N 74° 28' 42" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.816667 -74.478333</desc>
+<sym>Fish</sym><extensions><h:id>280</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.058333000" lon="-74.650000000">
+<ele>0.000</ele>
+<name>NorfolkBght</name>
+<cmt>Description: Norfolk Canyon 100 Fathom Bight &lt;br /&gt;37° 03' 30" N 74° 39' 00" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.058333 -74.650000</cmt>
+<desc>Description: Norfolk Canyon 100 Fathom Bight &lt;br /&gt;37° 03' 30" N 74° 39' 00" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.058333 -74.650000</desc>
+<sym>Fish</sym><extensions><h:id>281</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.091667000" lon="-74.758333000">
+<ele>0.000</ele>
+<name>NorfolkTip</name>
+<cmt>Description: Norfolk Canyon 100 Fathom Tip &lt;br /&gt;37° 05' 30" N 74o 45' 30" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.091667 -74.758333</cmt>
+<desc>Description: Norfolk Canyon 100 Fathom Tip &lt;br /&gt;37° 05' 30" N 74o 45' 30" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.091667 -74.758333</desc>
+<sym>Fish</sym><extensions><h:id>282</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.033333000" lon="-74.616667000">
+<ele>0.000</ele>
+<name>Norfolk500</name>
+<cmt>Description: Norfolk Canyon 500 Fathom Tip &lt;br /&gt;37° 02' 00" N 74° 37' 00" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.033333 -74.616667</cmt>
+<desc>Description: Norfolk Canyon 500 Fathom Tip &lt;br /&gt;37° 02' 00" N 74° 37' 00" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.033333 -74.616667</desc>
+<sym>Fish</sym><extensions><h:id>283</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.185278000" lon="-74.998333000">
+<ele>0.000</ele>
+<name>NorthWreck</name>
+<cmt>Description: North Beach Wreck &lt;br /&gt;38° 11' 07" N 74° 59' 54" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.185278 -74.998333</cmt>
+<desc>Description: North Beach Wreck &lt;br /&gt;38° 11' 07" N 74° 59' 54" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.185278 -74.998333</desc>
+<sym>Fish</sym><extensions><h:id>284</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.843333000" lon="-74.491667000">
+<ele>0.000</ele>
+<name>Northeast Lump</name>
+<cmt>Description: Northeast Lump &lt;br /&gt;38° 50' 36" N 74° 29' 30" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.843333 -74.491667</cmt>
+<desc>Description: Northeast Lump &lt;br /&gt;38° 50' 36" N 74° 29' 30" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.843333 -74.491667</desc>
+<sym>Fish</sym><extensions><h:id>285</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.299098000" lon="-74.888306000">
+<ele>0.000</ele>
+<name>O.C. M.S.S.A. WRECK</name>
+<cmt>Description: O.C. M.S.S.A. WRECK&lt;br /&gt;&lt;br /&gt;Calculated Values - based on Degrees Lat Long to seven decimal places.&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3061000°, 074.8913000°&lt;br /&gt;Degrees Minutes	38°18.36600', 074°53.47800'&lt;br /&gt;Degrees Minutes Seconds 38°18'21.9600", 074°53'28.6800"&lt;br /&gt;UTM 43S 490496mE 4239783mN&lt;br /&gt;MGRS 43SDC9049639783&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63WL91&lt;br /&gt;GEOREF	SJQJ53471836&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.299098 -74.888306</cmt>
+<desc>Description: O.C. M.S.S.A. WRECK&lt;br /&gt;&lt;br /&gt;Calculated Values - based on Degrees Lat Long to seven decimal places.&lt;br /&gt;Position Type	LatLon&lt;br /&gt;Degrees Lat Long 38.3061000°, 074.8913000°&lt;br /&gt;Degrees Minutes	38°18.36600', 074°53.47800'&lt;br /&gt;Degrees Minutes Seconds 38°18'21.9600", 074°53'28.6800"&lt;br /&gt;UTM 43S 490496mE 4239783mN&lt;br /&gt;MGRS 43SDC9049639783&lt;br /&gt;Grid North	-0.1°&lt;br /&gt;Maidenhead	MM78KH63WL91&lt;br /&gt;GEOREF	SJQJ53471836&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.299098 -74.888306</desc>
+<sym>Fish</sym><extensions><h:id>286</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.324084000" lon="-75.090737000">
+<ele>0.000</ele>
+<name>Ocean City Inlet</name>
+<cmt>Description: Inlet Ocean City MD&lt;br /&gt;Located at the Southern most end of Ocean City, Maryland. Use fishing lures such as bucktails, Got-cha Plugs, Spoons, and Swimming Shad Lures for bluefish, trout, and stripers--Use sand fleas, green crabs or clam for bait for tautog-- Use squid, mullet, or shiners for bait for the flounder and bluefish. In the spring and fall anglers use live eels for bait for stripers&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.324084 -75.090737</cmt>
+<desc>Description: Inlet Ocean City MD&lt;br /&gt;Located at the Southern most end of Ocean City, Maryland. Use fishing lures such as bucktails, Got-cha Plugs, Spoons, and Swimming Shad Lures for bluefish, trout, and stripers--Use sand fleas, green crabs or clam for bait for tautog-- Use squid, mullet, or shiners for bait for the flounder and bluefish. In the spring and fall anglers use live eels for bait for stripers&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.324084 -75.090737</desc>
+<sym>Fish</sym><extensions><h:id>287</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.650361000" lon="-74.894278000">
+<ele>0.000</ele>
+<name>Parking Lot</name>
+<cmt>Description: Parking Lot &lt;br /&gt;37° 39' 01.3" N 74° 53' 39.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.650361 -74.894278</cmt>
+<desc>Description: Parking Lot &lt;br /&gt;37° 39' 01.3" N 74° 53' 39.4" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.650361 -74.894278</desc>
+<sym>Fish</sym><extensions><h:id>288</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.873333000" lon="-74.108333000">
+<ele>0.000</ele>
+<name>Poorman's Canyon</name>
+<cmt>Description: Poorman's Canyon37° 52' 24" N 74° 06' 30" W&lt;br /&gt;&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.873333 -74.108333</cmt>
+<desc>Description: Poorman's Canyon37° 52' 24" N 74° 06' 30" W&lt;br /&gt;&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.873333 -74.108333</desc>
+<sym>Fish</sym><extensions><h:id>289</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.628056000" lon="-74.347778000">
+<ele>0.000</ele>
+<name>Rockpile</name>
+<cmt>Description: Rockpile &lt;br /&gt;37° 37' 41" N 74° 20' 52" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.628056 -74.347778</cmt>
+<desc>Description: Rockpile &lt;br /&gt;37° 37' 41" N 74° 20' 52" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.628056 -74.347778</desc>
+<sym>Fish</sym><extensions><h:id>290</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.065000000" lon="-74.431667000">
+<ele>0.000</ele>
+<name>SausageMid </name>
+<cmt>Description: Sausages (Middle Lump) 38° 03' 54" N 74° 25' 54" W&lt;br /&gt;34 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.065000 -74.431667</cmt>
+<desc>Description: Sausages (Middle Lump) 38° 03' 54" N 74° 25' 54" W&lt;br /&gt;34 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.065000 -74.431667</desc>
+<sym>Fish</sym><extensions><h:id>291</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.990000000" lon="-74.550000000">
+<ele>0.000</ele>
+<name>SausageSouh</name>
+<cmt>Description: Sausages (South Lump) 37° 59' 24" N 74° 33' 00" W&lt;br /&gt;32 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.990000 -74.550000</cmt>
+<desc>Description: Sausages (South Lump) 37° 59' 24" N 74° 33' 00" W&lt;br /&gt;32 miles from Inlet Buoy&lt;br /&gt;&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.990000 -74.550000</desc>
+<sym>Fish</sym><extensions><h:id>292</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.390500000" lon="-74.755167000">
+<ele>0.000</ele>
+<name>TWreckN</name>
+<cmt>Description: Twin Wrecks (North) &lt;br /&gt;38° 23' 25.8" N 74° 45' 18.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.390500 -74.755167</cmt>
+<desc>Description: Twin Wrecks (North) &lt;br /&gt;38° 23' 25.8" N 74° 45' 18.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.390500 -74.755167</desc>
+<sym>Fish</sym><extensions><h:id>293</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.222667000" lon="-74.761000000">
+<ele>0.000</ele>
+<name>TWrecksS</name>
+<cmt>Description: Twin Wrecks (South) &lt;br /&gt;38° 13' 21.6" N 74° 45' 39.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.222667 -74.761000</cmt>
+<desc>Description: Twin Wrecks (South) &lt;br /&gt;38° 13' 21.6" N 74° 45' 39.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.222667 -74.761000</desc>
+<sym>Fish</sym><extensions><h:id>294</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.147500000" lon="-74.943333000">
+<ele>0.000</ele>
+<name>U.S.S. Blenny</name>
+<cmt>Description: U.S.S. Blenny &lt;br /&gt;38° 08' 51" N 74° 56' 36" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.147500 -74.943333</cmt>
+<desc>Description: U.S.S. Blenny &lt;br /&gt;38° 08' 51" N 74° 56' 36" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.147500 -74.943333</desc>
+<sym>Fish</sym><extensions><h:id>295</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.436667000" lon="-74.433333000">
+<ele>0.000</ele>
+<name>WashtonBite</name>
+<cmt>Description: Washington Canyon 100 Fathom Bight 37° 26' 12" N 74° 26' 00" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.436667 -74.433333</cmt>
+<desc>Description: Washington Canyon 100 Fathom Bight 37° 26' 12" N 74° 26' 00" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.436667 -74.433333</desc>
+<sym>Fish</sym><extensions><h:id>296</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.486667000" lon="-74.508333000">
+<ele>0.000</ele>
+<name>WashtonTip</name>
+<cmt>Description: Washington Canyon 100 Fathom Tip 37° 29' 12" N 74° 30' 30" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.486667 -74.508333</cmt>
+<desc>Description: Washington Canyon 100 Fathom Tip 37° 29' 12" N 74° 30' 30" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.486667 -74.508333</desc>
+<sym>Fish</sym><extensions><h:id>297</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.413333000" lon="-74.430000000">
+<ele>0.000</ele>
+<name>Washton500</name>
+<cmt>Description: Washington Canyon 500 Fathom Tip 37° 24' 48" N 74° 25' 48" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.413333 -74.430000</cmt>
+<desc>Description: Washington Canyon 500 Fathom Tip 37° 24' 48" N 74° 25' 48" W&lt;br /&gt;57 miles from Inlet Buoy&lt;br /&gt;Fish For Blue Marlin, White Marlin, Wahoo, Mahi Mahi, Bluefin Tuna, Yellowfin Tuna&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.413333 -74.430000</desc>
+<sym>Fish</sym><extensions><h:id>298</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.457056000" lon="-74.786278000">
+<ele>0.000</ele>
+<name>Washingtonian</name>
+<cmt>Description: Washingtonian &lt;br /&gt;38° 27' 25.4" N 74° 47' 10.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.457056 -74.786278</cmt>
+<desc>Description: Washingtonian &lt;br /&gt;38° 27' 25.4" N 74° 47' 10.6" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 38.457056 -74.786278</desc>
+<sym>Fish</sym><extensions><h:id>299</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+<wpt lat="37.984722000" lon="-74.899722000">
+<ele>0.000</ele>
+<name>Winter Quarters Shoals offshore</name>
+<cmt>Description: A. Loran (Offshore W.Q. Shoal)&lt;br /&gt;&lt;br /&gt;37° 59' 05" N 74° 53' 59" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.984722 -74.899722</cmt>
+<desc>Description: A. Loran (Offshore W.Q. Shoal)&lt;br /&gt;&lt;br /&gt;37° 59' 05" N 74° 53' 59" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.984722 -74.899722</desc>
+<sym>Fish</sym><extensions><h:id>303</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.389722000" lon="-74.687222000">
+<ele>0.000</ele>
+<name>Wreck</name>
+<cmt>Description: Wreck &lt;br /&gt;37° 23' 23" N 74° 41' 14" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.389722 -74.687222</cmt>
+<desc>Description: Wreck &lt;br /&gt;37° 23' 23" N 74° 41' 14" W&lt;br&gt;source: http://fishocmd.com&lt;br&gt;Coordinates: 37.389722 -74.687222</desc>
+<sym>Fish</sym><extensions><h:id>304</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.168550000" lon="-74.199700000">
+<ele>0.000</ele>
+<name>Chris millerkiller</name>
+<cmt>Chris millerkiller</cmt>
+<desc>Chris millerkiller</desc>
+<sym>Fish</sym><extensions><h:id>305</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.329000000" lon="-74.943000000">
+<ele>0.000</ele>
+<name>Hump East West</name>
+<cmt>Hump East West</cmt>
+<desc>Hump East West</desc>
+<sym>Fish</sym><extensions><h:id>306</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.224000000" lon="-74.756000000">
+<ele>0.000</ele>
+<name>JS Wreck</name>
+<cmt>JS Wreck</cmt>
+<desc>JS Wreck</desc>
+<sym>Fish</sym><extensions><h:id>307</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.276817000" lon="-75.075344000">
+<ele>0.000</ele>
+<name>Kelly’s Reef (Little Gull)</name>
+<cmt>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 3.0 &lt;br&gt;General Location: 3 miles southeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 16' 36.54", -75° 04' 31.24"&lt;br&gt;Size in Acres: 467.2&lt;br&gt;Materials Placed: donated items, including concrete, designed units, obsolete vessels, barge, concrete.</cmt>
+<desc>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 3.0 &lt;br&gt;General Location: 3 miles southeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 16' 36.54", -75° 04' 31.24"&lt;br&gt;Size in Acres: 467.2&lt;br&gt;Materials Placed: donated items, including concrete, designed units, obsolete vessels, barge, concrete.</desc>
+<sym>Fish</sym><extensions><h:id>308</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.268375000" lon="-75.030056000">
+<ele>0.000</ele>
+<name>Russell’s Reef (Great Gull)</name>
+<cmt>Date Permitted: 1993&lt;br&gt;Distance from Inlet: 3.0 &lt;br&gt;General Location: 4.2 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 16' 06.15", -75° 01' 48.20"&lt;br&gt;Size in Acres: 998.4&lt;br&gt;Materials Placed: donated items, designed units, vessels, concrete.</cmt>
+<desc>Date Permitted: 1993&lt;br&gt;Distance from Inlet: 3.0 &lt;br&gt;General Location: 4.2 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 16' 06.15", -75° 01' 48.20"&lt;br&gt;Size in Acres: 998.4&lt;br&gt;Materials Placed: donated items, designed units, vessels, concrete.</desc>
+<sym>Fish</sym><extensions><h:id>309</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.090453000" lon="-74.812125000">
+<ele>0.000</ele>
+<name>Jackspot Reef</name>
+<cmt>Date Permitted: 2004&lt;br&gt;Distance from Inlet: 19.1 &lt;br&gt;General Location: 19 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 05' 25.63", -74° 48' 43.65"&lt;br&gt;Size in Acres: 147.2&lt;br&gt;Materials Placed: donated items, designed units, vessels, concrete, subway cars.</cmt>
+<desc>Date Permitted: 2004&lt;br&gt;Distance from Inlet: 19.1 &lt;br&gt;General Location: 19 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 05' 25.63", -74° 48' 43.65"&lt;br&gt;Size in Acres: 147.2&lt;br&gt;Materials Placed: donated items, designed units, vessels, concrete, subway cars.</desc>
+<sym>Fish</sym><extensions><h:id>310</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.323508000" lon="-74.939678000">
+<ele>0.000</ele>
+<name>Research Reef</name>
+<cmt>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 7.0 &lt;br&gt;General Location: 7.5 miles east-northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 19' 24.63", -74° 56' 22.84"&lt;br&gt;Size in Acres: 304&lt;br&gt;Materials Placed: donated items.</cmt>
+<desc>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 7.0 &lt;br&gt;General Location: 7.5 miles east-northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 19' 24.63", -74° 56' 22.84"&lt;br&gt;Size in Acres: 304&lt;br&gt;Materials Placed: donated items.</desc>
+<sym>Fish</sym><extensions><h:id>311</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.151308000" lon="-74.953253000">
+<ele>0.000</ele>
+<name>African Queen Reef</name>
+<cmt>Date Permitted: 1994&lt;br&gt;Distance from Inlet: 12.1 &lt;br&gt;General Location: 13 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 09' 04.71", -74° 57' 11.71"&lt;br&gt;Size in Acres: 800&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels.</cmt>
+<desc>Date Permitted: 1994&lt;br&gt;Distance from Inlet: 12.1 &lt;br&gt;General Location: 13 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 09' 04.71", -74° 57' 11.71"&lt;br&gt;Size in Acres: 800&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels.</desc>
+<sym>Fish</sym><extensions><h:id>312</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.381806000" lon="-74.978475000">
+<ele>0.000</ele>
+<name>Isle of Wight Reef</name>
+<cmt>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 6.2 &lt;br&gt;General Location: 6 miles northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 22' 54.50", -74° 58' 42.51"&lt;br&gt;Size in Acres: 90&lt;br&gt;Materials Placed: donated items, designed units, concrete, subway cars.</cmt>
+<desc>Date Permitted: 2005&lt;br&gt;Distance from Inlet: 6.2 &lt;br&gt;General Location: 6 miles northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 22' 54.50", -74° 58' 42.51"&lt;br&gt;Size in Acres: 90&lt;br&gt;Materials Placed: donated items, designed units, concrete, subway cars.</desc>
+<sym>Fish</sym><extensions><h:id>313</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.295928000" lon="-74.910883000">
+<ele>0.000</ele>
+<name>Bass Grounds Reef</name>
+<cmt>Date Permitted: 1997&lt;br&gt;Distance from Inlet: 8.4 &lt;br&gt;General Location: 9 miles east of R-2 buoy.&lt;br&gt;Coordinates: 38° 17' 45.34", -74° 54' 39.18"&lt;br&gt;Size in Acres: 878.1&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels, subway cars.</cmt>
+<desc>Date Permitted: 1997&lt;br&gt;Distance from Inlet: 8.4 &lt;br&gt;General Location: 9 miles east of R-2 buoy.&lt;br&gt;Coordinates: 38° 17' 45.34", -74° 54' 39.18"&lt;br&gt;Size in Acres: 878.1&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels, subway cars.</desc>
+<sym>Fish</sym><extensions><h:id>314</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.350003000" lon="-75.058333000">
+<ele>0.000</ele>
+<name>Purnell’s Reef</name>
+<cmt>Date Permitted: 1997&lt;br&gt;Distance from Inlet: 2.1 &lt;br&gt;General Location: 2 miles northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 21' 00.01", -75° 03' 30.00"&lt;br&gt;Size in Acres: 413.2&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels.</cmt>
+<desc>Date Permitted: 1997&lt;br&gt;Distance from Inlet: 2.1 &lt;br&gt;General Location: 2 miles northeast of R-4 buoy.&lt;br&gt;Coordinates: 38° 21' 00.01", -75° 03' 30.00"&lt;br&gt;Size in Acres: 413.2&lt;br&gt;Materials Placed: donated items, designed units, concrete, vessels.</desc>
+<sym>Fish</sym><extensions><h:id>315</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.208342000" lon="-74.731675000">
+<ele>0.000</ele>
+<name>Great Eastern Reef (Twin Wrecks area)</name>
+<cmt>Date Permitted: 1999&lt;br&gt;Distance from Inlet: 18.1 &lt;br&gt;General Location: 20 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 12' 30.03", -74° 43' 54.03"&lt;br&gt;Size in Acres: 1,011.2&lt;br&gt;Materials Placed: materials of opportunity, designed units, concrete, vessels.</cmt>
+<desc>Date Permitted: 1999&lt;br&gt;Distance from Inlet: 18.1 &lt;br&gt;General Location: 20 miles southeast of R-2 buoy.&lt;br&gt;Coordinates: 38° 12' 30.03", -74° 43' 54.03"&lt;br&gt;Size in Acres: 1,011.2&lt;br&gt;Materials Placed: materials of opportunity, designed units, concrete, vessels.</desc>
+<sym>Fish</sym><extensions><h:id>316</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.335967000" lon="-75.088672000">
+<ele>0.000</ele>
+<name>Mason’s Reef (Isle of Wight Bay)</name>
+<cmt>Date Permitted: 2003&lt;br&gt;Distance from Inlet: 1.0 &lt;br&gt;General Location: IOW Bay, off Bulkhead, between 2nd and 4th Streets.&lt;br&gt;Coordinates: 38° 20' 09.48", -75° 05' 19.22"&lt;br&gt;Size in Acres: 0.92&lt;br&gt;Materials Placed: Designed units, 4 piles of 6 pyramids.</cmt>
+<desc>Date Permitted: 2003&lt;br&gt;Distance from Inlet: 1.0 &lt;br&gt;General Location: IOW Bay, off Bulkhead, between 2nd and 4th Streets.&lt;br&gt;Coordinates: 38° 20' 09.48", -75° 05' 19.22"&lt;br&gt;Size in Acres: 0.92&lt;br&gt;Materials Placed: Designed units, 4 piles of 6 pyramids.</desc>
+<sym>Fish</sym><extensions><h:id>317</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.236667000" lon="-74.443167000">
+<ele>0.000</ele>
+<name>Chicken Bone</name>
+<cmt>Chicken Bone</cmt>
+<desc>Chicken Bone</desc>
+<sym>Fish</sym><extensions><h:id>318</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.329167000" lon="-74.441667000">
+<ele>0.000</ele>
+<name>Masseys</name>
+<cmt>Masseys</cmt>
+<desc>Masseys</desc>
+<sym>Fish</sym><extensions><h:id>319</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.298266000" lon="-75.047504000">
+<ele>0.000</ele>
+<name>Little Gull Shoals</name>
+<cmt>Little Gull Shoals</cmt>
+<desc>Little Gull Shoals</desc>
+<sym>Fish</sym><extensions><h:id>320</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.116967000" lon="-74.272300000">
+<ele>0.000</ele>
+<name>Hot Dog</name>
+<cmt>Hot Dog</cmt>
+<desc>Hot Dog</desc>
+<sym>Fish</sym><extensions><h:id>321</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+<wpt lat="38.362800000" lon="-73.587000000">
+<ele>0.000</ele>
+<name>WEST WALL</name>
+<cmt>Latitude: 38 21.770&lt;br&gt;Longitude: 73 35.220&lt;br&gt;DMM LAT: 38.363&lt;br&gt;DMM LON: -73.587&lt;br&gt;DMM: 38.3628,-73.5870&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.3628,-73.5870</cmt>
+<desc>Latitude: 38 21.770&lt;br&gt;Longitude: 73 35.220&lt;br&gt;DMM LAT: 38.363&lt;br&gt;DMM LON: -73.587&lt;br&gt;DMM: 38.3628,-73.5870&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.3628,-73.5870</desc>
+<sym>Fish</sym><extensions><h:id>323</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="39.318200000" lon="-74.444500000">
+<ele>0.000</ele>
+<name>Florida</name>
+<cmt>Loran 26/14: 27,001.2&lt;br&gt;Loran 43: 43,000.7&lt;br&gt;Longitude: -74.4445&lt;br&gt;Latitude: 39.3182&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27,001.2&lt;br&gt;Loran 43: 43,000.7&lt;br&gt;Longitude: -74.4445&lt;br&gt;Latitude: 39.3182&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>324</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="37.475000000" lon="-74.875000000">
+<ele>0.000</ele>
+<name>Lumpy Bottom</name>
+<cmt>N37 28.500, W074 52.500</cmt>
+<desc>N37 28.500, W074 52.500</desc>
+<sym>Fish</sym><extensions><h:id>325</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.689300000" lon="-74.760300000">
+<ele>0.000</ele>
+<name>The PIMPLE</name>
+<cmt>Latitude: 38 41.360&lt;br&gt;Longitude: 74 45.620&lt;br&gt;DMM LAT: 38.689&lt;br&gt;DMM LON: -74.76&lt;br&gt;DMM: 38.6893,-74.7603&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6893,-74.7603</cmt>
+<desc>Latitude: 38 41.360&lt;br&gt;Longitude: 74 45.620&lt;br&gt;DMM LAT: 38.689&lt;br&gt;DMM LON: -74.76&lt;br&gt;DMM: 38.6893,-74.7603&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6893,-74.7603</desc>
+<sym>Fish</sym><extensions><h:id>326</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.819800000" lon="-74.909300000">
+<ele>0.000</ele>
+<name>China Wreck</name>
+<cmt>Loran 26/14: 27098&lt;br&gt;Loran 43: 42,658.3&lt;br&gt;Longitude: -74.9093&lt;br&gt;Latitude: 38.8198&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27098&lt;br&gt;Loran 43: 42,658.3&lt;br&gt;Longitude: -74.9093&lt;br&gt;Latitude: 38.8198&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>327</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.483100000" lon="-74.537200000">
+<ele>0.000</ele>
+<name>Hvoslef</name>
+<cmt>Loran 26/14: 26,931.6&lt;br&gt;Loran 43: 42,450.1&lt;br&gt;Longitude: -74.5372&lt;br&gt;Latitude: 38.4831&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,931.6&lt;br&gt;Loran 43: 42,450.1&lt;br&gt;Longitude: -74.5372&lt;br&gt;Latitude: 38.4831&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>328</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.971200000" lon="-74.465700000">
+<ele>0.000</ele>
+<name>Dorothy B. Barrett</name>
+<cmt>Loran 26/14: 26,963.4&lt;br&gt;Loran 43: 42,773.1&lt;br&gt;Longitude: -74.4657&lt;br&gt;Latitude: 38.9712&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,963.4&lt;br&gt;Loran 43: 42,773.1&lt;br&gt;Longitude: -74.4657&lt;br&gt;Latitude: 38.9712&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>329</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="39.493800000" lon="-74.292800000">
+<ele>0.000</ele>
+<name>Little Egg Inlet</name>
+<cmt>Latitude: 39 29.627&lt;br&gt;Longitude: 74 17.566&lt;br&gt;DMM LAT: 39.494&lt;br&gt;DMM LON: -74.293&lt;br&gt;DMM: 39.4938,-74.2928&lt;br&gt;Google Map Link: http://maps.google.com/?q=39.4938,-74.2928</cmt>
+<desc>Latitude: 39 29.627&lt;br&gt;Longitude: 74 17.566&lt;br&gt;DMM LAT: 39.494&lt;br&gt;DMM LON: -74.293&lt;br&gt;DMM: 39.4938,-74.2928&lt;br&gt;Google Map Link: http://maps.google.com/?q=39.4938,-74.2928</desc>
+<sym>Fish</sym><extensions><h:id>330</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.863800000" lon="-74.380900000">
+<ele>0.000</ele>
+<name>Tuna Banks</name>
+<cmt>Loran 26/14: 25,948.8&lt;br&gt;Loran 43: 43,743.3&lt;br&gt;Longitude: -74.3809&lt;br&gt;Latitude: 38.8638&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 25,948.8&lt;br&gt;Loran 43: 43,743.3&lt;br&gt;Longitude: -74.3809&lt;br&gt;Latitude: 38.8638&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>331</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.863800000" lon="-74.380900000">
+<ele>0.000</ele>
+<name>City of Athens</name>
+<cmt>Loran 26/14: 26,920.3&lt;br&gt;Loran 43: 42,705.3&lt;br&gt;Longitude: -74.3809&lt;br&gt;Latitude: 38.8638&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,920.3&lt;br&gt;Loran 43: 42,705.3&lt;br&gt;Longitude: -74.3809&lt;br&gt;Latitude: 38.8638&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>332</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="39.347100000" lon="-74.263900000">
+<ele>0.000</ele>
+<name>E.F. Moran</name>
+<cmt>Loran 26/14: 26,936.1&lt;br&gt;Loran 43: 43,020.6&lt;br&gt;Longitude: -74.2639&lt;br&gt;Latitude: 39.3471&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,936.1&lt;br&gt;Loran 43: 43,020.6&lt;br&gt;Longitude: -74.2639&lt;br&gt;Latitude: 39.3471&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>333</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.672600000" lon="-74.444000000">
+<ele>0.000</ele>
+<name>Jacob Jones</name>
+<cmt>Loran 26/14: 26,920.8&lt;br&gt;Loran 43: 42,578.4&lt;br&gt;Longitude: -74.444&lt;br&gt;Latitude: 38.6726&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,920.8&lt;br&gt;Loran 43: 42,578.4&lt;br&gt;Longitude: -74.444&lt;br&gt;Latitude: 38.6726&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>334</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.844100000" lon="-74.893700000">
+<ele>0.000</ele>
+<name>King Cobra</name>
+<cmt>Loran 26/14: 27,096.1&lt;br&gt;Loran 43: 42,675.3&lt;br&gt;Longitude: -74.8937&lt;br&gt;Latitude: 38.8441&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27,096.1&lt;br&gt;Loran 43: 42,675.3&lt;br&gt;Longitude: -74.8937&lt;br&gt;Latitude: 38.8441&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>335</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.746100000" lon="-74.590400000">
+<ele>0.000</ele>
+<name>City of Georgetown</name>
+<cmt>Loran 26/14: 26,979.6&lt;br&gt;Loran 43: 42621&lt;br&gt;Longitude: -74.5904&lt;br&gt;Latitude: 38.7461&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,979.6&lt;br&gt;Loran 43: 42621&lt;br&gt;Longitude: -74.5904&lt;br&gt;Latitude: 38.7461&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>336</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="39.020900000" lon="-74.654900000">
+<ele>0.000</ele>
+<name>YP-387</name>
+<cmt>Loran 26/14: 27,037.5&lt;br&gt;Loran 43: 42,801.1&lt;br&gt;Longitude: -74.6549&lt;br&gt;Latitude: 39.0209&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27,037.5&lt;br&gt;Loran 43: 42,801.1&lt;br&gt;Longitude: -74.6549&lt;br&gt;Latitude: 39.0209&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>337</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.513000000" lon="-74.514900000">
+<ele>0.000</ele>
+<name>USS Moonstone</name>
+<cmt>Loran 26/14: 26,927.4&lt;br&gt;Loran 43: 42,470.8&lt;br&gt;Longitude: -74.5149&lt;br&gt;Latitude: 38.513&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,927.4&lt;br&gt;Loran 43: 42,470.8&lt;br&gt;Longitude: -74.5149&lt;br&gt;Latitude: 38.513&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>338</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.819800000" lon="-74.909300000">
+<ele>0.000</ele>
+<name>Stellwagon Bank</name>
+<cmt>Loran 26/14: 13800&lt;br&gt;Loran 43: 44175&lt;br&gt;Longitude: -74.9093&lt;br&gt;Latitude: 38.8198&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 13800&lt;br&gt;Loran 43: 44175&lt;br&gt;Longitude: -74.9093&lt;br&gt;Latitude: 38.8198&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>339</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.803500000" lon="-75.059900000">
+<ele>0.000</ele>
+<name>Gypsum Prince</name>
+<cmt>Loran 26/14: 27,146.2&lt;br&gt;Loran 43: 42,641.5&lt;br&gt;Longitude: -75.0599&lt;br&gt;Latitude: 38.8035&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27,146.2&lt;br&gt;Loran 43: 42,641.5&lt;br&gt;Longitude: -75.0599&lt;br&gt;Latitude: 38.8035&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>340</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.746100000" lon="-74.590400000">
+<ele>0.000</ele>
+<name>U-853 Wreck</name>
+<cmt>Loran 26/14: 14,472.8&lt;br&gt;Loran 43: 43,894.8&lt;br&gt;Longitude: -74.5904&lt;br&gt;Latitude: 38.7461&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 14,472.8&lt;br&gt;Loran 43: 43,894.8&lt;br&gt;Longitude: -74.5904&lt;br&gt;Latitude: 38.7461&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>341</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.744700000" lon="-74.320700000">
+<ele>0.000</ele>
+<name>Misty Blue</name>
+<cmt>Loran 26/14: 26,885.9&lt;br&gt;Loran 43: 42630&lt;br&gt;Longitude: -74.3207&lt;br&gt;Latitude: 38.7447&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,885.9&lt;br&gt;Loran 43: 42630&lt;br&gt;Longitude: -74.3207&lt;br&gt;Latitude: 38.7447&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>342</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.595900000" lon="-74.650300000">
+<ele>0.000</ele>
+<name>USS Cherokee</name>
+<cmt>Loran 26/14: 26982&lt;br&gt;Loran 43: 42,519.1&lt;br&gt;Longitude: -74.6503&lt;br&gt;Latitude: 38.5959&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26982&lt;br&gt;Loran 43: 42,519.1&lt;br&gt;Longitude: -74.6503&lt;br&gt;Latitude: 38.5959&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>343</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.947300000" lon="-74.681400000">
+<ele>0.000</ele>
+<name>Michael DePalma</name>
+<cmt>Loran 26/14: 27,036.9&lt;br&gt;Loran 43: 42,751.4&lt;br&gt;Longitude: -74.6814&lt;br&gt;Latitude: 38.9473&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 27,036.9&lt;br&gt;Loran 43: 42,751.4&lt;br&gt;Longitude: -74.6814&lt;br&gt;Latitude: 38.9473&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>344</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.595900000" lon="-74.650300000">
+<ele>0.000</ele>
+<name>Smithown Reef</name>
+<cmt>Loran 26/14: 26,667.5&lt;br&gt;Loran 43: 43,916.2&lt;br&gt;Longitude: -74.6503&lt;br&gt;Latitude: 38.5959&lt;br&gt;Depth: &lt;br&gt;Type:</cmt>
+<desc>Loran 26/14: 26,667.5&lt;br&gt;Loran 43: 43,916.2&lt;br&gt;Longitude: -74.6503&lt;br&gt;Latitude: 38.5959&lt;br&gt;Depth: &lt;br&gt;Type:</desc>
+<sym>Fish</sym><extensions><h:id>345</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.622700000" lon="-73.672700000">
+<ele>0.000</ele>
+<name>TUNA LUMP</name>
+<cmt>Latitude: 38 37.360&lt;br&gt;Longitude: 73 40.360&lt;br&gt;DMM LAT: 38.623&lt;br&gt;DMM LON: -73.673&lt;br&gt;DMM: 38.6227,-73.6727&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6227,-73.6727</cmt>
+<desc>Latitude: 38 37.360&lt;br&gt;Longitude: 73 40.360&lt;br&gt;DMM LAT: 38.623&lt;br&gt;DMM LON: -73.673&lt;br&gt;DMM: 38.6227,-73.6727&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6227,-73.6727</desc>
+<sym>Fish</sym><extensions><h:id>346</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+<wpt lat="38.608400000" lon="-73.171200000">
+<ele>0.000</ele>
+<name>Spencer Canyon</name>
+<cmt>Latitude: 38 36.506&lt;br&gt;Longitude: 73 10.272&lt;br&gt;DMM LAT: 38.608&lt;br&gt;DMM LON: -73.171&lt;br&gt;DMM: 38.6084,-73.1712&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6084,-73.1712</cmt>
+<desc>Latitude: 38 36.506&lt;br&gt;Longitude: 73 10.272&lt;br&gt;DMM LAT: 38.608&lt;br&gt;DMM LON: -73.171&lt;br&gt;DMM: 38.6084,-73.1712&lt;br&gt;Google Map Link: http://maps.google.com/?q=38.6084,-73.1712</desc>
+<sym>Fish</sym><extensions><h:id>348</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="38.501333000" lon="-74.304000000">
+<ele>0.000</ele>
+<name>19 Fathom Lump</name>
+<cmt>19 Fathom Lump</cmt>
+<desc>19 Fathom Lump</desc>
+<sym>Fish</sym><extensions><h:id>404</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wpt lat="39.257900000" lon="-74.232867000">
+<ele>0.000</ele>
+<name>5 FA Lightship</name>
+<cmt>5 FA Lightship</cmt>
+<desc>5 FA Lightship</desc>
+<sym>Fish</sym><extensions><h:id>420</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<wpt lat="38.453000000" lon="-74.691167000">
+<ele>0.000</ele>
+<name>DE Light</name>
+<cmt>DE Lightship</cmt>
+<desc>DE Lightship</desc>
+<sym>Fish</sym><extensions><h:id>421</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.316" lon="-74.896166667"><time/><name>bassreef1</name><sym>Wreck</sym><extensions><h:id>423</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.315666667" lon="-74.898166667"><time/><name>bassreef2</name><sym>Wreck</sym><extensions><h:id>424</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.315416667" lon="-74.899333333"><time/><name>bassreef3</name><sym>Wreck</sym><extensions><h:id>425</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.315033333" lon="-74.90035"><time/><name>bassreef4</name><sym>Wreck</sym><extensions><h:id>426</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.315083333" lon="-74.883966667"><time/><name>82cutter</name><sym>Wreck</sym><extensions><h:id>427</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.314166667" lon="-74.903666667"><time/><name>bassreef5</name><sym>Wreck</sym><extensions><h:id>429</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.314583333" lon="-74.901633333"><time/><name>bassreef6</name><sym>Wreck</sym><extensions><h:id>430</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.314166667" lon="-74.903666667"><time/><name>bassreef7</name><sym>Wreck</sym><extensions><h:id>431</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.314166667" lon="-74.904333333"><time/><name>bassreef8</name><sym>Wreck</sym><extensions><h:id>432</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3141" lon="-74.904116667"><time/><name>bassreef9</name><sym>Wreck</sym><extensions><h:id>433</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.312" lon="-74.904333333"><time/><name>bassreef10</name><sym>Wreck</sym><extensions><h:id>434</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.309433333" lon="-74.908566667"><time/><name>bassreef11</name><sym>Wreck</sym><extensions><h:id>435</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.307916667" lon="-74.911566667"><time/><name>bassreef11</name><sym>Wreck</sym><extensions><h:id>436</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.306666667" lon="-74.914"><time/><name>bassreef12</name><sym>Wreck</sym><extensions><h:id>437</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.306333333" lon="-74.913666667"><time/><name>bassreef13</name><sym>Wreck</sym><extensions><h:id>438</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3065" lon="-74.9145"><time/><name>bassreef14</name><sym>Wreck</sym><extensions><h:id>439</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.314166667" lon="-74.904166667"><time/><name>bassreef15</name><sym>Wreck</sym><extensions><h:id>440</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3135" lon="-74.904666667"><time/><name>bassreef16</name><sym>Wreck</sym><extensions><h:id>441</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.313" lon="-74.903833333"><time/><name>bassreef17</name><sym>Wreck</sym><extensions><h:id>442</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3109" lon="-74.906233333"><time/><name>bassreef18</name><sym>Wreck</sym><extensions><h:id>443</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.292" lon="-74.933916667"><time/><name>bassreef18</name><sym>Wreck</sym><extensions><h:id>444</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.308333333" lon="-74.910166667"><time/><name>bassreef19</name><sym>Wreck</sym><extensions><h:id>445</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.306983333" lon="-74.912483333"><time/><name>bassreef20</name><sym>Wreck</sym><extensions><h:id>446</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3034" lon="-74.91855"><time/><name>bassreef20</name><sym>Wreck</sym><extensions><h:id>447</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.292033333" lon="-74.933666667"><time/><name>bassreef21</name><sym>Wreck</sym><extensions><h:id>448</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.292166667" lon="-74.933833333"><time/><name>bassreef22</name><sym>Wreck</sym><extensions><h:id>449</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.291833333" lon="-74.933666667"><time/><name>bassreef23</name><sym>Wreck</sym><extensions><h:id>450</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.289333333" lon="-74.936833333"><time/><name>bassreef24</name><sym>Wreck</sym><extensions><h:id>451</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.309833333" lon="-74.8934"><time/><name>carspipe</name><sym>Wreck</sym><extensions><h:id>452</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.308683333" lon="-74.8943"><time/><name>bassreef25</name><sym>Wreck</sym><extensions><h:id>453</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.307783333" lon="-74.894116667"><time/><name>bassreef26</name><sym>Wreck</sym><extensions><h:id>454</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.30985" lon="-74.892533333"><time/><name>bassreef27</name><sym>Wreck</sym><extensions><h:id>455</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.308983333" lon="-74.893416667"><time/><name>bassreef28</name><sym>Wreck</sym><extensions><h:id>456</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3089" lon="-74.893883333"><time/><name>bassreef29</name><sym>Wreck</sym><extensions><h:id>457</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.308866667" lon="-74.8934"><time/><name>bassreef30</name><sym>Wreck</sym><extensions><h:id>458</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.309783333" lon="-74.892483333"><time/><name>bassreef31</name><sym>Wreck</sym><extensions><h:id>459</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.309866667" lon="-74.89255"><time/><name>bassreef32</name><sym>Wreck</sym><extensions><h:id>460</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.307233333" lon="-74.89435"><time/><name>bassreef33</name><sym>Wreck</sym><extensions><h:id>461</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.290966667" lon="-74.91095"><time/><name>bassreef34</name><sym>Wreck</sym><extensions><h:id>462</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.290333333" lon="-74.910983333"><time/><name>bassreef35</name><sym>Wreck</sym><extensions><h:id>463</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.2803" lon="-74.891933333"><time/><name>cable1</name><sym>Wreck</sym><extensions><h:id>464</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286533333" lon="-74.886683333"><time/><name>cable2</name><sym>Wreck</sym><extensions><h:id>465</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.306" lon="-74.891666667"><time/><name>cg44s</name><sym>Wreck</sym><extensions><h:id>466</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.302283333" lon="-74.891916667"><time/><name>barges1</name><sym>Wreck</sym><extensions><h:id>467</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3059" lon="-74.889366667"><time/><name>pipes1</name><sym>Wreck</sym><extensions><h:id>468</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.30525" lon="-74.88995"><time/><name>pipe2</name><sym>Wreck</sym><extensions><h:id>469</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.322166667" lon="-74.90075"><time/><name>bassreef36</name><sym>Wreck</sym><extensions><h:id>470</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3225" lon="-74.901166667"><time/><name>bassreef37</name><sym>Wreck</sym><extensions><h:id>471</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.321916667" lon="-74.9014"><time/><name>steel1</name><sym>Wreck</sym><extensions><h:id>472</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286" lon="-74.939833333"><time/><name>pipe3</name><sym>Wreck</sym><extensions><h:id>473</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286266667" lon="-74.9399"><time/><name>pipe4</name><sym>Wreck</sym><extensions><h:id>474</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286166667" lon="-74.939666667"><time/><name>oyster1</name><sym>Wreck</sym><extensions><h:id>475</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.274766667" lon="-74.9277"><time/><name>tubbyreef</name><sym>Wreck</sym><extensions><h:id>476</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.3565" lon="-75.061166667"><time/><name>APC Cluster</name><sym>Wreck</sym><extensions><h:id>477</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.356" lon="-75.061666667"><time/><name>Apollo APC</name><sym>Wreck</sym><extensions><h:id>478</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.355233333" lon="-75.061666667"><time/><name>APC Cluster2</name><sym>Wreck</sym><extensions><h:id>479</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.355233333" lon="-75.06215"><time/><name>MJCookBarge</name><sym>Wreck</sym><extensions><h:id>480</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.350133333" lon="-75.060283333"><time/><name>Belmontreef</name><sym>Wreck</sym><extensions><h:id>481</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.350333333" lon="-75.061333333"><time/><name>ConDiam</name><sym>Wreck</sym><extensions><h:id>482</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.357083333" lon="-75.062183333"><time/><name>Iggyreef</name><sym>Wreck</sym><extensions><h:id>483</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.668333" lon="-74.988333"><time/><name>de6</name><sym>Wreck</sym><extensions><h:id>539</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.615567" lon="-74.93035"><time/><name>de7</name><sym>Wreck</sym><extensions><h:id>540</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.614833" lon="-74.9409"><time/><name>de8</name><sym>Wreck</sym><extensions><h:id>541</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.606083" lon="-74.943333"><time/><name>de9</name><sym>Wreck</sym><extensions><h:id>542</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6072" lon="-74.931183"><time/><name>de10</name><sym>Wreck</sym><extensions><h:id>543</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.607067" lon="-74.941633"><time/><name>de11</name><sym>Wreck</sym><extensions><h:id>544</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.609817" lon="-74.94115"><time/><name>de12</name><sym>Wreck</sym><extensions><h:id>545</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6125" lon="-74.927833"><time/><name>de13</name><sym>Wreck</sym><extensions><h:id>546</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6123" lon="-74.93275"><time/><name>de14</name><sym>Wreck</sym><extensions><h:id>547</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.614283" lon="-74.936017"><time/><name>de15</name><sym>Wreck</sym><extensions><h:id>548</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.610817" lon="-74.9441"><time/><name>de16</name><sym>Wreck</sym><extensions><h:id>549</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.610133" lon="-74.941567"><time/><name>de17</name><sym>Wreck</sym><extensions><h:id>550</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.678367" lon="-74.725517"><time/><name>de18</name><sym>Wreck</sym><extensions><h:id>551</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.678383" lon="-74.7253"><time/><name>de19</name><sym>Wreck</sym><extensions><h:id>552</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.678633" lon="-74.725833"><time/><name>de20</name><sym>Wreck</sym><extensions><h:id>553</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.677467" lon="-74.725583"><time/><name>de21</name><sym>Wreck</sym><extensions><h:id>554</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.676017" lon="-74.724783"><time/><name>de22</name><sym>Wreck</sym><extensions><h:id>555</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.676967" lon="-74.7229"><time/><name>de23</name><sym>Wreck</sym><extensions><h:id>556</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.677067" lon="-74.723833"><time/><name>de24</name><sym>Wreck</sym><extensions><h:id>557</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.67315" lon="-74.723883"><time/><name>de25</name><sym>Wreck</sym><extensions><h:id>558</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.673883" lon="-74.7231"><time/><name>de26</name><sym>Wreck</sym><extensions><h:id>559</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.674833" lon="-74.575117"><time/><name>de27</name><sym>Wreck</sym><extensions><h:id>560</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.67275" lon="-74.7303"><time/><name>de28</name><sym>Wreck</sym><extensions><h:id>561</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.672033" lon="-74.745533"><time/><name>de29</name><sym>Wreck</sym><extensions><h:id>562</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.676767" lon="-74.503333"><time/><name>de30</name><sym>Wreck</sym><extensions><h:id>563</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.677683" lon="-74.732833"><time/><name>de31</name><sym>Wreck</sym><extensions><h:id>564</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.678133" lon="-74.726267"><time/><name>de32</name><sym>Wreck</sym><extensions><h:id>565</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.675567" lon="-74.737867"><time/><name>de33</name><sym>Wreck</sym><extensions><h:id>566</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.676117" lon="-74.730083"><time/><name>de34</name><sym>Wreck</sym><extensions><h:id>567</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.67" lon="-74.740017"><time/><name>de35</name><sym>Wreck</sym><extensions><h:id>568</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6703" lon="-74.731033"><time/><name>de36</name><sym>Wreck</sym><extensions><h:id>569</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.67105" lon="-74.578017"><time/><name>de37</name><sym>Wreck</sym><extensions><h:id>570</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.672867" lon="-74.739817"><time/><name>de38</name><sym>Wreck</sym><extensions><h:id>571</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.67105" lon="-74.724467"><time/><name>de39</name><sym>Wreck</sym><extensions><h:id>572</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.672683" lon="-74.727867"><time/><name>de40</name><sym>Wreck</sym><extensions><h:id>573</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.668417" lon="-74.743333"><time/><name>de41</name><sym>Wreck</sym><extensions><h:id>574</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6702" lon="-74.719933"><time/><name>de42</name><sym>Wreck</sym><extensions><h:id>575</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.677067" lon="-74.71955"><time/><name>de43</name><sym>Wreck</sym><extensions><h:id>576</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.6757" lon="-74.732617"><time/><name>de44</name><sym>Wreck</sym><extensions><h:id>577</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.674833" lon="-74.732617"><time/><name>de45</name><sym>Wreck</sym><extensions><h:id>578</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.515167" lon="-74.50995"><time/><name>de46</name><sym>Wreck</sym><extensions><h:id>579</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.517717" lon="-74.504517"><time/><name>de47</name><sym>Wreck</sym><extensions><h:id>580</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.526667" lon="-74.51"><time/><name>de48</name><sym>Wreck</sym><extensions><h:id>581</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.526667" lon="-74.506667"><time/><name>de49</name><sym>Wreck</sym><extensions><h:id>582</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.525" lon="-74.513333"><time/><name>de50</name><sym>Wreck</sym><extensions><h:id>583</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.526667" lon="-74.513333"><time/><name>de51</name><sym>Wreck</sym><extensions><h:id>584</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.528" lon="-74.5064"><time/><name>de52</name><sym>Wreck</sym><extensions><h:id>585</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.526667" lon="-74.503333"><time/><name>de53</name><sym>Wreck</sym><extensions><h:id>586</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.525" lon="-74.508333"><time/><name>de54</name><sym>Wreck</sym><extensions><h:id>587</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.514167" lon="-74.510933"><time/><name>de55</name><sym>Wreck</sym><extensions><h:id>588</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.2866" lon="-74.9402"><time/><name>Subway1</name><sym>Wreck</sym><extensions><h:id>589</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286666667" lon="-74.9392"><time/><name>Subway2</name><sym>Wreck</sym><extensions><h:id>590</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286416667" lon="-74.940283333"><time/><name>subway3</name><sym>Wreck</sym><extensions><h:id>591</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286616667" lon="-74.938983333"><time/><name>subway4</name><sym>Wreck</sym><extensions><h:id>592</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.2865" lon="-74.9391"><time/><name>subway5</name><sym>Wreck</sym><extensions><h:id>593</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt><wpt lat="38.286" lon="-74.939883333"><time/><name>jjreef</name><sym>Wreck</sym><extensions><h:id>594</h:id><h:visible>true</h:visible><h:depth>0.0</h:depth><h:share>true</h:share><h:status>1</h:status></extensions></wpt>
+<extensions><h:grproot><h:name>Home</h:name><h:children><h:wptref>228</h:wptref><h:wptref>229</h:wptref><h:wptref>230</h:wptref><h:wptref>231</h:wptref><h:wptref>232</h:wptref><h:wptref>233</h:wptref><h:wptref>234</h:wptref><h:wptref>235</h:wptref><h:wptref>236</h:wptref><h:wptref>237</h:wptref><h:wptref>238</h:wptref><h:wptref>239</h:wptref><h:wptref>240</h:wptref><h:wptref>241</h:wptref><h:wptref>242</h:wptref><h:wptref>243</h:wptref><h:wptref>244</h:wptref><h:wptref>245</h:wptref><h:wptref>246</h:wptref><h:wptref>247</h:wptref><h:wptref>248</h:wptref><h:wptref>249</h:wptref><h:wptref>250</h:wptref><h:wptref>251</h:wptref><h:wptref>252</h:wptref><h:wptref>253</h:wptref><h:wptref>254</h:wptref><h:wptref>255</h:wptref><h:wptref>256</h:wptref><h:wptref>257</h:wptref><h:wptref>258</h:wptref><h:wptref>259</h:wptref><h:wptref>260</h:wptref><h:wptref>261</h:wptref><h:wptref>262</h:wptref><h:wptref>263</h:wptref><h:wptref>264</h:wptref><h:wptref>265</h:wptref><h:wptref>266</h:wptref><h:wptref>267</h:wptref><h:wptref>268</h:wptref><h:wptref>269</h:wptref><h:wptref>270</h:wptref><h:wptref>271</h:wptref><h:wptref>272</h:wptref><h:wptref>273</h:wptref><h:wptref>274</h:wptref><h:wptref>275</h:wptref><h:wptref>276</h:wptref><h:wptref>277</h:wptref><h:wptref>278</h:wptref><h:wptref>279</h:wptref><h:wptref>280</h:wptref><h:wptref>281</h:wptref><h:wptref>282</h:wptref><h:wptref>283</h:wptref><h:wptref>284</h:wptref><h:wptref>285</h:wptref><h:wptref>286</h:wptref><h:wptref>287</h:wptref><h:wptref>288</h:wptref><h:wptref>289</h:wptref><h:wptref>290</h:wptref><h:wptref>291</h:wptref><h:wptref>292</h:wptref><h:wptref>293</h:wptref><h:wptref>294</h:wptref><h:wptref>295</h:wptref><h:wptref>296</h:wptref><h:wptref>297</h:wptref><h:wptref>298</h:wptref><h:wptref>299</h:wptref><h:wptref>303</h:wptref><h:wptref>304</h:wptref><h:wptref>305</h:wptref><h:wptref>306</h:wptref><h:wptref>307</h:wptref><h:wptref>308</h:wptref><h:wptref>309</h:wptref><h:wptref>310</h:wptref><h:wptref>311</h:wptref><h:wptref>312</h:wptref><h:wptref>313</h:wptref><h:wptref>314</h:wptref><h:wptref>315</h:wptref><h:wptref>316</h:wptref><h:wptref>317</h:wptref><h:wptref>318</h:wptref><h:wptref>319</h:wptref><h:wptref>320</h:wptref><h:wptref>321</h:wptref><h:wptref>323</h:wptref><h:wptref>324</h:wptref><h:wptref>325</h:wptref><h:wptref>326</h:wptref><h:wptref>327</h:wptref><h:wptref>328</h:wptref><h:wptref>329</h:wptref><h:wptref>330</h:wptref><h:wptref>331</h:wptref><h:wptref>332</h:wptref><h:wptref>333</h:wptref><h:wptref>334</h:wptref><h:wptref>335</h:wptref><h:wptref>336</h:wptref><h:wptref>337</h:wptref><h:wptref>338</h:wptref><h:wptref>339</h:wptref><h:wptref>340</h:wptref><h:wptref>341</h:wptref><h:wptref>342</h:wptref><h:wptref>343</h:wptref><h:wptref>344</h:wptref><h:wptref>345</h:wptref><h:wptref>346</h:wptref><h:wptref>348</h:wptref><h:wptref>404</h:wptref><h:wptref>420</h:wptref><h:wptref>421</h:wptref><h:group><h:time>2019-08-11T23:41:10Z</h:time><h:name>Reefs</h:name><h:icon>Home</h:icon><h:share>true</h:share><h:visible>true</h:visible><h:status>1</h:status><h:children><h:wptref>423</h:wptref><h:wptref>424</h:wptref><h:wptref>425</h:wptref><h:wptref>426</h:wptref><h:wptref>427</h:wptref><h:wptref>429</h:wptref><h:wptref>430</h:wptref><h:wptref>431</h:wptref><h:wptref>432</h:wptref><h:wptref>433</h:wptref><h:wptref>434</h:wptref><h:wptref>435</h:wptref><h:wptref>436</h:wptref><h:wptref>437</h:wptref><h:wptref>438</h:wptref><h:wptref>439</h:wptref><h:wptref>440</h:wptref><h:wptref>441</h:wptref><h:wptref>442</h:wptref><h:wptref>443</h:wptref><h:wptref>444</h:wptref><h:wptref>445</h:wptref><h:wptref>446</h:wptref><h:wptref>447</h:wptref><h:wptref>448</h:wptref><h:wptref>449</h:wptref><h:wptref>450</h:wptref><h:wptref>451</h:wptref><h:wptref>452</h:wptref><h:wptref>453</h:wptref><h:wptref>454</h:wptref><h:wptref>455</h:wptref><h:wptref>456</h:wptref><h:wptref>457</h:wptref><h:wptref>458</h:wptref><h:wptref>459</h:wptref><h:wptref>460</h:wptref><h:wptref>461</h:wptref><h:wptref>462</h:wptref><h:wptref>463</h:wptref><h:wptref>464</h:wptref><h:wptref>465</h:wptref><h:wptref>466</h:wptref><h:wptref>467</h:wptref><h:wptref>468</h:wptref><h:wptref>469</h:wptref><h:wptref>470</h:wptref><h:wptref>471</h:wptref><h:wptref>472</h:wptref><h:wptref>473</h:wptref><h:wptref>474</h:wptref><h:wptref>475</h:wptref><h:wptref>476</h:wptref><h:wptref>477</h:wptref><h:wptref>478</h:wptref><h:wptref>479</h:wptref><h:wptref>480</h:wptref><h:wptref>481</h:wptref><h:wptref>482</h:wptref><h:wptref>483</h:wptref><h:wptref>117</h:wptref><h:wptref>118</h:wptref><h:wptref>119</h:wptref><h:wptref>120</h:wptref><h:wptref>121</h:wptref><h:wptref>66</h:wptref><h:wptref>123</h:wptref><h:wptref>124</h:wptref><h:wptref>125</h:wptref><h:wptref>126</h:wptref><h:wptref>127</h:wptref><h:wptref>128</h:wptref><h:wptref>129</h:wptref><h:wptref>130</h:wptref><h:wptref>131</h:wptref><h:wptref>132</h:wptref><h:wptref>133</h:wptref><h:wptref>134</h:wptref><h:wptref>135</h:wptref><h:wptref>136</h:wptref><h:wptref>137</h:wptref><h:wptref>138</h:wptref><h:wptref>139</h:wptref><h:wptref>140</h:wptref><h:wptref>141</h:wptref><h:wptref>142</h:wptref><h:wptref>143</h:wptref><h:wptref>144</h:wptref><h:wptref>89</h:wptref><h:wptref>146</h:wptref><h:wptref>147</h:wptref><h:wptref>148</h:wptref><h:wptref>149</h:wptref><h:wptref>150</h:wptref><h:wptref>151</h:wptref><h:wptref>152</h:wptref><h:wptref>153</h:wptref><h:wptref>154</h:wptref><h:wptref>155</h:wptref><h:wptref>156</h:wptref><h:wptref>157</h:wptref><h:wptref>158</h:wptref><h:wptref>103</h:wptref><h:wptref>160</h:wptref><h:wptref>161</h:wptref><h:wptref>162</h:wptref><h:wptref>163</h:wptref><h:wptref>164</h:wptref><h:wptref>109</h:wptref><h:wptref>166</h:wptref><h:wptref>167</h:wptref><h:wptref>168</h:wptref><h:wptref>169</h:wptref><h:wptref>170</h:wptref><h:wptref>171</h:wptref><h:wptref>539</h:wptref><h:wptref>540</h:wptref><h:wptref>541</h:wptref><h:wptref>542</h:wptref><h:wptref>543</h:wptref><h:wptref>544</h:wptref><h:wptref>545</h:wptref><h:wptref>546</h:wptref><h:wptref>547</h:wptref><h:wptref>548</h:wptref><h:wptref>549</h:wptref><h:wptref>550</h:wptref><h:wptref>551</h:wptref><h:wptref>552</h:wptref><h:wptref>553</h:wptref><h:wptref>554</h:wptref><h:wptref>555</h:wptref><h:wptref>556</h:wptref><h:wptref>557</h:wptref><h:wptref>558</h:wptref><h:wptref>559</h:wptref><h:wptref>560</h:wptref><h:wptref>561</h:wptref><h:wptref>562</h:wptref><h:wptref>563</h:wptref><h:wptref>564</h:wptref><h:wptref>565</h:wptref><h:wptref>566</h:wptref><h:wptref>567</h:wptref><h:wptref>568</h:wptref><h:wptref>569</h:wptref><h:wptref>570</h:wptref><h:wptref>571</h:wptref><h:wptref>572</h:wptref><h:wptref>573</h:wptref><h:wptref>574</h:wptref><h:wptref>575</h:wptref><h:wptref>576</h:wptref><h:wptref>577</h:wptref><h:wptref>578</h:wptref><h:wptref>579</h:wptref><h:wptref>580</h:wptref><h:wptref>581</h:wptref><h:wptref>582</h:wptref><h:wptref>583</h:wptref><h:wptref>584</h:wptref><h:wptref>585</h:wptref><h:wptref>586</h:wptref><h:wptref>587</h:wptref><h:wptref>588</h:wptref><h:wptref>589</h:wptref><h:wptref>590</h:wptref><h:wptref>591</h:wptref><h:wptref>592</h:wptref><h:wptref>593</h:wptref><h:wptref>594</h:wptref></h:children></h:group><h:wptref>122</h:wptref><h:wptref>145</h:wptref><h:wptref>159</h:wptref><h:wptref>165</h:wptref></h:children></h:grproot></extensions></gpx>
