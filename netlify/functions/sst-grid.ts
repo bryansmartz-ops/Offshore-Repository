@@ -35,7 +35,7 @@ export const handler: Handler = async (event) => {
 
     console.log(`SST Grid scan: lat ${minLat} to ${maxLat}, lon ${minLon} to ${maxLon}, target: ${targetSpecies}`);
 
-    // Species temperature preferences (ideal SST ranges in °F)
+    // Species temperature preferences (ideal SST ranges in °F) - ACCURATE BIOLOGICAL DATA
     const speciesPrefs: Record<string, { min: number; max: number; optimal: number }> = {
       'Mahi-Mahi': { min: 72, max: 82, optimal: 77 },
       'Yellowfin Tuna': { min: 68, max: 78, optimal: 73 },
@@ -186,23 +186,29 @@ export const handler: Handler = async (event) => {
       );
 
       if (nearbyStructure) {
-        // Check if break is in target temp range
-        const inRange = (breakPoint.warmSide >= targetPref.min && breakPoint.warmSide <= targetPref.max) ||
-                        (breakPoint.coldSide >= targetPref.min && breakPoint.coldSide <= targetPref.max);
+        // Check if break is in target temp range (expanded +/- 5°F tolerance)
+        const inRange = (breakPoint.warmSide >= targetPref.min - 5 && breakPoint.warmSide <= targetPref.max + 5) ||
+                        (breakPoint.coldSide >= targetPref.min - 5 && breakPoint.coldSide <= targetPref.max + 5);
 
         if (inRange) {
+          // Create unique name based on temp and gradient strength
+          const tempLabel = breakPoint.warmSide >= 75 ? 'Warm' :
+                           breakPoint.warmSide >= 68 ? 'Moderate' : 'Cool';
+          const gradientLabel = breakPoint.gradient >= 4 ? 'MAJOR' :
+                               breakPoint.gradient >= 2 ? 'Strong' : 'Moderate';
+
           hotspots.push({
-            name: `${nearbyStructure.name} - SST Break`,
+            name: `${nearbyStructure.name} ${tempLabel} Break (${breakPoint.warmSide.toFixed(0)}°F)`,
             lat: breakPoint.lat,
             lon: breakPoint.lon,
             sst: breakPoint.warmSide,
             confidence: breakPoint.strength === 'major' ? 95 : 88,
             type: 'combined',
             reasons: [
-              `${breakPoint.gradient.toFixed(1)}°F temperature break (${breakPoint.coldSide.toFixed(1)}°F → ${breakPoint.warmSide.toFixed(1)}°F)`,
-              `Near ${nearbyStructure.name} (${nearbyStructure.depth})`,
-              `${breakPoint.strength === 'major' ? 'MAJOR' : 'Moderate'} feeding zone - baitfish concentrate at break`,
-              `Optimal for ${targetSpecies}`
+              `${gradientLabel} ${breakPoint.gradient.toFixed(1)}°F break: ${breakPoint.coldSide.toFixed(1)}°F → ${breakPoint.warmSide.toFixed(1)}°F`,
+              `At ${nearbyStructure.name} (${nearbyStructure.depth})`,
+              `Prime feeding zone - predators hunt temperature breaks`,
+              `${tempLabel} water for ${targetSpecies}`
             ],
             break: {
               gradient: breakPoint.gradient,
@@ -215,32 +221,42 @@ export const handler: Handler = async (event) => {
       }
     }
 
-    // 2. Warm zones near structure (no break, but good temp)
+    // 2. Warm zones near structure (no break, but good temp) - EXPANDED TOLERANCE
+    // Check ALL grid points near structure, not just those in strict target range
     for (const structure of KNOWN_STRUCTURE) {
-      const nearbyWarm = warmZones.find(w =>
-        Math.abs(w.lat - structure.lat) <= 0.05 && // Within ~3nm
-        Math.abs(w.lon - structure.lon) <= 0.05
+      const nearbyPoints = grid.filter(w =>
+        Math.abs(w.lat - structure.lat) <= 0.1 && // Within ~6nm
+        Math.abs(w.lon - structure.lon) <= 0.1
       );
 
-      if (nearbyWarm && !hotspots.some(h => h.name.includes(structure.name))) {
-        // Calculate temp score (closer to optimal = higher score)
-        const tempDiff = Math.abs(nearbyWarm.sst - targetPref.optimal);
-        const tempScore = Math.max(70, 90 - (tempDiff * 3));
+      if (nearbyPoints.length > 0 && !hotspots.some(h => h.name.includes(structure.name))) {
+        // Find warmest point near this structure
+        const warmest = nearbyPoints.reduce((max, p) => p.sst > max.sst ? p : max, nearbyPoints[0]);
 
-        hotspots.push({
-          name: structure.name,
-          lat: nearbyWarm.lat,
-          lon: nearbyWarm.lon,
-          sst: nearbyWarm.sst,
-          confidence: Math.round(tempScore),
-          type: 'structure',
-          reasons: [
-            `SST ${nearbyWarm.sst.toFixed(1)}°F (${Math.abs(nearbyWarm.sst - targetPref.optimal).toFixed(1)}°F from ${targetSpecies} optimal)`,
-            `${structure.type === 'canyon' ? 'Canyon' : 'Lump'} structure - ${structure.depth}`,
-            `Active feeding zone for pelagics`,
-            nearbyWarm.sst >= 75 ? 'Warm water attracts baitfish' : 'Good temperature for target species'
-          ]
-        });
+        // Only add if within expanded tolerance (target range +/- 10°F)
+        if (warmest.sst >= targetPref.min - 10 && warmest.sst <= targetPref.max + 10) {
+          // Calculate temp score (closer to optimal = higher score)
+          const tempDiff = Math.abs(warmest.sst - targetPref.optimal);
+          const tempScore = Math.max(70, 90 - (tempDiff * 2));
+
+          const tempLabel = warmest.sst >= 75 ? 'Warm' :
+                           warmest.sst >= 68 ? 'Moderate' : 'Cool';
+
+          hotspots.push({
+            name: `${structure.name} ${tempLabel} Zone (${warmest.sst.toFixed(0)}°F)`,
+            lat: warmest.lat,
+            lon: warmest.lon,
+            sst: warmest.sst,
+            confidence: Math.round(tempScore),
+            type: 'structure',
+            reasons: [
+              `SST ${warmest.sst.toFixed(1)}°F (${Math.abs(warmest.sst - targetPref.optimal).toFixed(1)}°F from ${targetSpecies} optimal)`,
+              `${structure.type === 'canyon' ? 'Canyon' : 'Lump'} structure - ${structure.depth}`,
+              `Active feeding zone for pelagics`,
+              warmest.sst >= 75 ? 'Warm water - prime baitfish zone' : 'Stable temperature zone'
+            ]
+          });
+        }
       }
     }
 
