@@ -58,66 +58,15 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
 
     if (lat !== null && lon !== null) {
       try {
-        // Fetch SST in a grid pattern (center + 4 cardinal directions at 5nm intervals)
-        // 5 nautical miles ≈ 0.083 degrees
-        const offset = 0.083;
-        const gridPoints = [
-          { lat, lon, name: 'center' },
-          { lat: lat + offset, lon, name: 'north' },
-          { lat: lat - offset, lon, name: 'south' },
-          { lat, lon: lon + offset, name: 'east' },
-          { lat, lon: lon - offset, name: 'west' },
-        ];
+        // Fetch SST for this specific location (simplified - just center point)
+        const sstUrl = `${ERDDAP_BASE_URL}/griddap/jplMURSST41.json?analysed_sst[(last)][(${lat})][(${lon})]`;
+        const sstResponse = await fetch(sstUrl);
 
-        const sstPromises = gridPoints.map(async (point) => {
-          try {
-            const url = `${ERDDAP_BASE_URL}/griddap/jplMURSST41.json?analysed_sst[(last)][(${point.lat})][(${point.lon})]`;
-            const response = await fetch(url);
-            if (response.ok) {
-              const data = await response.json();
-              const sstKelvin = data.table.rows[0][3];
-              return {
-                name: point.name,
-                temp: celsiusToFahrenheit(sstKelvin - 273.15)
-              };
-            }
-          } catch {
-            return null;
-          }
-          return null;
-        });
-
-        const sstResults = await Promise.all(sstPromises);
-        const validResults = sstResults.filter(r => r !== null);
-
-        if (validResults.length > 0) {
-          const centerSST = validResults.find(r => r.name === 'center');
-          sst = centerSST?.temp || validResults[0].temp;
-          console.log(`SST calculated for lat=${lat}, lon=${lon}: ${sst}°F (${validResults.length} grid points)`);
-
-          // Calculate SST break (max temp gradient)
-          if (centerSST && validResults.length > 1) {
-            const allTemps = validResults.map(r => r.temp);
-            const minTemp = Math.min(...allTemps);
-            const maxTemp = Math.max(...allTemps);
-            const maxGradient = maxTemp - minTemp;
-
-            // SST break classification
-            // >2°F over 5nm = Major break (exceptional fishing)
-            // 1-2°F = Moderate break (good fishing)
-            // <1°F = No significant break
-            sstBreak = {
-              gradient: maxGradient,
-              coldSide: minTemp,
-              warmSide: maxTemp,
-              strength: maxGradient >= 2 ? 'major' : maxGradient >= 1 ? 'moderate' : 'none',
-              description: maxGradient >= 2
-                ? `${maxGradient.toFixed(1)}°F break detected - PRIME ZONE`
-                : maxGradient >= 1
-                ? `${maxGradient.toFixed(1)}°F gradient - Good potential`
-                : 'No significant break'
-            };
-          }
+        if (sstResponse.ok) {
+          const sstData = await sstResponse.json();
+          const sstCelsius = sstData.table.rows[0][3];  // Already in Celsius!
+          sst = celsiusToFahrenheit(sstCelsius);
+          console.log(`SST for lat=${lat}, lon=${lon}: ${sst}°F`);
         }
       } catch (error) {
         console.error('SST fetch failed:', error);
