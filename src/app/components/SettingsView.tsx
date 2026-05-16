@@ -57,6 +57,15 @@ export default function SettingsView({ preferences, onSave, user, isSyncing, onS
     'Amberjack',
   ];
 
+  // Auto-clean invalid species on mount (old "Tuna", "Marlin" → new specific species)
+  useEffect(() => {
+    const validSpecies = formData.preferredSpecies.filter(s => popularSpecies.includes(s));
+    if (validSpecies.length !== formData.preferredSpecies.length) {
+      console.log('Removing invalid species from preferences:', formData.preferredSpecies.filter(s => !popularSpecies.includes(s)));
+      setFormData(prev => ({ ...prev, preferredSpecies: validSpecies }));
+    }
+  }, []);
+
   const handleSave = () => {
     onSave(formData);
     setShowSuccess(true);
