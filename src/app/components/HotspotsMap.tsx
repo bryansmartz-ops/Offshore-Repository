@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
 import { LatLngExpression, Icon, DivIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import SSTHeatmapLayer from './SSTHeatmapLayer';
+import { fetchSSTHeatmapGrid } from '../../utils/sstHeatmapGrid';
 
 interface Hotspot {
   id: number;
@@ -141,6 +143,23 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   const [showSSTHeatmap, setShowSSTHeatmap] = useState(true);
   const [sstOpacity, setSSTOpacity] = useState(0.6);
 
+  // Dense SST grid for heatmap
+  const [heatmapGridPoints, setHeatmapGridPoints] = useState<Array<{ lat: number; lon: number; sst: number }>>([]);
+  const [loadingHeatmap, setLoadingHeatmap] = useState(false);
+
+  // Fetch dense SST grid for heatmap on mount
+  useEffect(() => {
+    const loadHeatmapGrid = async () => {
+      setLoadingHeatmap(true);
+      const points = await fetchSSTHeatmapGrid();
+      setHeatmapGridPoints(points);
+      setLoadingHeatmap(false);
+      console.log(`Heatmap grid loaded: ${points.length} points`);
+    };
+
+    loadHeatmapGrid();
+  }, []);
+
   // Convert hotspots to include parsed coordinates
   const hotspotsWithCoords = hotspots.map((spot, index) => {
     // Use coordinates if lat/lon not directly available
@@ -210,24 +229,13 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
           ))}
 
-          {/* SST Heatmap - Large gradient circles creating RipChart-style effect */}
-          {showSSTHeatmap && hotspotsWithCoords.map((spot) => {
-            const sstColor = getSSTColor(spot.sst);
-            return (
-              <Circle
-                key={`sst-heatmap-${spot.id}`}
-                center={[spot.lat, spot.lon]}
-                radius={14816} // ~8nm diameter for gradient overlap effect
-                pathOptions={{
-                  color: sstColor,
-                  fillColor: sstColor,
-                  fillOpacity: sstOpacity * 0.4,
-                  weight: 0,
-                  opacity: 0
-                }}
-              />
-            );
-          })}
+          {/* SST Heatmap - RipChart-style continuous gradient */}
+          {showSSTHeatmap && heatmapGridPoints.length > 0 && (
+            <SSTHeatmapLayer
+              points={heatmapGridPoints}
+              opacity={sstOpacity}
+            />
+          )}
 
           {/* SST color circles on hotspots - smaller precise circles */}
           {showSSTColors && hotspotsWithCoords.map((spot) => {
@@ -411,7 +419,13 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                 onChange={(e) => setShowSSTHeatmap(e.target.checked)}
                 className="rounded"
               />
-              <span>SST Heatmap</span>
+              <span>
+                SST Heatmap
+                {loadingHeatmap && <span className="text-xs text-yellow-400 ml-1">(loading...)</span>}
+                {!loadingHeatmap && heatmapGridPoints.length > 0 && (
+                  <span className="text-xs text-green-400 ml-1">({heatmapGridPoints.length} pts)</span>
+                )}
+              </span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
               <input
@@ -451,7 +465,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
         </div>
 
         {/* Legend */}
-        <div className="absolute bottom-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] max-w-[200px]">
+        <div className="absolute bottom-4 left-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] max-w-[200px]">
           <p className="font-semibold mb-2 text-white">Hotspots</p>
           <div className="space-y-1 mb-3">
             <div className="flex items-center gap-2">
