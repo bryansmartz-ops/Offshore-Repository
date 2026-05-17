@@ -409,6 +409,8 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
           launchLocation={preferences.launchLocation}
           fuelBurnRate={fuelBurnRate}
           fuelCapacity={fuelCapacity}
+          oceanConditions={oceanConditions}
+          solunarData={solunarData}
         />
       </div>
     </div>

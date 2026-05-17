@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Anchor, Clock, Navigation2, AlertTriangle, CheckCircle, Radio, MapPin } from 'lucide-react';
+import { Anchor, Clock, Navigation2, AlertTriangle, CheckCircle, Radio, MapPin, Sun, Wind, Waves as WavesIcon } from 'lucide-react';
 
 interface FloatPlanProps {
   hotspots: any[];
@@ -7,11 +7,14 @@ interface FloatPlanProps {
   launchLocation: string;
   fuelBurnRate?: number;
   fuelCapacity?: number;
+  oceanConditions?: any;
+  solunarData?: any;
 }
 
-export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelBurnRate = 0, fuelCapacity = 0 }: FloatPlanProps) {
+export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelBurnRate = 0, fuelCapacity = 0, oceanConditions, solunarData }: FloatPlanProps) {
   const [weatherImpact, setWeatherImpact] = useState<'good' | 'moderate' | 'rough'>('good');
   const [departureTime, setDepartureTime] = useState('06:00');
+  const [desiredLinesInTime, setDesiredLinesInTime] = useState('08:00');
 
   // Ocean City, MD Inlet coordinates
   const homePort = {
@@ -149,6 +152,167 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
           Share Plan
         </button>
       </div>
+
+      {/* Departure Time Calculator */}
+      {primarySpot && (
+        <div className="bg-gradient-to-r from-blue-900/50 to-slate-800 border-2 border-blue-500/50 rounded-xl p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <Clock className="text-blue-400" size={20} />
+            <h3 className="font-semibold text-lg">Departure Time Calculator</h3>
+          </div>
+
+          {/* Desired Lines-In Time */}
+          <div className="mb-3">
+            <label className="block text-sm text-slate-300 mb-2">
+              Desired Lines-In Time at Primary Spot
+            </label>
+            <input
+              type="time"
+              value={desiredLinesInTime}
+              onChange={(e) => setDesiredLinesInTime(e.target.value)}
+              className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white font-semibold text-lg"
+            />
+          </div>
+
+          {/* Calculated Departure Time */}
+          <div className="bg-blue-600 rounded-lg p-4 mb-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-blue-200 mb-1">Recommended Departure</p>
+                <p className="text-3xl font-bold text-white">
+                  {(() => {
+                    const [hours, minutes] = desiredLinesInTime.split(':').map(Number);
+                    const totalMinutes = hours * 60 + minutes - primaryTravelTime;
+                    const depHours = Math.floor(totalMinutes / 60) % 24;
+                    const depMinutes = Math.floor(totalMinutes % 60);
+                    return `${String(depHours).padStart(2, '0')}:${String(depMinutes).padStart(2, '0')}`;
+                  })()}
+                </p>
+                <p className="text-xs text-blue-200 mt-1">
+                  {Math.round(primaryTravelTime)} min transit to primary spot
+                </p>
+              </div>
+              <Navigation2 size={40} className="text-blue-200" />
+            </div>
+          </div>
+
+          {/* Conditions Intel */}
+          <div className="space-y-3">
+            <p className="text-sm font-semibold text-slate-300 border-b border-slate-600 pb-1">
+              Conditions Intel (Facts Only - Captain's Call)
+            </p>
+
+            {/* Wind & Waves */}
+            {oceanConditions && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-slate-800/70 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Wind size={16} className="text-cyan-400" />
+                    <span className="text-xs text-slate-400">Wind</span>
+                  </div>
+                  <p className="font-semibold text-white">
+                    {oceanConditions.windSpeed ? `${oceanConditions.windSpeed} kts` : 'N/A'}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    {oceanConditions.windDirection || 'Variable'}
+                  </p>
+                </div>
+
+                <div className="bg-slate-800/70 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <WavesIcon size={16} className="text-blue-400" />
+                    <span className="text-xs text-slate-400">Seas</span>
+                  </div>
+                  <p className="font-semibold text-white">
+                    {oceanConditions.waveHeight ? `${oceanConditions.waveHeight} ft` : 'N/A'}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    {oceanConditions.wavePeriod ? `@ ${oceanConditions.wavePeriod}s` : ''}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Tide & Current */}
+            {oceanConditions?.tides && oceanConditions.tides[0] && (
+              <div className="bg-slate-800/70 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <Waves size={16} className="text-teal-400" />
+                  <span className="text-xs text-slate-400">Tide State</span>
+                </div>
+                <p className="font-semibold text-white text-sm">
+                  {oceanConditions.tides[0].type} at {oceanConditions.tides[0].time}
+                </p>
+                <p className="text-xs text-slate-400">
+                  Current: {oceanConditions.currentSpeed || '1.5'} kts {oceanConditions.currentDirection || 'SW'}
+                </p>
+              </div>
+            )}
+
+            {/* Sunrise/Visibility */}
+            <div className="bg-slate-800/70 rounded-lg p-3">
+              <div className="flex items-center gap-2 mb-2">
+                <Sun size={16} className="text-yellow-400" />
+                <span className="text-xs text-slate-400">Visibility</span>
+              </div>
+              <p className="text-sm text-white">
+                {(() => {
+                  const now = new Date();
+                  const sunrise = new Date(now);
+                  sunrise.setHours(6, 30, 0); // Approximate sunrise
+                  const sunset = new Date(now);
+                  sunset.setHours(19, 30, 0); // Approximate sunset
+
+                  const [depH, depM] = desiredLinesInTime.split(':').map(Number);
+                  const depTime = new Date(now);
+                  depTime.setHours(depH, depM - primaryTravelTime, 0);
+
+                  if (depTime < sunrise) {
+                    const minBefore = Math.round((sunrise.getTime() - depTime.getTime()) / 60000);
+                    return `Depart ${minBefore} min before sunrise`;
+                  } else if (depTime > sunset) {
+                    return 'Night departure - reduced visibility';
+                  } else {
+                    return 'Daylight departure - good visibility';
+                  }
+                })()}
+              </p>
+            </div>
+
+            {/* Solunar Timing */}
+            {solunarData && (
+              <div className="bg-slate-800/70 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-yellow-400">🌙</span>
+                  <span className="text-xs text-slate-400">Solunar Activity</span>
+                </div>
+                <div className="space-y-1">
+                  {solunarData.majorPeriods && solunarData.majorPeriods.length > 0 && (
+                    <p className="text-xs text-white">
+                      <span className="text-green-400 font-semibold">Major:</span>{' '}
+                      {solunarData.majorPeriods.map((p: any) =>
+                        `${p.start}-${p.end}`
+                      ).join(', ')}
+                    </p>
+                  )}
+                  {solunarData.minorPeriods && solunarData.minorPeriods.length > 0 && (
+                    <p className="text-xs text-slate-300">
+                      <span className="text-blue-400 font-semibold">Minor:</span>{' '}
+                      {solunarData.minorPeriods.map((p: any) =>
+                        `${p.start}-${p.end}`
+                      ).join(', ')}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <p className="text-xs text-slate-500 italic text-center mt-2">
+              ⚠️ Information only - Captain makes all go/no-go decisions
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Departure Time & Weather Selector */}
       <div className="grid grid-cols-2 gap-3">
