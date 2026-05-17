@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip, Polyline } from 'react-leaflet';
 import { LatLngExpression, Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { fetchBathymetry, getDepthColor, getDepthWeight, type BathymetryContour } from '../../utils/bathymetry';
 
 interface Hotspot {
   id: number;
@@ -42,34 +43,6 @@ const KNOWN_STRUCTURES = [
   { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
 ];
 
-// Bathymetry contour lines - key fishing depths for Mid-Atlantic
-// Approximate contour paths (simplified for visualization)
-const DEPTH_CONTOURS = [
-  {
-    depth: '100ft (Inshore)',
-    color: '#60a5fa',
-    weight: 2,
-    path: [
-      [39.5, -74.0], [39.0, -74.1], [38.5, -74.3], [38.0, -74.5], [37.5, -74.7], [37.0, -75.0]
-    ]
-  },
-  {
-    depth: '600ft (Shelf Edge)',
-    color: '#f59e0b',
-    weight: 3,
-    path: [
-      [39.8, -73.2], [39.3, -73.4], [38.8, -73.6], [38.3, -73.8], [37.8, -74.2], [37.3, -74.5], [36.8, -74.8]
-    ]
-  },
-  {
-    depth: '1200ft (Canyon)',
-    color: '#dc2626',
-    weight: 2,
-    path: [
-      [39.5, -72.8], [39.0, -73.0], [38.5, -73.2], [38.0, -73.4], [37.5, -73.8], [37.0, -74.2]
-    ]
-  },
-];
 
 // SST color scale
 const getSSTColor = (temp: number) => {
@@ -161,7 +134,26 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   const [showSSTCircles, setShowSSTCircles] = useState(true);
   const [showSSTLabels, setShowSSTLabels] = useState(true);
   const [showBathymetry, setShowBathymetry] = useState(true);
-  const [bathyOpacity, setBathyOpacity] = useState(0.5);
+  const [bathyOpacity, setBathyOpacity] = useState(0.7);
+
+  // High-fidelity bathymetry data
+  const [bathymetryContours, setBathymetryContours] = useState<BathymetryContour[]>([]);
+  const [loadingBathy, setLoadingBathy] = useState(false);
+
+  // Fetch bathymetry on mount
+  useEffect(() => {
+    const loadBathymetry = async () => {
+      setLoadingBathy(true);
+      const data = await fetchBathymetry();
+      if (data) {
+        setBathymetryContours(data.contours);
+        console.log(`Loaded ${data.contours.length} bathymetry contours`);
+      }
+      setLoadingBathy(false);
+    };
+
+    loadBathymetry();
+  }, []);
 
 
   // Convert hotspots to include parsed coordinates
@@ -217,25 +209,32 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          {/* Bathymetry Contours - Key depth lines */}
-          {showBathymetry && DEPTH_CONTOURS.map((contour, idx) => (
-            <Polyline
-              key={`depth-${idx}`}
-              positions={contour.path}
-              pathOptions={{
-                color: contour.color,
-                weight: contour.weight,
-                opacity: bathyOpacity,
-                dashArray: '10, 5'
-              }}
-            >
-              <Tooltip permanent={false} sticky>
-                <div className="text-xs font-semibold">
-                  {contour.depth}
-                </div>
-              </Tooltip>
-            </Polyline>
-          ))}
+          {/* High-Fidelity Bathymetry Contours from NOAA ETOPO */}
+          {showBathymetry && bathymetryContours.map((contour) => {
+            const color = getDepthColor(contour.depth);
+            const weight = getDepthWeight(contour.depth);
+
+            return contour.coordinates.map((polygon, polyIdx) =>
+              polygon.map((ring, ringIdx) => (
+                <Polyline
+                  key={`depth-${contour.depth}-${polyIdx}-${ringIdx}`}
+                  positions={ring as [number, number][]}
+                  pathOptions={{
+                    color: color,
+                    weight: weight,
+                    opacity: bathyOpacity,
+                    dashArray: contour.depth % 600 === 0 ? '5, 5' : '10, 5' // Solid major contours
+                  }}
+                >
+                  <Tooltip permanent={false} sticky>
+                    <div className="text-xs font-semibold">
+                      {contour.label}
+                    </div>
+                  </Tooltip>
+                </Polyline>
+              ))
+            );
+          })}
 
           {/* Distance rings from Ocean City Inlet */}
           {showDistanceRings && DISTANCE_RINGS.map((ring) => (
@@ -435,7 +434,13 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                 onChange={(e) => setShowBathymetry(e.target.checked)}
                 className="rounded"
               />
-              <span>Depth Contours</span>
+              <span>
+                Depth Contours
+                {loadingBathy && <span className="text-xs text-yellow-400 ml-1">(loading...)</span>}
+                {!loadingBathy && bathymetryContours.length > 0 && (
+                  <span className="text-xs text-green-400 ml-1">({bathymetryContours.length})</span>
+                )}
+              </span>
             </label>
             {showBathymetry && (
               <div className="mt-2 pl-6">
@@ -495,21 +500,29 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             </div>
           </div>
 
-          {showBathymetry && (
+          {showBathymetry && bathymetryContours.length > 0 && (
             <>
-              <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Depth Contours</p>
-              <div className="space-y-1 mb-3">
+              <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Depth Contours (NOAA)</p>
+              <div className="space-y-1 mb-3 text-xs">
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5 bg-blue-400" style={{ borderTop: '2px dashed' }}></div>
-                  <span className="text-slate-300 text-xs">100ft Shelf</span>
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#60a5fa', borderTop: '2px solid' }}></div>
+                  <span className="text-slate-300">50-100ft Shelf</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5 bg-orange-500" style={{ borderTop: '3px dashed' }}></div>
-                  <span className="text-slate-300 text-xs">600ft Edge</span>
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#3b82f6', borderTop: '2px solid' }}></div>
+                  <span className="text-slate-300">200-300ft</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5 bg-red-600" style={{ borderTop: '2px dashed' }}></div>
-                  <span className="text-slate-300 text-xs">1200ft Canyon</span>
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#f59e0b', borderTop: '3px solid' }}></div>
+                  <span className="text-slate-300">600ft Edge</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#dc2626', borderTop: '3px solid' }}></div>
+                  <span className="text-slate-300">900-1200ft</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#991b1b', borderTop: '2px solid' }}></div>
+                  <span className="text-slate-300">1800ft+ Deep</span>
                 </div>
               </div>
             </>
