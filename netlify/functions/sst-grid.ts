@@ -2,6 +2,17 @@ import { Handler } from '@netlify/functions';
 
 const ERDDAP_BASE_URL = 'https://coastwatch.pfeg.noaa.gov/erddap';
 
+// Simple hash function for change detection
+function generateSimpleHash(str: string): string {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  return Math.abs(hash).toString(36);
+}
+
 // Known structure locations (canyons, lumps, wrecks)
 const KNOWN_STRUCTURE = [
   { name: 'Norfolk Canyon Tip', lat: 37.083, lon: -74.75, depth: '100 fathom', type: 'canyon' },
@@ -315,6 +326,38 @@ export const handler: Handler = async (event) => {
       console.log('Top hotspot:', hotspots[0].name, hotspots[0].confidence + '%');
     }
 
+    const topHotspots = hotspots.slice(0, 15);
+    const timestamp = new Date().toISOString();
+
+    // Log hotspot generation for admin monitoring
+    try {
+      const logData = {
+        timestamp,
+        targetSpecies,
+        hotspotsCount: topHotspots.length,
+        breaksFound: breaks.length,
+        gridPoints: grid.length,
+        top3Locations: topHotspots.slice(0, 3).map(h => ({
+          name: h.name,
+          lat: h.lat.toFixed(3),
+          lon: h.lon.toFixed(3),
+          confidence: h.confidence
+        })),
+        // Create simple data signature for change detection
+        dataHash: generateSimpleHash(topHotspots.map(h => `${h.lat.toFixed(2)},${h.lon.toFixed(2)},${h.confidence}`).join('|'))
+      };
+
+      // Send log to backend (non-blocking)
+      fetch(process.env.URL + '/.netlify/functions/log-hotspot-update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(logData)
+      }).catch(err => console.error('Failed to log hotspot update:', err));
+    } catch (logError) {
+      console.error('Hotspot logging error:', logError);
+      // Don't fail the main request if logging fails
+    }
+
     return {
       statusCode: 200,
       headers,
@@ -324,10 +367,10 @@ export const handler: Handler = async (event) => {
           gridPoints: grid.length,
           breaksFound: breaks.length,
           warmZones: warmZones.length,
-          hotspots: hotspots.slice(0, 15), // Top 15
+          hotspots: topHotspots,
           targetSpecies: targetSpecies,
           targetTempRange: `${targetPref.min}-${targetPref.max}°F (optimal: ${targetPref.optimal}°F)`,
-          timestamp: new Date().toISOString()
+          timestamp
         }
       })
     };

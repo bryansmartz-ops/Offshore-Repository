@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { APP_VERSION } from '../../config/version';
-import { Key, UserX, Shield, CheckCircle, XCircle, Clock, RefreshCw } from 'lucide-react';
+import { Key, UserX, Shield, CheckCircle, XCircle, Clock, RefreshCw, Activity, AlertTriangle } from 'lucide-react';
 
 const SERVER_URL = `https://${projectId}.supabase.co/functions/v1/make-server-8db09b0a`;
 
@@ -25,6 +25,34 @@ interface CodeListResponse {
   error?: string;
 }
 
+interface HotspotLog {
+  id: string;
+  timestamp: string;
+  targetSpecies: string;
+  hotspotsCount: number;
+  breaksFound: number;
+  gridPoints: number;
+  top3Locations: Array<{
+    name: string;
+    lat: string;
+    lon: string;
+    confidence: number;
+  }>;
+  dataHash: string;
+}
+
+interface HotspotLogsResponse {
+  success: boolean;
+  logs: HotspotLog[];
+  health: {
+    hoursSinceUpdate: string;
+    updateOverdue: boolean;
+    dataStale: boolean;
+    totalLogs: number;
+  };
+  error?: string;
+}
+
 export default function AdminPanel() {
   const [adminPassword, setAdminPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,6 +62,8 @@ export default function AdminPanel() {
   const [success, setSuccess] = useState('');
   const [newUserName, setNewUserName] = useState('');
   const [minVersion, setMinVersion] = useState(APP_VERSION);
+  const [hotspotLogs, setHotspotLogs] = useState<HotspotLog[]>([]);
+  const [hotspotHealth, setHotspotHealth] = useState<HotspotLogsResponse['health'] | null>(null);
 
   const handleLogin = async () => {
     if (!adminPassword.trim()) {
@@ -59,6 +89,8 @@ export default function AdminPanel() {
       if (data.success) {
         setIsAuthenticated(true);
         setCodes(data.codes);
+        // Load hotspot logs after successful auth
+        loadHotspotLogs();
       } else {
         setError(data.error || 'Authentication failed');
       }
@@ -96,6 +128,30 @@ export default function AdminPanel() {
     } catch (err) {
       setError('Failed to connect to server');
       console.error(err);
+    }
+  };
+
+  const loadHotspotLogs = async () => {
+    try {
+      const response = await fetch(`${SERVER_URL}/admin/hotspot-logs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${publicAnonKey}`
+        },
+        body: JSON.stringify({ adminPassword })
+      });
+
+      const data: HotspotLogsResponse = await response.json();
+
+      if (data.success) {
+        setHotspotLogs(data.logs);
+        setHotspotHealth(data.health);
+      } else {
+        console.error('Failed to load hotspot logs:', data.error);
+      }
+    } catch (err) {
+      console.error('Failed to fetch hotspot logs:', err);
     }
 
     setLoading(false);
@@ -369,6 +425,147 @@ export default function AdminPanel() {
             {success}
           </div>
         )}
+
+        {/* Hotspot Update Monitoring */}
+        <div className="bg-slate-700 rounded-lg p-4 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold flex items-center gap-2">
+              <Activity size={18} />
+              Hotspot Update Monitor
+            </h3>
+            <button
+              onClick={loadHotspotLogs}
+              disabled={loading}
+              className="flex items-center gap-2 bg-slate-600 hover:bg-slate-500 px-3 py-1 rounded text-sm transition-colors"
+            >
+              <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+              Refresh
+            </button>
+          </div>
+
+          {hotspotHealth && (
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className={`rounded-lg p-3 ${
+                hotspotHealth.updateOverdue ? 'bg-red-900/50' : 'bg-green-900/50'
+              }`}>
+                <div className="text-sm text-slate-300 mb-1">Last Update</div>
+                <div className="text-xl font-bold">
+                  {hotspotHealth.hoursSinceUpdate}h ago
+                </div>
+                {hotspotHealth.updateOverdue && (
+                  <div className="text-xs text-red-300 mt-1 flex items-center gap-1">
+                    <AlertTriangle size={12} />
+                    Overdue!
+                  </div>
+                )}
+              </div>
+              <div className="bg-slate-600 rounded-lg p-3">
+                <div className="text-sm text-slate-300 mb-1">Total Logs</div>
+                <div className="text-xl font-bold">{hotspotHealth.totalLogs}</div>
+              </div>
+              <div className={`rounded-lg p-3 ${
+                hotspotHealth.dataStale ? 'bg-yellow-900/50' : 'bg-slate-600'
+              }`}>
+                <div className="text-sm text-slate-300 mb-1">Data Status</div>
+                <div className="text-xl font-bold">
+                  {hotspotHealth.dataStale ? 'Stale' : 'Fresh'}
+                </div>
+                {hotspotHealth.dataStale && (
+                  <div className="text-xs text-yellow-300 mt-1">
+                    Same as previous
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {hotspotLogs.length === 0 ? (
+              <div className="text-center text-slate-400 py-8">
+                No hotspot update logs yet
+              </div>
+            ) : (
+              hotspotLogs.map((log, idx) => {
+                const isLatest = idx === 0;
+                const isDuplicate = idx > 0 && log.dataHash === hotspotLogs[idx - 1]?.dataHash;
+
+                return (
+                  <div
+                    key={log.id}
+                    className={`bg-slate-600 rounded-lg p-3 ${
+                      isLatest ? 'border-2 border-green-500' : ''
+                    } ${isDuplicate ? 'opacity-60' : ''}`}
+                  >
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <Clock size={14} className="text-blue-400" />
+                          <span className="text-sm font-mono">
+                            {new Date(log.timestamp).toLocaleString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </span>
+                          {isLatest && (
+                            <span className="bg-green-600 text-xs px-2 py-0.5 rounded">
+                              Latest
+                            </span>
+                          )}
+                          {isDuplicate && (
+                            <span className="bg-yellow-600 text-xs px-2 py-0.5 rounded">
+                              No Change
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-xs text-slate-400 mt-1">
+                          Target: {log.targetSpecies}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-green-400">
+                          {log.hotspotsCount}
+                        </div>
+                        <div className="text-xs text-slate-400">hotspots</div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2 text-xs mb-2">
+                      <div>
+                        <span className="text-slate-400">Grid:</span>{' '}
+                        <span className="font-semibold">{log.gridPoints}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400">Breaks:</span>{' '}
+                        <span className="font-semibold">{log.breaksFound}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400">Hash:</span>{' '}
+                        <span className="font-mono">{log.dataHash.substring(0, 6)}</span>
+                      </div>
+                    </div>
+
+                    {log.top3Locations.length > 0 && (
+                      <div className="text-xs">
+                        <div className="text-slate-400 mb-1">Top 3 Locations:</div>
+                        <div className="space-y-0.5">
+                          {log.top3Locations.map((loc, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <span className="text-blue-400">#{i + 1}</span>
+                              <span className="flex-1 truncate">{loc.name}</span>
+                              <span className="text-green-400">{loc.confidence}%</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </div>
 
         {/* Codes List */}
         <div className="space-y-2">
