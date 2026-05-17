@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Navigation, Waves, Fish, MapPin, AlertCircle, Menu, Settings, Target } from 'lucide-react';
+import { Navigation, Waves, Fish, MapPin, AlertCircle, Menu, Settings, Target, Shield } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import WeatherView from './components/WeatherView';
 import TideView from './components/TideView';
@@ -8,6 +8,9 @@ import WaypointsView from './components/WaypointsView';
 import SettingsView from './components/SettingsView';
 import PredictionsView from './components/PredictionsView';
 import InstallPWA from './components/InstallPWA';
+import AdminPanel from './components/AdminPanel';
+import { ActivationGate } from './components/ActivationGate';
+import { UpdateBanner } from './components/UpdateBanner';
 import AuthModal from './components/AuthModal';
 import { authHelpers, api } from '../utils/supabase/client';
 
@@ -190,14 +193,17 @@ export default function App() {
   };
 
   const tabs = [
-    { id: 'predictions', label: 'Predict', icon: Target },
-    { id: 'dashboard', label: 'Dashboard', icon: Navigation },
-    { id: 'catch', label: 'Catch Log', icon: Fish },
-    { id: 'waypoints', label: 'Waypoints', icon: MapPin },
-    { id: 'settings', label: 'Settings', icon: Settings },
-  ];
+  { id: 'predictions', label: 'Predict', icon: Target },
+  { id: 'dashboard', label: 'Dashboard', icon: Navigation },
+  { id: 'catch', label: 'Catch Log', icon: Fish },
+  { id: 'waypoints', label: 'Waypoints', icon: MapPin },
+  { id: 'settings', label: 'Settings', icon: Settings },
+  { id: 'admin', label: 'Admin', icon: Shield },
+];
 
   return (
+  <ActivationGate>
+    <UpdateBanner />
     <div className="size-full bg-slate-900 text-white flex flex-col">
       {/* Header */}
       <header className="bg-blue-600 p-4 flex items-center justify-between">
@@ -234,6 +240,7 @@ export default function App() {
             onSignOut={handleSignOut}
           />
         )}
+        {activeTab === 'admin' && <AdminPanel />}
       </main>
 
       {/* Bottom Navigation */}
@@ -269,5 +276,6 @@ export default function App() {
         />
       )}
     </div>
+    </ActivationGate>
   );
 }
