@@ -135,7 +135,9 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
         data: {
           sst: sst || buoyData?.waterTemp || 72,
           waveHeight: buoyData?.waveHeight || 0,
+          wavePeriod: buoyData?.wavePeriod || null,
           windSpeed: buoyData?.windSpeed || 0,
+          windDirection: buoyData?.windDirection ? degreesToCompass(buoyData.windDirection) : 'Variable',
           chlorophyll: chlorophyll || 2.5,
           currentSpeed: 1.5,
           currentDirection: 'SW',
@@ -158,7 +160,9 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
         data: {
           sst: 72,
           waveHeight: 2,
+          wavePeriod: 6,
           windSpeed: 10,
+          windDirection: 'SW',
           chlorophyll: 2.5,
           currentSpeed: 1.5,
           currentDirection: 'SW',
@@ -176,4 +180,10 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
 
 function celsiusToFahrenheit(celsius: number): number {
   return Math.round((celsius * 9/5 + 32) * 10) / 10;
+}
+
+function degreesToCompass(degrees: number): string {
+  const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+  const index = Math.round(degrees / 22.5) % 16;
+  return directions[index];
 }

@@ -40,6 +40,8 @@ export interface OceanConditions {
   sst: number; // °F
   waveHeight: number; // feet
   windSpeed: number; // knots
+  windDirection?: string; // compass direction (N, NE, E, SE, S, SW, W, NW, etc.)
+  wavePeriod?: number; // seconds
   chlorophyll: number; // mg/m³
   currentSpeed: number; // knots
   currentDirection: string;
@@ -392,10 +394,19 @@ function getFallbackConditions(): OceanConditions {
   else if (basePressure < 1011) pressureTrend = 'falling';
   else pressureTrend = 'stable';
 
+  // Simulate wind direction (SW is common offshore Ocean City)
+  const windDirections = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const baseWindDir = windDirections[Math.floor(Math.random() * windDirections.length)];
+
+  // Simulate wave period (typical 4-8 seconds)
+  const baseWavePeriod = 5 + Math.random() * 3;
+
   return {
     sst: Math.round(baseSST * 10) / 10,
     waveHeight: Math.round(baseWaveHeight * 10) / 10,
+    wavePeriod: Math.round(baseWavePeriod),
     windSpeed: Math.round(baseWindSpeed),
+    windDirection: baseWindDir,
     chlorophyll: Math.round(baseChlorophyll * 10) / 10,
     currentSpeed: 1.5,
     currentDirection: 'SW',
