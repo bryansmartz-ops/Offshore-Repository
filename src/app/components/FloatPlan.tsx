@@ -237,7 +237,7 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
             {oceanConditions?.tides && oceanConditions.tides[0] && (
               <div className="bg-slate-800/70 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
-                  <Waves size={16} className="text-teal-400" />
+                  <WavesIcon size={16} className="text-teal-400" />
                   <span className="text-xs text-slate-400">Tide State</span>
                 </div>
                 <p className="font-semibold text-white text-sm">
