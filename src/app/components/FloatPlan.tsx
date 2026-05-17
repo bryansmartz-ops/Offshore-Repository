@@ -669,4 +669,4 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
       </div>
     </div>
   );
-
+}
