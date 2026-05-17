@@ -32,9 +32,10 @@ interface HotspotCardProps {
   isSecondary?: boolean;
   onSetPrimary?: () => void;
   onSetSecondary?: () => void;
+  onViewOnMap?: () => void;
 }
 
-export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpecies, fuelCapacity, fuelBurnRate, isPrimary, isSecondary, onSetPrimary, onSetSecondary }: HotspotCardProps) {
+export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpecies, fuelCapacity, fuelBurnRate, isPrimary, isSecondary, onSetPrimary, onSetSecondary, onViewOnMap }: HotspotCardProps) {
   const [expanded, setExpanded] = useState(false);
 
   const matchingSpecies = hotspot.species.filter((s) =>
@@ -71,11 +72,22 @@ export default function HotspotCard({ hotspot, rank, vesselSpeed, preferredSpeci
     }`}>
       {/* Selection Status Banner */}
       {(isPrimary || isSecondary) && (
-        <div className={`px-4 py-2 flex items-center gap-2 text-sm font-semibold ${
+        <div className={`px-4 py-2 flex items-center justify-between gap-2 text-sm font-semibold ${
           isPrimary ? 'bg-green-600' : 'bg-blue-600'
         }`}>
-          <Navigation size={16} />
-          <span>{isPrimary ? '🎯 PRIMARY TARGET' : '🔄 SECONDARY/BACKUP'}</span>
+          <div className="flex items-center gap-2">
+            <Navigation size={16} />
+            <span>{isPrimary ? '🎯 PRIMARY TARGET' : '🔄 SECONDARY/BACKUP'}</span>
+          </div>
+          {onViewOnMap && (
+            <button
+              onClick={onViewOnMap}
+              className="flex items-center gap-1 px-3 py-1 bg-white/20 hover:bg-white/30 rounded-md transition-colors text-xs"
+            >
+              <MapPin size={14} />
+              <span>View on Map</span>
+            </button>
+          )}
         </div>
       )}
       {/* Fuel Warning Banner */}

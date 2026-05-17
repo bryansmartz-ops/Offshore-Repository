@@ -305,6 +305,38 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
         </div>
       </div>
 
+      {/* Tactical Map - Prominent Position */}
+      {displayHotspots.length > 0 && (
+        <div className="px-4 mb-4">
+          <button
+            onClick={() => setShowMap(!showMap)}
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg"
+          >
+            <Map size={24} />
+            {showMap ? 'Hide Tactical Map' : '🗺️ Tactical Map - All Hotspots'}
+          </button>
+
+          {showMap && (
+            <div className="mt-4">
+              <HotspotsMap
+                hotspots={displayHotspots}
+                selectedPrimary={selectedPrimary}
+                selectedSecondary={selectedSecondary}
+                onSelectHotspot={(index) => {
+                  if (selectedPrimary === index) {
+                    handleSetPrimary(index);
+                  } else if (selectedSecondary === index) {
+                    handleSetSecondary(index);
+                  } else {
+                    handleSetPrimary(index);
+                  }
+                }}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Top Hotspots */}
       <div className="px-4 mb-4">
         <div className="flex items-center justify-between mb-3">
@@ -351,41 +383,12 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
                 isSecondary={selectedSecondary === index}
                 onSetPrimary={() => handleSetPrimary(index)}
                 onSetSecondary={() => handleSetSecondary(index)}
+                onViewOnMap={(selectedPrimary === index || selectedSecondary === index) ? () => setShowMap(true) : undefined}
               />
             ))}
           </div>
         )}
       </div>
-
-      {/* Map View */}
-      {displayHotspots.length > 0 && (
-        <div className="px-4 mb-4">
-          <button
-            onClick={() => setShowMap(!showMap)}
-            className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 mb-3"
-          >
-            <Map size={20} />
-            {showMap ? 'Hide Tactical Map' : 'Show Tactical Map'}
-          </button>
-
-          {showMap && (
-            <HotspotsMap
-              hotspots={displayHotspots}
-              selectedPrimary={selectedPrimary}
-              selectedSecondary={selectedSecondary}
-              onSelectHotspot={(index) => {
-                if (selectedPrimary === index) {
-                  handleSetPrimary(index);
-                } else if (selectedSecondary === index) {
-                  handleSetSecondary(index);
-                } else {
-                  handleSetPrimary(index);
-                }
-              }}
-            />
-          )}
-        </div>
-      )}
 
       {/* Environmental Cards */}
       <div className="px-4 space-y-3">
