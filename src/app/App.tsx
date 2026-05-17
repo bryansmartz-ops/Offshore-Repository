@@ -7,11 +7,11 @@ import CatchLog from './components/CatchLog';
 import WaypointsView from './components/WaypointsView';
 import SettingsView from './components/SettingsView';
 import PredictionsView from './components/PredictionsView';
-import InstallPWA from './components/InstallPWA';
 import AdminPanel from './components/AdminPanel';
+import InstallPWA from './components/InstallPWA';
+import AuthModal from './components/AuthModal';
 import { ActivationGate } from './components/ActivationGate';
 import { UpdateBanner } from './components/UpdateBanner';
-import AuthModal from './components/AuthModal';
 import { authHelpers, api } from '../utils/supabase/client';
 
 const STORAGE_KEY = 'tactical_offshore_preferences';
@@ -193,89 +193,307 @@ export default function App() {
   };
 
   const tabs = [
-  { id: 'predictions', label: 'Predict', icon: Target },
-  { id: 'dashboard', label: 'Dashboard', icon: Navigation },
-  { id: 'catch', label: 'Catch Log', icon: Fish },
-  { id: 'waypoints', label: 'Waypoints', icon: MapPin },
-  { id: 'settings', label: 'Settings', icon: Settings },
-  { id: 'admin', label: 'Admin', icon: Shield },
-];
+    { id: 'predictions', label: 'Predict', icon: Target },
+    { id: 'dashboard', label: 'Dashboard', icon: Navigation },
+    { id: 'catch', label: 'Catch Log', icon: Fish },
+    { id: 'waypoints', label: 'Waypoints', icon: MapPin },
+  ];
 
   return (
-  <ActivationGate>
-    <UpdateBanner />
-    <div className="size-full bg-slate-900 text-white flex flex-col">
-      {/* Header */}
-      <header className="bg-blue-600 p-4 flex items-center justify-between">
-        <h1 className="font-semibold text-xl">Tactical Offshore</h1>
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="p-2 hover:bg-blue-700 rounded-lg"
-        >
-          <Menu size={24} />
-        </button>
-      </header>
+    <ActivationGate>
+      <UpdateBanner />
+      <div className="size-full bg-slate-900 text-white flex flex-col">
+        {/* Header */}
+        <header className="bg-blue-600 p-4 flex items-center justify-between">
+          <h1 className="font-semibold text-xl">Tactical Offshore</h1>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2 hover:bg-blue-700 rounded-lg transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+        </header>
 
-      {/* Emergency Banner */}
-      <div className="bg-red-600 px-4 py-2 flex items-center gap-2 text-sm">
-        <AlertCircle size={16} />
-        <span>Emergency: Hold SOS for 3s</span>
-      </div>
+        {/* Slide-out Menu */}
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-black/50 z-40"
+              onClick={() => setMenuOpen(false)}
+            />
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        {activeTab === 'predictions' && <PredictionsView preferences={userPreferences} />}
-        {activeTab === 'dashboard' && <Dashboard preferences={userPreferences} />}
-        {activeTab === 'weather' && <WeatherView />}
-        {activeTab === 'tides' && <TideView />}
-        {activeTab === 'catch' && <CatchLog />}
-        {activeTab === 'waypoints' && <WaypointsView />}
-        {activeTab === 'settings' && (
-          <SettingsView
-            preferences={userPreferences}
-            onSave={setUserPreferences}
-            user={user}
-            isSyncing={isSyncing}
-            onShowAuth={() => setShowAuthModal(true)}
-            onSignOut={handleSignOut}
+            {/* Menu Panel */}
+            <div className="fixed top-0 right-0 bottom-0 w-72 bg-slate-800 z-50 shadow-xl">
+              <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+                <h2 className="font-semibold text-lg">Menu</h2>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="p-2 hover:bg-slate-700 rounded-lg"
+                >
+                  <span className="text-2xl">×</span>
+                </button>
+              </div>
+
+              <nav className="p-2">
+                <button
+                  onClick={() => {
+                    setActiveTab('settings');
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-slate-700 rounded-lg transition-colors text-left"
+                >
+                  <Settings size={20} />
+                  <span>Settings</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab('admin');
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-slate-700 rounded-lg transition-colors text-left"
+                >
+                  <Shield size={20} />
+                  <span>Admin</span>
+                </button>
+
+                <div className="border-t border-slate-700 my-2" />
+
+                <button
+                  onClick={() => {
+                    setActiveTab('about');
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-slate-700 rounded-lg transition-colors text-left"
+                >
+                  <AlertCircle size={20} />
+                  <span>About</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab('help');
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-slate-700 rounded-lg transition-colors text-left"
+                >
+                  <span className="text-xl ml-0.5">?</span>
+                  <span>Help</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveTab('contact');
+                    setMenuOpen(false);
+                  }}
+                  className="w-full flex items-center gap-3 p-3 hover:bg-slate-700 rounded-lg transition-colors text-left"
+                >
+                  <span className="text-xl">✉</span>
+                  <span>Contact</span>
+                </button>
+              </nav>
+            </div>
+          </>
+        )}
+
+        {/* Emergency Banner */}
+        <div className="bg-red-600 px-4 py-2 flex items-center gap-2 text-sm">
+          <AlertCircle size={16} />
+          <span>Emergency: Hold SOS for 3s</span>
+        </div>
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto">
+          {activeTab === 'predictions' && <PredictionsView preferences={userPreferences} />}
+          {activeTab === 'dashboard' && <Dashboard preferences={userPreferences} />}
+          {activeTab === 'weather' && <WeatherView />}
+          {activeTab === 'tides' && <TideView />}
+          {activeTab === 'catch' && <CatchLog />}
+          {activeTab === 'waypoints' && <WaypointsView />}
+          {activeTab === 'settings' && (
+            <SettingsView
+              preferences={userPreferences}
+              onSave={setUserPreferences}
+              user={user}
+              isSyncing={isSyncing}
+              onShowAuth={() => setShowAuthModal(true)}
+              onSignOut={handleSignOut}
+            />
+          )}
+          {activeTab === 'admin' && <AdminPanel />}
+
+          {/* About Page */}
+          {activeTab === 'about' && (
+            <div className="p-4 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-4">About Tactical Offshore</h2>
+              <div className="bg-slate-800 rounded-lg p-6 space-y-4">
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Version</h3>
+                  <p className="text-slate-300">0.0.1</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Description</h3>
+                  <p className="text-slate-300">
+                    Tactical Offshore is an AI-powered fishing prediction app designed for offshore fishing out of Ocean City, Maryland.
+                    Using real-time ocean data, fishing reports, and advanced algorithms, we identify the best fishing hotspots daily.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Features</h3>
+                  <ul className="list-disc list-inside text-slate-300 space-y-1">
+                    <li>Real-time SST (Sea Surface Temperature) analysis</li>
+                    <li>Bathymetric charts and canyon mapping</li>
+                    <li>AI-driven hotspot predictions</li>
+                    <li>Float planning and fuel calculations</li>
+                    <li>Catch logging and trip history</li>
+                    <li>Waypoint management</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Data Attribution</h3>
+                  <div className="text-slate-300 text-sm space-y-2">
+                    <p>This application uses data from the following sources:</p>
+                    <ul className="list-disc list-inside space-y-1 ml-2">
+                      <li><strong>NOAA CoastWatch ERDDAP</strong> - Sea surface temperature and ocean data (Public Domain)</li>
+                      <li><strong>EMODnet Bathymetry</strong> - High-resolution seafloor mapping
+                        <br /><span className="text-xs text-slate-400 ml-6">© EMODnet Bathymetry Consortium. Available under Creative Commons license.</span>
+                      </li>
+                      <li><strong>Fishing Reports</strong> - Regional reports from North Carolina to New Jersey</li>
+                      <li><strong>Solunar Data</strong> - Moon phase and fish activity predictions</li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Open Source</h3>
+                  <p className="text-slate-300 text-sm">
+                    Built with React, Leaflet, and other open-source libraries.
+                    See full attributions in the repository.
+                  </p>
+                </div>
+                <div className="border-t border-slate-700 pt-4">
+                  <p className="text-slate-400 text-sm">
+                    © 2026 Tactical Offshore. All rights reserved.
+                  </p>
+                  <p className="text-slate-500 text-xs mt-1">
+                    Ocean City, Maryland
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Help Page */}
+          {activeTab === 'help' && (
+            <div className="p-4 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-4">Help & FAQ</h2>
+              <div className="space-y-4">
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">How do hotspot predictions work?</h3>
+                  <p className="text-slate-300 text-sm">
+                    Our AI analyzes sea surface temperature, chlorophyll levels, ocean currents, bathymetry,
+                    solunar data, and recent fishing reports to identify areas with the highest probability of fish activity.
+                  </p>
+                </div>
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">What do Primary and Secondary mean?</h3>
+                  <p className="text-slate-300 text-sm">
+                    Primary is the #1 ranked hotspot for the day. Secondary is your backup plan.
+                    Rankings are based on confidence scores from our prediction model.
+                  </p>
+                </div>
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">How often is data updated?</h3>
+                  <p className="text-slate-300 text-sm">
+                    Hotspot predictions are refreshed every 12 hours. SST data updates daily.
+                    Weather and tides update every 6 hours.
+                  </p>
+                </div>
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">How do I use the Float Plan?</h3>
+                  <p className="text-slate-300 text-sm">
+                    Enter your vessel details in Settings (speed, fuel burn rate, capacity).
+                    The app calculates fuel needed and travel time to each hotspot from Ocean City Inlet.
+                  </p>
+                </div>
+                <div className="bg-slate-800 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">What are the map colors?</h3>
+                  <p className="text-slate-300 text-sm">
+                    SST colors: Blue (cold), Green (cool), Yellow (ideal), Orange (warm), Red (hot).
+                    Hotspot markers: Green (Primary), Blue (Secondary), Orange (Others).
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Contact Page */}
+          {activeTab === 'contact' && (
+            <div className="p-4 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-4">Contact & Support</h2>
+              <div className="bg-slate-800 rounded-lg p-6 space-y-6">
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Need Help?</h3>
+                  <p className="text-slate-300 mb-4">
+                    Have questions, found a bug, or have suggestions for improvements? We'd love to hear from you!
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Support</h3>
+                  <p className="text-slate-300 text-sm">
+                    For technical support or activation code issues, contact your administrator.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Feedback</h3>
+                  <p className="text-slate-300 text-sm mb-2">
+                    Your feedback helps make this app better for the entire fishing community.
+                    Let us know what's working and what isn't.
+                  </p>
+                </div>
+                <div className="border-t border-slate-700 pt-4">
+                  <p className="text-slate-400 text-xs">
+                    Tactical Offshore - Ocean City, MD
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </main>
+
+        {/* Bottom Navigation */}
+        <nav className="bg-slate-800 border-t border-slate-700 flex justify-around p-2">
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
+                  activeTab === tab.id
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Icon size={20} />
+                <span className="text-xs">{tab.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* PWA Install Prompt */}
+        <InstallPWA />
+
+        {/* Auth Modal */}
+        {showAuthModal && (
+          <AuthModal
+            onClose={() => setShowAuthModal(false)}
+            onSignIn={handleSignIn}
+            onSignUp={handleSignUp}
           />
         )}
-        {activeTab === 'admin' && <AdminPanel />}
-      </main>
-
-      {/* Bottom Navigation */}
-      <nav className="bg-slate-800 border-t border-slate-700 flex justify-around p-2">
-        {tabs.map((tab) => {
-          const Icon = tab.icon;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
-                activeTab === tab.id
-                  ? 'bg-blue-600 text-white'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <Icon size={20} />
-              <span className="text-xs">{tab.label}</span>
-            </button>
-          );
-        })}
-      </nav>
-
-      {/* PWA Install Prompt */}
-      <InstallPWA />
-
-      {/* Auth Modal */}
-      {showAuthModal && (
-        <AuthModal
-          onClose={() => setShowAuthModal(false)}
-          onSignIn={handleSignIn}
-          onSignUp={handleSignUp}
-        />
-      )}
-    </div>
+      </div>
     </ActivationGate>
   );
 }

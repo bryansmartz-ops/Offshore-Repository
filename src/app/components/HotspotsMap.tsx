@@ -13,8 +13,13 @@ interface Hotspot {
   lat?: number;
   lon?: number;
   sst?: number;
+  rank?: number;
+  reasons?: string[];
   conditions?: {
     sst?: string;
+    current?: string;
+    depth?: string;
+    chlorophyll?: string;
   };
 }
 
@@ -340,8 +345,8 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                 )}
 
                 <Popup>
-                  <div className="text-sm min-w-[200px]">
-                    <div className="flex items-center gap-2 mb-2">
+                  <div className="text-sm min-w-[200px] max-w-[280px]">
+                    <div className="flex items-center gap-1 md:gap-2 mb-2">
                       <span className="bg-blue-600 text-white px-2 py-1 rounded font-bold text-xs">
                         #{spot.rank}
                       </span>
@@ -362,7 +367,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                       {spot.loranCoordinates && (
                         <p className="font-mono text-gray-500">9960: {spot.loranCoordinates}</p>
                       )}
-                      <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t">
+                      <div className="grid grid-cols-2 gap-1 md:gap-2 mt-2 pt-2 border-t">
                         <div>
                           <p className="text-gray-500">Distance</p>
                           <p className="font-semibold text-gray-900">{spot.distance} nm</p>
@@ -372,18 +377,54 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                           <p className="font-semibold text-green-600">{spot.confidence}%</p>
                         </div>
                       </div>
-                      <div className="mt-2 pt-2 border-t">
-                        <p className="text-gray-500">SST</p>
-                        <div className="flex items-center gap-2">
-                          <div
-                            className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: getSSTColor(spot.sst || 70) }}
-                          ></div>
-                          <p className="font-semibold" style={{ color: getSSTColor(spot.sst || 70) }}>
-                            {spot.sst?.toFixed(1)}°F
-                          </p>
+
+                      {/* Analysis Reasons */}
+                      {spot.reasons && spot.reasons.length > 0 && (
+                        <div className="mt-2 pt-2 border-t">
+                          <p className="text-gray-700 font-semibold mb-1">Why This Spot:</p>
+                          <ul className="space-y-0.5">
+                            {spot.reasons.slice(0, 3).map((reason, idx) => (
+                              <li key={idx} className="text-xs text-gray-600 flex items-start gap-1">
+                                <span className="text-green-600">•</span>
+                                <span>{reason}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                      </div>
+                      )}
+
+                      {/* Current Conditions */}
+                      {spot.conditions && (
+                        <div className="mt-2 pt-2 border-t">
+                          <p className="text-gray-700 font-semibold mb-1">Conditions:</p>
+                          <div className="grid grid-cols-2 gap-1">
+                            {spot.conditions.sst && (
+                              <div className="bg-gray-100 rounded p-1">
+                                <p className="text-[10px] text-gray-500">SST</p>
+                                <p className="font-semibold text-xs">{spot.conditions.sst}</p>
+                              </div>
+                            )}
+                            {spot.conditions.current && (
+                              <div className="bg-gray-100 rounded p-1">
+                                <p className="text-[10px] text-gray-500">Current</p>
+                                <p className="font-semibold text-xs">{spot.conditions.current}</p>
+                              </div>
+                            )}
+                            {spot.conditions.depth && (
+                              <div className="bg-gray-100 rounded p-1">
+                                <p className="text-[10px] text-gray-500">Depth</p>
+                                <p className="font-semibold text-xs">{spot.conditions.depth}</p>
+                              </div>
+                            )}
+                            {spot.conditions.chlorophyll && (
+                              <div className="bg-gray-100 rounded p-1">
+                                <p className="text-[10px] text-gray-500">Chlorophyll</p>
+                                <p className="font-semibold text-xs">{spot.conditions.chlorophyll}</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Popup>
@@ -431,9 +472,9 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
         </MapContainer>
 
         {/* Layer Controls */}
-        <div className="absolute top-4 right-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] space-y-2 max-w-[200px]">
-          <p className="font-semibold mb-2 text-white">Map Layers</p>
-          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+        <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-slate-900/95 backdrop-blur rounded-lg p-2 md:p-3 text-[10px] md:text-xs z-[1000] space-y-1 md:space-y-2 max-w-[140px] md:max-w-[200px]">
+          <p className="font-semibold mb-1 md:mb-2 text-white text-[11px] md:text-xs">Map Layers</p>
+          <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
             <input
               type="checkbox"
               checked={showDistanceRings}
@@ -442,7 +483,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
             <span>Distance Rings</span>
           </label>
-          <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+          <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
             <input
               type="checkbox"
               checked={showStructures}
@@ -452,9 +493,9 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             <span>Known Structure</span>
           </label>
 
-          <div className="border-t border-slate-700 pt-2 mt-2">
-            <p className="font-semibold mb-2 text-white text-xs">Bathymetry</p>
-            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+          <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
+            <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">Bathymetry</p>
+            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
               <input
                 type="checkbox"
                 checked={showBathymetry}
@@ -480,9 +521,9 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             )}
           </div>
 
-          <div className="border-t border-slate-700 pt-2 mt-2">
-            <p className="font-semibold mb-2 text-white text-xs">SST Display</p>
-            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+          <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
+            <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">SST Display</p>
+            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
               <input
                 type="checkbox"
                 checked={showSSTCircles}
@@ -491,7 +532,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               />
               <span>SST Circles</span>
             </label>
-            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
+            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
               <input
                 type="checkbox"
                 checked={showSSTLabels}
@@ -509,59 +550,59 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
         </div>
 
         {/* Legend */}
-        <div className="absolute bottom-4 left-4 bg-slate-900/95 backdrop-blur rounded-lg p-3 text-xs z-[1000] max-w-[200px]">
-          <p className="font-semibold mb-2 text-white">Hotspots</p>
+        <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-slate-900/95 backdrop-blur rounded-lg p-2 md:p-3 text-[10px] md:text-xs z-[1000] max-w-[140px] md:max-w-[200px]">
+          <p className="font-semibold mb-1 md:mb-2 text-white text-[11px] md:text-xs">Hotspots</p>
           <div className="space-y-1 mb-3">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-green-500"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-500"></div>
               <span className="text-slate-300">Primary</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-blue-500"></div>
               <span className="text-slate-300">Secondary</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-orange-500"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-orange-500"></div>
               <span className="text-slate-300">Others</span>
             </div>
           </div>
 
-          <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Structures</p>
-          <div className="space-y-1 mb-3">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-purple-500 rounded"></div>
+          <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">Structures</p>
+          <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-3">
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 bg-purple-500 rounded"></div>
               <span className="text-slate-300">Canyon</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-cyan-500 rounded"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 bg-cyan-500 rounded"></div>
               <span className="text-slate-300">Bank</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-3 md:w-4 md:h-4 bg-yellow-500 rounded"></div>
               <span className="text-slate-300">Lump/Ridge</span>
             </div>
           </div>
 
-          <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">SST Scale</p>
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-red-600"></div>
+          <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">SST Scale</p>
+          <div className="space-y-0.5 md:space-y-1">
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-red-600"></div>
               <span className="text-slate-300">78°F+ Hot</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-orange-500"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-orange-500"></div>
               <span className="text-slate-300">75-78°F Warm</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-yellow-400"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-yellow-400"></div>
               <span className="text-slate-300">72-75°F Good</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-green-500"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-green-500"></div>
               <span className="text-slate-300">68-72°F Cool</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-blue-600"></div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-blue-600"></div>
               <span className="text-slate-300">&lt;68°F Cold</span>
             </div>
           </div>
