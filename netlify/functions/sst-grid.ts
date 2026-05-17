@@ -347,10 +347,16 @@ export const handler: Handler = async (event) => {
         dataHash: generateSimpleHash(topHotspots.map(h => `${h.lat.toFixed(2)},${h.lon.toFixed(2)},${h.confidence}`).join('|'))
       };
 
-      // Send log to backend (non-blocking)
-      fetch(process.env.URL + '/.netlify/functions/log-hotspot-update', {
+      // Send log directly to Supabase backend (works in all environments)
+      const supabaseUrl = process.env.SUPABASE_URL || 'https://sdooqglsdkrzayqxxuyd.supabase.co';
+      const backendUrl = `${supabaseUrl}/functions/v1/make-server-8db09b0a/hotspot-logs`;
+
+      fetch(backendUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`
+        },
         body: JSON.stringify(logData)
       }).catch(err => console.error('Failed to log hotspot update:', err));
     } catch (logError) {
