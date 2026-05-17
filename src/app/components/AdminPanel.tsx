@@ -8,6 +8,8 @@ const SERVER_URL = `https://${projectId}.supabase.co/functions/v1/make-server-8d
 interface ActivationCode {
   code: string;
   userName: string;
+  email?: string;
+  phone?: string;
   isActive: boolean;
   deviceId: string | null;
   createdAt: string;
@@ -61,6 +63,8 @@ export default function AdminPanel() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [newUserName, setNewUserName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newPhone, setNewPhone] = useState('');
   const [minVersion, setMinVersion] = useState(APP_VERSION);
   const [hotspotLogs, setHotspotLogs] = useState<HotspotLog[]>([]);
   const [hotspotHealth, setHotspotHealth] = useState<HotspotLogsResponse['health'] | null>(null);
@@ -175,7 +179,9 @@ export default function AdminPanel() {
         },
         body: JSON.stringify({
           adminPassword,
-          userName: newUserName
+          userName: newUserName,
+          email: newEmail.trim() || undefined,
+          phone: newPhone.trim() || undefined
         })
       });
 
@@ -184,6 +190,8 @@ export default function AdminPanel() {
       if (data.success) {
         setSuccess(`Created code: ${data.code}`);
         setNewUserName('');
+        setNewEmail('');
+        setNewPhone('');
         await loadCodes();
       } else {
         setError(data.error || 'Failed to create code');
@@ -368,21 +376,36 @@ export default function AdminPanel() {
             <Key size={18} />
             Create New Activation Code
           </h3>
-          <div className="flex gap-2">
+          <div className="space-y-2">
             <input
               type="text"
               value={newUserName}
               onChange={(e) => setNewUserName(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && createCode()}
               placeholder="User name (e.g., John's Phone)"
-              className="flex-1 px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                type="email"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+                placeholder="Email (optional)"
+                className="px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="tel"
+                value={newPhone}
+                onChange={(e) => setNewPhone(e.target.value)}
+                placeholder="Phone (optional)"
+                className="px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
             <button
               onClick={createCode}
               disabled={loading || !newUserName.trim()}
-              className="bg-green-600 hover:bg-green-700 disabled:bg-slate-600 px-6 py-2 rounded-lg font-semibold transition-colors"
+              className="w-full bg-green-600 hover:bg-green-700 disabled:bg-slate-600 px-6 py-2 rounded-lg font-semibold transition-colors"
             >
-              Create
+              Create Code
             </button>
           </div>
         </div>
@@ -606,6 +629,16 @@ export default function AdminPanel() {
                       <div className="col-span-2">
                         <span className="text-slate-400">Device:</span>{' '}
                         <span className="font-mono text-xs">{code.deviceId.substring(0, 16)}...</span>
+                      </div>
+                    )}
+                    {code.email && (
+                      <div className="col-span-2">
+                        <span className="text-slate-400">Email:</span> {code.email}
+                      </div>
+                    )}
+                    {code.phone && (
+                      <div className="col-span-2">
+                        <span className="text-slate-400">Phone:</span> {code.phone}
                       </div>
                     )}
                   </div>
