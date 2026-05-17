@@ -87,6 +87,31 @@ export const handler: Handler = async (event) => {
       }
     }
 
+    // If buoy has no wave data, try WaveWatch III model at specific coordinates
+    if ((buoyData.waveHeight === null || buoyData.wavePeriod === null) && lat !== null && lon !== null) {
+      try {
+        console.log(`Buoy wave data missing, trying WaveWatch III model at ${lat}, ${lon}`);
+        const waveUrl = `${ERDDAP_BASE_URL}/griddap/NWW3_Global_Best.json?swh[(last)][(${lat})][(${lon})],perpw[(last)][(${lat})][(${lon})]`;
+        const waveResponse = await fetch(waveUrl);
+
+        if (waveResponse.ok) {
+          const waveData = await waveResponse.json();
+          if (waveData.table && waveData.table.rows.length > 0) {
+            const waveHeightMeters = waveData.table.rows[0][3];
+            buoyData.waveHeight = waveHeightMeters;
+            console.log(`WaveWatch III wave height: ${waveHeightMeters}m`);
+
+            if (waveData.table.rows.length > 1) {
+              buoyData.wavePeriod = waveData.table.rows[1][3];
+              console.log(`WaveWatch III wave period: ${buoyData.wavePeriod}s`);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('WaveWatch III fetch failed:', error);
+      }
+    }
+
     // Fetch SST and chlorophyll if coordinates provided
     let sst = null;
     let chlorophyll = null;
