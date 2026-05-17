@@ -28,17 +28,16 @@ interface HotspotsMapProps {
 // Ocean City Inlet coordinates
 const OCEAN_CITY_INLET: LatLngExpression = [38.328, -75.089];
 
-// Known fishing structures and canyons (Mid-Atlantic)
+// Known fishing structures and canyons (Mid-Atlantic) - Coordinates from GPX file
 const KNOWN_STRUCTURES = [
-  { name: "Poor Man's Canyon", lat: 38.45, lon: -73.95, depth: "600-1200ft", type: 'canyon' },
+  { name: "Poor Man's Canyon", lat: 37.873333, lon: -74.108333, depth: "600-1200ft", type: 'canyon' },
+  { name: "Norfolk Canyon", lat: 37.058333, lon: -74.650000, depth: "600-2000ft", type: 'canyon' },
+  { name: "Washington Canyon", lat: 37.436667, lon: -74.433333, depth: "800-2400ft", type: 'canyon' },
+  { name: "Baltimore Canyon", lat: 38.126667, lon: -73.791667, depth: "600-1800ft", type: 'canyon' },
+  { name: "Massey's Canyon", lat: 38.375000, lon: -74.391667, depth: "500-900ft", type: 'canyon' },
   { name: "Great Gull Bank", lat: 38.75, lon: -73.5, depth: "100-180ft", type: 'bank' },
   { name: "Jackspot", lat: 38.58, lon: -73.75, depth: "240ft", type: 'lump' },
   { name: "Tea Cup", lat: 38.35, lon: -74.25, depth: "180ft", type: 'lump' },
-  { name: "Norfolk Canyon", lat: 37.0, lon: -74.5, depth: "600-2000ft", type: 'canyon' },
-  { name: "Washington Canyon", lat: 38.15, lon: -73.8, depth: "800-2400ft", type: 'canyon' },
-  { name: "Baltimore Canyon", lat: 38.3, lon: -73.7, depth: "600-1800ft", type: 'canyon' },
-  { name: "Wilmington Canyon", lat: 38.5, lon: -73.3, depth: "600-1500ft", type: 'canyon' },
-  { name: "Poor Man's South", lat: 38.35, lon: -74.0, depth: "500-900ft", type: 'canyon' },
   { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
 ];
 
