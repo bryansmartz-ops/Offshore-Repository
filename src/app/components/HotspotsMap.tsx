@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip, Polyline, useMapEvents } from 'react-leaflet';
 import { LatLngExpression, Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { fetchBathymetry, getDepthColor, getDepthWeight, type BathymetryContour } from '../../utils/bathymetry';
+import { fetchBathymetry, getDepthColor, getDepthWeight, type BathymetryContour } from '../../utils/bathymetryUtils';
 
 interface Hotspot {
   id: number;
@@ -134,11 +134,12 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   const [showSSTCircles, setShowSSTCircles] = useState(true);
   const [showSSTLabels, setShowSSTLabels] = useState(true);
   const [showBathymetry, setShowBathymetry] = useState(true);
-  const [bathyOpacity, setBathyOpacity] = useState(0.7);
+  const [bathyOpacity, setBathyOpacity] = useState(0.8);
 
   // High-fidelity bathymetry data
   const [bathymetryContours, setBathymetryContours] = useState<BathymetryContour[]>([]);
   const [loadingBathy, setLoadingBathy] = useState(false);
+  const [mapZoom, setMapZoom] = useState(8);
 
   // Fetch bathymetry on mount
   useEffect(() => {
@@ -154,6 +155,28 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
 
     loadBathymetry();
   }, []);
+
+  // Filter contours based on zoom level for performance and clarity
+  const getVisibleContours = () => {
+    if (!showBathymetry) return [];
+
+    // Zoom < 9: Only major contours (100, 300, 600, 1200, 3000)
+    if (mapZoom < 9) {
+      return bathymetryContours.filter(c =>
+        [100, 300, 600, 1200, 3000].includes(c.depth)
+      );
+    }
+
+    // Zoom 9-10: Add 200, 400, 800, 1000 contours
+    if (mapZoom < 11) {
+      return bathymetryContours.filter(c =>
+        [100, 200, 300, 400, 600, 800, 1000, 1200, 1800, 3000].includes(c.depth)
+      );
+    }
+
+    // Zoom 11+: Show all contours
+    return bathymetryContours;
+  };
 
 
   // Convert hotspots to include parsed coordinates
@@ -187,12 +210,27 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
     };
   }).filter(spot => spot.lat !== 0 && spot.lon !== 0);
 
+  // Component to track zoom level
+  function ZoomTracker() {
+    const map = useMapEvents({
+      zoomend: () => {
+        setMapZoom(map.getZoom());
+      },
+    });
+    return null;
+  }
+
+  const visibleContours = getVisibleContours();
+
   return (
     <div className="bg-slate-800 rounded-xl overflow-hidden">
       <div className="p-4 border-b border-slate-700">
         <h3 className="font-semibold text-lg">Tactical Map View</h3>
         <p className="text-xs text-slate-400 mt-1">
           Hotspots plotted with distance rings from Ocean City Inlet
+          {showBathymetry && visibleContours.length > 0 && (
+            <span className="ml-2 text-blue-400">• {visibleContours.length} depth contours visible</span>
+          )}
         </p>
       </div>
 
@@ -203,6 +241,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           scrollWheelZoom={true}
           className="h-full w-full"
         >
+          <ZoomTracker />
           {/* Ocean basemap */}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -210,7 +249,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           />
 
           {/* High-Fidelity Bathymetry Contours from NOAA ETOPO */}
-          {showBathymetry && bathymetryContours.map((contour) => {
+          {visibleContours.map((contour) => {
             const color = getDepthColor(contour.depth);
             const weight = getDepthWeight(contour.depth);
 
@@ -222,8 +261,8 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                   pathOptions={{
                     color: color,
                     weight: weight,
-                    opacity: bathyOpacity,
-                    dashArray: contour.depth % 600 === 0 ? '5, 5' : '10, 5' // Solid major contours
+                    opacity: bathyOpacity
+                    // Solid lines - no dashArray
                   }}
                 >
                   <Tooltip permanent={false} sticky>
@@ -449,7 +488,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                 </label>
                 <input
                   type="range"
-                  min="20"
+                  min="40"
                   max="100"
                   value={bathyOpacity * 100}
                   onChange={(e) => setBathyOpacity(parseInt(e.target.value) / 100)}
@@ -502,28 +541,23 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
 
           {showBathymetry && bathymetryContours.length > 0 && (
             <>
-              <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Depth Contours (NOAA)</p>
+              <p className="font-semibold mb-2 text-white border-t border-slate-700 pt-2">Depth Contours</p>
               <div className="space-y-1 mb-3 text-xs">
+                <p className="text-slate-400 mb-1">NOAA ETOPO • Zoom responsive</p>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5" style={{ backgroundColor: '#60a5fa', borderTop: '2px solid' }}></div>
-                  <span className="text-slate-300">50-100ft Shelf</span>
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#8b7355', height: '4px' }}></div>
+                  <span className="text-slate-300 font-semibold">Major depths</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5" style={{ backgroundColor: '#3b82f6', borderTop: '2px solid' }}></div>
-                  <span className="text-slate-300">200-300ft</span>
+                  <div className="w-4 h-0.5" style={{ backgroundColor: '#8b7355', height: '2px' }}></div>
+                  <span className="text-slate-300">All depths</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5" style={{ backgroundColor: '#f59e0b', borderTop: '3px solid' }}></div>
-                  <span className="text-slate-300">600ft Edge</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5" style={{ backgroundColor: '#dc2626', borderTop: '3px solid' }}></div>
-                  <span className="text-slate-300">900-1200ft</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-0.5" style={{ backgroundColor: '#991b1b', borderTop: '2px solid' }}></div>
-                  <span className="text-slate-300">1800ft+ Deep</span>
-                </div>
+                <p className="text-slate-500 text-xs mt-2">
+                  {mapZoom < 9 && '5 major contours visible'}
+                  {mapZoom >= 9 && mapZoom < 11 && '10 contours visible'}
+                  {mapZoom >= 11 && `All ${bathymetryContours.length} contours visible`}
+                </p>
+                <p className="text-slate-500 text-xs italic">Zoom in for detail • Hover for depth</p>
               </div>
             </>
           )}
