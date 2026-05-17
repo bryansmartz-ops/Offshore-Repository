@@ -7,11 +7,12 @@ interface FloatPlanProps {
   launchLocation: string;
   fuelBurnRate?: number;
   fuelCapacity?: number;
+  inletConditions?: any;
   oceanConditions?: any;
   solunarData?: any;
 }
 
-export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelBurnRate = 0, fuelCapacity = 0, oceanConditions, solunarData }: FloatPlanProps) {
+export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelBurnRate = 0, fuelCapacity = 0, inletConditions, oceanConditions, solunarData }: FloatPlanProps) {
   const [weatherImpact, setWeatherImpact] = useState<'good' | 'moderate' | 'rough'>('good');
   const [departureTime, setDepartureTime] = useState('06:00');
   const [desiredLinesInTime, setDesiredLinesInTime] = useState('08:00');
@@ -106,11 +107,17 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
     return `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
   };
 
-  // Calculate fuel consumption
-  const totalTripTime = primaryTravelTime + 300 + primaryTravelTime; // out + fishing + return (minutes)
-  const totalTripHours = totalTripTime / 60;
+  // Calculate fuel consumption - REALISTIC for tournament fishing
   const hasFuelData = fuelBurnRate > 0;
-  const estimatedFuel = hasFuelData ? (totalTripHours * fuelBurnRate).toFixed(1) : '0';
+  const transitOutHours = primaryTravelTime / 60; // cruise speed
+  const trollingHours = 5; // hours fishing/trolling
+  const transitBackHours = primaryTravelTime / 60; // cruise speed
+  const trollingBurnRate = fuelBurnRate * 0.35; // trolling burns ~35% of cruise
+
+  const fuelOut = transitOutHours * fuelBurnRate;
+  const fuelFishing = trollingHours * trollingBurnRate;
+  const fuelBack = transitBackHours * fuelBurnRate;
+  const estimatedFuel = hasFuelData ? (fuelOut + fuelFishing + fuelBack).toFixed(1) : '0';
   const fuelWithReserve = hasFuelData ? (parseFloat(estimatedFuel) * 1.3).toFixed(1) : '0'; // 30% reserve
 
   const timeline = {
@@ -202,49 +209,90 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
               Conditions Intel (Facts Only - Captain's Call)
             </p>
 
-            {/* Wind & Waves */}
-            {oceanConditions && (
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/70 rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Wind size={16} className="text-cyan-400" />
-                    <span className="text-xs text-slate-400">Wind</span>
+            {/* Inlet Conditions */}
+            {inletConditions && (
+              <div>
+                <p className="text-xs text-blue-400 font-semibold mb-2">Ocean City Inlet (Departure)</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-slate-800/70 rounded-lg p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Wind size={16} className="text-cyan-400" />
+                      <span className="text-xs text-slate-400">Wind</span>
+                    </div>
+                    <p className="font-semibold text-white">
+                      {inletConditions.windSpeed ? `${inletConditions.windSpeed} kts` : 'N/A'}
+                      {inletConditions.windDirection && (
+                        <span className="ml-2 text-sm text-cyan-300 font-bold">
+                          {inletConditions.windDirection}
+                        </span>
+                      )}
+                    </p>
                   </div>
-                  <p className="font-semibold text-white">
-                    {oceanConditions.windSpeed ? `${oceanConditions.windSpeed} kts` : 'N/A'}
-                  </p>
-                  <p className="text-xs text-slate-400">
-                    {oceanConditions.windDirection || 'Variable'}
-                  </p>
-                </div>
 
-                <div className="bg-slate-800/70 rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <WavesIcon size={16} className="text-blue-400" />
-                    <span className="text-xs text-slate-400">Seas</span>
+                  <div className="bg-slate-800/70 rounded-lg p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <WavesIcon size={16} className="text-blue-400" />
+                      <span className="text-xs text-slate-400">Seas</span>
+                    </div>
+                    <p className="font-semibold text-white">
+                      {inletConditions.waveHeight ? `${inletConditions.waveHeight} ft` : 'N/A'}
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      {inletConditions.wavePeriod ? `@ ${inletConditions.wavePeriod}s` : ''}
+                    </p>
                   </div>
-                  <p className="font-semibold text-white">
-                    {oceanConditions.waveHeight ? `${oceanConditions.waveHeight} ft` : 'N/A'}
-                  </p>
-                  <p className="text-xs text-slate-400">
-                    {oceanConditions.wavePeriod ? `@ ${oceanConditions.wavePeriod}s` : ''}
-                  </p>
                 </div>
               </div>
             )}
 
-            {/* Tide & Current */}
-            {oceanConditions?.tides && oceanConditions.tides[0] && (
+            {/* Offshore Conditions */}
+            {oceanConditions && (
+              <div>
+                <p className="text-xs text-orange-400 font-semibold mb-2">Offshore Fishing Grounds (~40nm)</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-slate-800/70 rounded-lg p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Wind size={16} className="text-cyan-400" />
+                      <span className="text-xs text-slate-400">Wind</span>
+                    </div>
+                    <p className="font-semibold text-white">
+                      {oceanConditions.windSpeed ? `${oceanConditions.windSpeed} kts` : 'N/A'}
+                      {oceanConditions.windDirection && (
+                        <span className="ml-2 text-sm text-cyan-300 font-bold">
+                          {oceanConditions.windDirection}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+
+                  <div className="bg-slate-800/70 rounded-lg p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <WavesIcon size={16} className="text-blue-400" />
+                      <span className="text-xs text-slate-400">Seas</span>
+                    </div>
+                    <p className="font-semibold text-white">
+                      {oceanConditions.waveHeight ? `${oceanConditions.waveHeight} ft` : 'N/A'}
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      {oceanConditions.wavePeriod ? `@ ${oceanConditions.wavePeriod}s` : ''}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Tide & Current (use inlet data if available, otherwise offshore) */}
+            {(inletConditions?.tides || oceanConditions?.tides) && (inletConditions?.tides?.[0] || oceanConditions?.tides?.[0]) && (
               <div className="bg-slate-800/70 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <WavesIcon size={16} className="text-teal-400" />
-                  <span className="text-xs text-slate-400">Tide State</span>
+                  <span className="text-xs text-slate-400">Tide State at Inlet</span>
                 </div>
                 <p className="font-semibold text-white text-sm">
-                  {oceanConditions.tides[0].type} at {oceanConditions.tides[0].time}
+                  {(inletConditions?.tides?.[0] || oceanConditions?.tides?.[0]).type} at {(inletConditions?.tides?.[0] || oceanConditions?.tides?.[0]).time}
                 </p>
                 <p className="text-xs text-slate-400">
-                  Current: {oceanConditions.currentSpeed || '1.5'} kts {oceanConditions.currentDirection || 'SW'}
+                  Current: {(inletConditions?.currentSpeed || oceanConditions?.currentSpeed || '1.5')} kts {(inletConditions?.currentDirection || oceanConditions?.currentDirection || 'SW')}
                 </p>
               </div>
             )}
@@ -356,19 +404,35 @@ export default function FloatPlan({ hotspots, vesselSpeed, launchLocation, fuelB
           </div>
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-slate-400">Fuel Burn</span>
+              <span className="text-sm text-slate-400">Cruise Burn</span>
               <span className="font-semibold">{hasFuelData ? `${fuelBurnRate} gph` : 'Not set'}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-400">Est. Fuel</span>
+              <span className="text-sm text-slate-400">Est. Total</span>
               <span className="font-semibold text-orange-400">{hasFuelData ? `${estimatedFuel} gal` : 'N/A'}</span>
             </div>
           </div>
         </div>
         {hasFuelData ? (
-          <div className="mt-3 pt-3 border-t border-slate-700 flex items-center justify-between text-sm">
-            <span className="text-slate-400">With 30% Reserve:</span>
-            <span className="font-bold text-orange-300">{fuelWithReserve} gal needed</span>
+          <div className="mt-3 pt-3 border-t border-slate-700 space-y-2">
+            <div className="text-xs text-slate-400 space-y-1">
+              <div className="flex justify-between">
+                <span>Transit out ({Math.round(transitOutHours * 60)} min @ {fuelBurnRate}gph):</span>
+                <span className="text-white">{fuelOut.toFixed(1)} gal</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Trolling ({trollingHours}hr @ {trollingBurnRate.toFixed(1)}gph):</span>
+                <span className="text-white">{fuelFishing.toFixed(1)} gal</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Transit back ({Math.round(transitBackHours * 60)} min @ {fuelBurnRate}gph):</span>
+                <span className="text-white">{fuelBack.toFixed(1)} gal</span>
+              </div>
+            </div>
+            <div className="pt-2 border-t border-slate-600 flex items-center justify-between text-sm">
+              <span className="text-slate-300 font-semibold">With 30% Reserve:</span>
+              <span className="font-bold text-orange-300">{fuelWithReserve} gal needed</span>
+            </div>
           </div>
         ) : (
           <div className="mt-3 pt-3 border-t border-slate-700 text-xs text-slate-500 text-center">

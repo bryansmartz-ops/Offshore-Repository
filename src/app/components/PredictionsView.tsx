@@ -28,6 +28,7 @@ interface PredictionsViewProps {
 export default function PredictionsView({ preferences }: PredictionsViewProps) {
   const [analyzing, setAnalyzing] = useState(false);
   const [oceanConditions, setOceanConditions] = useState<any>(null);
+  const [inletConditions, setInletConditions] = useState<any>(null);
   const [dataFreshness, setDataFreshness] = useState<string>('Loading...');
   const [dynamicHotspots, setDynamicHotspots] = useState<SSTHotspot[]>([]);
   const [gridStats, setGridStats] = useState<any>(null);
@@ -50,10 +51,19 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
 
   const fetchGeneralOceanData = async () => {
     try {
-      // Fetch conditions for general Ocean City offshore area
-      const coords = parseCoordinates('37°52\'N 74°06\'W');
-      if (coords) {
-        const conditions = await getOceanConditions(coords.lat, coords.lon);
+      // Fetch conditions for Ocean City Inlet (departure point)
+      const inletCoords = parseCoordinates('38°19\'N 75°05\'W');
+      if (inletCoords) {
+        const inletCond = await getOceanConditions(inletCoords.lat, inletCoords.lon);
+        if (inletCond) {
+          setInletConditions(inletCond);
+        }
+      }
+
+      // Fetch conditions for offshore fishing grounds
+      const offshoreCoords = parseCoordinates('37°52\'N 74°06\'W');
+      if (offshoreCoords) {
+        const conditions = await getOceanConditions(offshoreCoords.lat, offshoreCoords.lon);
         if (conditions) {
           setOceanConditions(conditions);
           setDataFreshness(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
@@ -65,6 +75,7 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
     } catch (error) {
       console.error('Failed to fetch ocean data:', error);
       setOceanConditions(null);
+      setInletConditions(null);
       setDataFreshness('Offline mode');
     }
   };
@@ -409,6 +420,7 @@ export default function PredictionsView({ preferences }: PredictionsViewProps) {
           launchLocation={preferences.launchLocation}
           fuelBurnRate={fuelBurnRate}
           fuelCapacity={fuelCapacity}
+          inletConditions={inletConditions}
           oceanConditions={oceanConditions}
           solunarData={solunarData}
         />
