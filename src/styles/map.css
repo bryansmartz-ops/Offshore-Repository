@@ -9,3 +9,10 @@
 .sst-label.leaflet-tooltip::before {
   display: none;
 }
+
+/* Canyon text labels */
+.canyon-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
