@@ -19,7 +19,7 @@ export const handler: Handler = async (event) => {
     const maxLat = 40.0;
     const minLon = -75.5;
     const maxLon = -72.0;
-    const stride = 5; // Smaller stride = more points for smooth gradients
+    const stride = 3; // Even smaller stride for smoother gradients
 
     console.log(`Fetching dense SST grid for heatmap: ${minLat}-${maxLat}, ${minLon}-${maxLon}, stride=${stride}`);
 
