@@ -42,17 +42,14 @@ const KNOWN_STRUCTURES = [
   { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
 ];
 
-// Canyon labels - positioned along canyon axes (accurate Mid-Atlantic positions)
-const CANYON_LABELS = [
-  { name: "Norfolk Canyon", lat: 36.9, lon: -74.65 },
-  { name: "Washington Canyon", lat: 38.05, lon: -73.95 },
-  { name: "Baltimore Canyon", lat: 38.35, lon: -73.85 },
-  { name: "Wilmington Canyon", lat: 38.55, lon: -73.55 },
-  { name: "Poor Man's Canyon", lat: 38.45, lon: -74.05 },
-  { name: "Hudson Canyon", lat: 39.1, lon: -73.0 },
-  { name: "Lindenkohl Canyon", lat: 38.75, lon: -73.75 },
-  { name: "Spencer Canyon", lat: 39.45, lon: -72.75 },
-];
+// Generate canyon labels from known structures (canyons only)
+const CANYON_LABELS = KNOWN_STRUCTURES
+  .filter(s => s.type === 'canyon')
+  .map(s => ({
+    name: s.name,
+    lat: s.lat,
+    lon: s.lon
+  }));
 
 // Create canyon label icon
 const createCanyonLabel = (name: string) => {
