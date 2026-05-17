@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
-import { LatLngExpression, Icon, DivIcon } from 'leaflet';
+import { LatLngExpression, Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import SSTHeatmapLayer from './SSTHeatmapLayer';
-import { fetchSSTHeatmapGrid } from '../../utils/sstHeatmapGrid';
 
 interface Hotspot {
   id: number;
@@ -138,27 +136,9 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   // Layer toggles
   const [showStructures, setShowStructures] = useState(true);
   const [showDistanceRings, setShowDistanceRings] = useState(true);
-  const [showSSTColors, setShowSSTColors] = useState(false); // Default off when heatmap is on
+  const [showSSTCircles, setShowSSTCircles] = useState(true);
   const [showSSTLabels, setShowSSTLabels] = useState(true);
-  const [showSSTHeatmap, setShowSSTHeatmap] = useState(true);
-  const [sstOpacity, setSSTOpacity] = useState(0.6);
 
-  // Dense SST grid for heatmap
-  const [heatmapGridPoints, setHeatmapGridPoints] = useState<Array<{ lat: number; lon: number; sst: number }>>([]);
-  const [loadingHeatmap, setLoadingHeatmap] = useState(false);
-
-  // Fetch dense SST grid for heatmap on mount
-  useEffect(() => {
-    const loadHeatmapGrid = async () => {
-      setLoadingHeatmap(true);
-      const points = await fetchSSTHeatmapGrid();
-      setHeatmapGridPoints(points);
-      setLoadingHeatmap(false);
-      console.log(`Heatmap grid loaded: ${points.length} points`);
-    };
-
-    loadHeatmapGrid();
-  }, []);
 
   // Convert hotspots to include parsed coordinates
   const hotspotsWithCoords = hotspots.map((spot, index) => {
@@ -229,39 +209,20 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
           ))}
 
-          {/* SST Grid - Accurate temperature zones */}
-          {showSSTHeatmap && heatmapGridPoints.length > 0 && heatmapGridPoints.map((point, idx) => {
-            const sstColor = getSSTColor(point.sst);
-            return (
-              <Circle
-                key={`grid-${idx}`}
-                center={[point.lat, point.lon]}
-                radius={5556} // ~3nm radius to fill gaps in grid
-                pathOptions={{
-                  color: sstColor,
-                  fillColor: sstColor,
-                  fillOpacity: sstOpacity * 0.6,
-                  weight: 0,
-                  opacity: 0
-                }}
-              />
-            );
-          })}
-
-          {/* SST color circles on hotspots - smaller precise circles */}
-          {showSSTColors && hotspotsWithCoords.map((spot) => {
+          {/* SST color circles around hotspots */}
+          {showSSTCircles && hotspotsWithCoords.map((spot) => {
             const sstColor = getSSTColor(spot.sst);
             return (
               <Circle
                 key={`sst-${spot.id}`}
                 center={[spot.lat, spot.lon]}
-                radius={3704} // ~2nm diameter for precise marking
+                radius={3704} // ~2nm diameter
                 pathOptions={{
                   color: sstColor,
                   fillColor: sstColor,
-                  fillOpacity: 0.5,
+                  fillOpacity: 0.4,
                   weight: 2,
-                  opacity: 0.9
+                  opacity: 0.8
                 }}
               />
             );
@@ -426,23 +387,8 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
               <input
                 type="checkbox"
-                checked={showSSTHeatmap}
-                onChange={(e) => setShowSSTHeatmap(e.target.checked)}
-                className="rounded"
-              />
-              <span>
-                SST Heatmap
-                {loadingHeatmap && <span className="text-xs text-yellow-400 ml-1">(loading...)</span>}
-                {!loadingHeatmap && heatmapGridPoints.length > 0 && (
-                  <span className="text-xs text-green-400 ml-1">({heatmapGridPoints.length} pts)</span>
-                )}
-              </span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white">
-              <input
-                type="checkbox"
-                checked={showSSTColors}
-                onChange={(e) => setShowSSTColors(e.target.checked)}
+                checked={showSSTCircles}
+                onChange={(e) => setShowSSTCircles(e.target.checked)}
                 className="rounded"
               />
               <span>SST Circles</span>
@@ -456,22 +402,6 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               />
               <span>Temp Labels</span>
             </label>
-
-            {showSSTHeatmap && (
-              <div className="mt-2 pt-2 border-t border-slate-700">
-                <label className="text-slate-300 text-xs">
-                  Opacity: {Math.round(sstOpacity * 100)}%
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={sstOpacity * 100}
-                  onChange={(e) => setSSTOpacity(parseInt(e.target.value) / 100)}
-                  className="w-full mt-1"
-                />
-              </div>
-            )}
           </div>
         </div>
 
