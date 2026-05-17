@@ -92,10 +92,15 @@ export const handler: Handler = async (event) => {
       try {
         console.log(`Buoy wave data missing, trying WaveWatch III model at ${lat}, ${lon}`);
         const waveUrl = `${ERDDAP_BASE_URL}/griddap/NWW3_Global_Best.json?swh[(last)][(${lat})][(${lon})],perpw[(last)][(${lat})][(${lon})]`;
+        console.log(`WaveWatch URL: ${waveUrl}`);
         const waveResponse = await fetch(waveUrl);
+
+        console.log(`WaveWatch response status: ${waveResponse.status}`);
 
         if (waveResponse.ok) {
           const waveData = await waveResponse.json();
+          console.log(`WaveWatch data rows: ${waveData.table?.rows?.length || 0}`);
+
           if (waveData.table && waveData.table.rows.length > 0) {
             const waveHeightMeters = waveData.table.rows[0][3];
             buoyData.waveHeight = waveHeightMeters;
@@ -105,7 +110,12 @@ export const handler: Handler = async (event) => {
               buoyData.wavePeriod = waveData.table.rows[1][3];
               console.log(`WaveWatch III wave period: ${buoyData.wavePeriod}s`);
             }
+          } else {
+            console.log('WaveWatch returned no data rows');
           }
+        } else {
+          const errorText = await waveResponse.text();
+          console.error(`WaveWatch III HTTP ${waveResponse.status}: ${errorText.substring(0, 200)}`);
         }
       } catch (error) {
         console.error('WaveWatch III fetch failed:', error);
