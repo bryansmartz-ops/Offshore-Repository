@@ -351,6 +351,9 @@ export const handler: Handler = async (event) => {
       const supabaseUrl = process.env.SUPABASE_URL || 'https://sdooqglsdkrzayqxxuyd.supabase.co';
       const backendUrl = `${supabaseUrl}/functions/v1/make-server-8db09b0a/hotspot-logs`;
 
+      console.log(`Attempting to log hotspot update to: ${backendUrl}`);
+      console.log(`Log data: ${logData.hotspotsCount} hotspots, ${logData.breaksFound} breaks`);
+
       fetch(backendUrl, {
         method: 'POST',
         headers: {
@@ -358,7 +361,13 @@ export const handler: Handler = async (event) => {
           'Authorization': `Bearer ${process.env.SUPABASE_ANON_KEY}`
         },
         body: JSON.stringify(logData)
-      }).catch(err => console.error('Failed to log hotspot update:', err));
+      })
+        .then(res => {
+          console.log(`Hotspot log response: ${res.status}`);
+          return res.json();
+        })
+        .then(data => console.log('Hotspot log success:', data))
+        .catch(err => console.error('Failed to log hotspot update:', err));
     } catch (logError) {
       console.error('Hotspot logging error:', logError);
       // Don't fail the main request if logging fails
