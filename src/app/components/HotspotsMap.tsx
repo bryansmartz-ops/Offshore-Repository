@@ -176,6 +176,10 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   const [bathyOpacity, setBathyOpacity] = useState(0.8);
   const [mapZoom, setMapZoom] = useState(8);
 
+  // Legend collapse state
+  const [layersExpanded, setLayersExpanded] = useState(false);
+  const [legendExpanded, setLegendExpanded] = useState(false);
+
 
 
   // Convert hotspots to include parsed coordinates
@@ -471,141 +475,164 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           ))}
         </MapContainer>
 
-        {/* Layer Controls */}
-        <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-slate-900/95 backdrop-blur rounded-lg p-2 md:p-3 text-[10px] md:text-xs z-[1000] space-y-1 md:space-y-2 max-w-[140px] md:max-w-[200px]">
-          <p className="font-semibold mb-1 md:mb-2 text-white text-[11px] md:text-xs">Map Layers</p>
-          <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
-            <input
-              type="checkbox"
-              checked={showDistanceRings}
-              onChange={(e) => setShowDistanceRings(e.target.checked)}
-              className="rounded"
-            />
-            <span>Distance Rings</span>
-          </label>
-          <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
-            <input
-              type="checkbox"
-              checked={showStructures}
-              onChange={(e) => setShowStructures(e.target.checked)}
-              className="rounded"
-            />
-            <span>Known Structure</span>
-          </label>
+        {/* Layer Controls - Collapsible */}
+        <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-slate-900/95 backdrop-blur rounded-lg z-[1000]">
+          <button
+            onClick={() => setLayersExpanded(!layersExpanded)}
+            className="w-full flex items-center justify-between p-2 md:p-3 text-white hover:bg-slate-800/50 rounded-lg transition-colors"
+          >
+            <span className="font-semibold text-xs md:text-sm">Layers</span>
+            <span className="text-lg">{layersExpanded ? '−' : '+'}</span>
+          </button>
 
-          <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
-            <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">Bathymetry</p>
-            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
-              <input
-                type="checkbox"
-                checked={showBathymetry}
-                onChange={(e) => setShowBathymetry(e.target.checked)}
-                className="rounded"
-              />
-              <span>High-Res Chart</span>
-            </label>
-            {showBathymetry && (
-              <div className="mt-2 pl-6">
-                <label className="text-slate-400 text-xs">
-                  Opacity: {Math.round(bathyOpacity * 100)}%
-                </label>
+          {layersExpanded && (
+            <div className="p-2 md:p-3 pt-0 text-[10px] md:text-xs space-y-1 md:space-y-2 max-w-[160px] md:max-w-[200px]">
+              <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
                 <input
-                  type="range"
-                  min="30"
-                  max="100"
-                  value={bathyOpacity * 100}
-                  onChange={(e) => setBathyOpacity(parseInt(e.target.value) / 100)}
-                  className="w-full mt-1"
+                  type="checkbox"
+                  checked={showDistanceRings}
+                  onChange={(e) => setShowDistanceRings(e.target.checked)}
+                  className="rounded"
                 />
-              </div>
-            )}
-          </div>
+                <span>Distance Rings</span>
+              </label>
+              <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
+                <input
+                  type="checkbox"
+                  checked={showStructures}
+                  onChange={(e) => setShowStructures(e.target.checked)}
+                  className="rounded"
+                />
+                <span>Known Structure</span>
+              </label>
 
-          <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
-            <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">SST Display</p>
-            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
-              <input
-                type="checkbox"
-                checked={showSSTCircles}
-                onChange={(e) => setShowSSTCircles(e.target.checked)}
-                className="rounded"
-              />
-              <span>SST Circles</span>
-            </label>
-            <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
-              <input
-                type="checkbox"
-                checked={showSSTLabels}
-                onChange={(e) => setShowSSTLabels(e.target.checked)}
-                className="rounded"
-              />
-              <span>Temp Labels</span>
-            </label>
-            {!showSSTLabels && mapZoom < 10 && (
-              <p className="text-xs text-slate-500 mt-1 ml-6 italic">
-                Auto-show when zoomed in
-              </p>
-            )}
-          </div>
+              <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
+                <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">Bathymetry</p>
+                <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
+                  <input
+                    type="checkbox"
+                    checked={showBathymetry}
+                    onChange={(e) => setShowBathymetry(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span>High-Res Chart</span>
+                </label>
+                {showBathymetry && (
+                  <div className="mt-2 pl-4">
+                    <label className="text-slate-400 text-xs">
+                      Opacity: {Math.round(bathyOpacity * 100)}%
+                    </label>
+                    <input
+                      type="range"
+                      min="30"
+                      max="100"
+                      value={bathyOpacity * 100}
+                      onChange={(e) => setBathyOpacity(parseInt(e.target.value) / 100)}
+                      className="w-full mt-1"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="border-t border-slate-700 pt-1 md:pt-2 mt-1 md:mt-2">
+                <p className="font-semibold mb-1 md:mb-2 text-white text-[10px] md:text-xs">SST Display</p>
+                <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
+                  <input
+                    type="checkbox"
+                    checked={showSSTCircles}
+                    onChange={(e) => setShowSSTCircles(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span>SST Circles</span>
+                </label>
+                <label className="flex items-center gap-1 md:gap-2 cursor-pointer text-slate-300 hover:text-white">
+                  <input
+                    type="checkbox"
+                    checked={showSSTLabels}
+                    onChange={(e) => setShowSSTLabels(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span>Temp Labels</span>
+                </label>
+                {!showSSTLabels && mapZoom < 10 && (
+                  <p className="text-xs text-slate-500 mt-1 ml-4 italic">
+                    Auto-show when zoomed in
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Legend */}
-        <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-slate-900/95 backdrop-blur rounded-lg p-2 md:p-3 text-[10px] md:text-xs z-[1000] max-w-[140px] md:max-w-[200px]">
-          <p className="font-semibold mb-1 md:mb-2 text-white text-[11px] md:text-xs">Hotspots</p>
-          <div className="space-y-1 mb-3">
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-500"></div>
-              <span className="text-slate-300">Primary</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-blue-500"></div>
-              <span className="text-slate-300">Secondary</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-orange-500"></div>
-              <span className="text-slate-300">Others</span>
-            </div>
-          </div>
+        {/* Legend - Collapsible */}
+        <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-slate-900/95 backdrop-blur rounded-lg z-[1000]">
+          <button
+            onClick={() => setLegendExpanded(!legendExpanded)}
+            className="w-full flex items-center justify-between p-2 md:p-3 text-white hover:bg-slate-800/50 rounded-lg transition-colors"
+          >
+            <span className="font-semibold text-xs md:text-sm">Legend</span>
+            <span className="text-lg">{legendExpanded ? '−' : '+'}</span>
+          </button>
 
-          <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">Structures</p>
-          <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-3">
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 bg-purple-500 rounded"></div>
-              <span className="text-slate-300">Canyon</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 bg-cyan-500 rounded"></div>
-              <span className="text-slate-300">Bank</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-3 md:w-4 md:h-4 bg-yellow-500 rounded"></div>
-              <span className="text-slate-300">Lump/Ridge</span>
-            </div>
-          </div>
+          {legendExpanded && (
+            <div className="p-2 md:p-3 pt-0 text-[10px] md:text-xs max-w-[160px] md:max-w-[200px]">
+              <p className="font-semibold mb-1 md:mb-2 text-white text-[11px] md:text-xs">Hotspots</p>
+              <div className="space-y-1 mb-3">
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-500"></div>
+                  <span className="text-slate-300">Primary</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-blue-500"></div>
+                  <span className="text-slate-300">Secondary</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-orange-500"></div>
+                  <span className="text-slate-300">Others</span>
+                </div>
+              </div>
 
-          <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">SST Scale</p>
-          <div className="space-y-0.5 md:space-y-1">
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-red-600"></div>
-              <span className="text-slate-300">78°F+ Hot</span>
+              <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">Structures</p>
+              <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-3">
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 bg-purple-500 rounded"></div>
+                  <span className="text-slate-300">Canyon</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 bg-cyan-500 rounded"></div>
+                  <span className="text-slate-300">Bank</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-3 md:w-4 md:h-4 bg-yellow-500 rounded"></div>
+                  <span className="text-slate-300">Lump/Ridge</span>
+                </div>
+              </div>
+
+              <p className="font-semibold mb-1 md:mb-2 text-white border-t border-slate-700 pt-1 md:pt-2 text-[11px] md:text-xs">SST Scale</p>
+              <div className="space-y-0.5 md:space-y-1">
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-1.5 md:w-4 md:h-2 bg-red-600"></div>
+                  <span className="text-slate-300">78°F+ Hot</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-1.5 md:w-4 md:h-2 bg-orange-500"></div>
+                  <span className="text-slate-300">75-78°F Warm</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-1.5 md:w-4 md:h-2 bg-yellow-400"></div>
+                  <span className="text-slate-300">72-75°F Good</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-1.5 md:w-4 md:h-2 bg-green-500"></div>
+                  <span className="text-slate-300">68-72°F Cool</span>
+                </div>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <div className="w-3 h-1.5 md:w-4 md:h-2 bg-blue-600"></div>
+                  <span className="text-slate-300">&lt;68°F Cold</span>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-orange-500"></div>
-              <span className="text-slate-300">75-78°F Warm</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-yellow-400"></div>
-              <span className="text-slate-300">72-75°F Good</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-green-500"></div>
-              <span className="text-slate-300">68-72°F Cool</span>
-            </div>
-            <div className="flex items-center gap-1 md:gap-2">
-              <div className="w-3 h-1.5 md:w-4 md:h-2 bg-blue-600"></div>
-              <span className="text-slate-300">&lt;68°F Cold</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
