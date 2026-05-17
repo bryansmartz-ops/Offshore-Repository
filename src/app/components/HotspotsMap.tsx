@@ -229,13 +229,24 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
             />
           ))}
 
-          {/* SST Heatmap - RipChart-style continuous gradient */}
-          {showSSTHeatmap && heatmapGridPoints.length > 0 && (
-            <SSTHeatmapLayer
-              points={heatmapGridPoints}
-              opacity={sstOpacity}
-            />
-          )}
+          {/* SST Grid - Accurate temperature zones */}
+          {showSSTHeatmap && heatmapGridPoints.length > 0 && heatmapGridPoints.map((point, idx) => {
+            const sstColor = getSSTColor(point.sst);
+            return (
+              <Circle
+                key={`grid-${idx}`}
+                center={[point.lat, point.lon]}
+                radius={5556} // ~3nm radius to fill gaps in grid
+                pathOptions={{
+                  color: sstColor,
+                  fillColor: sstColor,
+                  fillOpacity: sstOpacity * 0.6,
+                  weight: 0,
+                  opacity: 0
+                }}
+              />
+            );
+          })}
 
           {/* SST color circles on hotspots - smaller precise circles */}
           {showSSTColors && hotspotsWithCoords.map((spot) => {
