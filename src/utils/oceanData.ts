@@ -38,10 +38,10 @@ export interface SSTBreak {
 
 export interface OceanConditions {
   sst: number; // °F
-  waveHeight: number; // feet
+  waveHeight: number | null; // feet (null if unavailable from buoy)
   windSpeed: number; // knots
   windDirection?: string; // compass direction (N, NE, E, SE, S, SW, W, NW, etc.)
-  wavePeriod?: number; // seconds
+  wavePeriod?: number | null; // seconds
   chlorophyll: number; // mg/m³
   currentSpeed: number; // knots
   currentDirection: string;
@@ -61,11 +61,12 @@ interface ConfidenceFactors {
 }
 
 /**
- * Nearby buoys off Ocean City, MD
- * 44009 - Delaware Bay - 26 NM Southeast of Cape May, NJ (closest to offshore spots)
- * 44065 - New York Harbor Entrance - 15 NM SE of Breezy Point, NY
+ * Ocean City, MD ocean data sources:
+ * - Wind/Pressure: Buoy 44009 (Delaware Bay - 26 NM SE of Cape May, closest to Ocean City)
+ * - Waves: NOAA WaveWatch III model (provides wave height/period at exact fishing coordinates)
+ * - SST/Chlorophyll: NOAA ERDDAP satellite data
  */
-const OCEAN_CITY_BUOYS = ['44009', '44065'];
+const OCEAN_CITY_WIND_BUOY = '44009';
 
 /**
  * Fetch latest buoy data from NOAA NDBC
@@ -300,6 +301,7 @@ export async function getOceanConditions(lat: number, lon: number): Promise<Ocea
     }
 
     // Call Netlify function (only works in production)
+    // Gets wind from buoy 44009 (Delaware Bay) + waves from WaveWatch III model
     const response = await fetch(`/.netlify/functions/ocean-data?buoyId=44009&lat=${lat}&lon=${lon}`, {
       headers: { 'Accept': 'application/json' }
     });

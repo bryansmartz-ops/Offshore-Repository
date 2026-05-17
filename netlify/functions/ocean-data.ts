@@ -5,6 +5,13 @@ const ERDDAP_BASE_URL = 'https://coastwatch.pfeg.noaa.gov/erddap';
 const COOPS_BASE_URL = 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter';
 const OCEAN_CITY_STATION = '8570283'; // Ocean City Inlet, MD
 
+// Buoys near Ocean City, MD:
+// 44009 - Delaware Bay - Closest to Ocean City, has wind/pressure but NO wave data
+// 44014 - Virginia Beach offshore - Has wave data but NO wind
+// Strategy: Get wind from 44009, get waves from NOAA WaveWatch III model
+const WIND_BUOY = '44009';
+const WAVEWATCH_BASE = 'https://coastwatch.pfeg.noaa.gov/erddap';
+
 export const handler: Handler = async (event) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -18,17 +25,30 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    const { buoyId = '44009', lat: latStr, lon: lonStr } = event.queryStringParameters || {};
+    const { buoyId = WIND_BUOY, lat: latStr, lon: lonStr } = event.queryStringParameters || {};
 
     // Convert coordinates to numbers
     const lat = latStr ? parseFloat(latStr) : null;
     const lon = lonStr ? parseFloat(lonStr) : null;
 
-console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
+    console.log(`Ocean data request: lat=${lat}, lon=${lon}`);
 
-    // Fetch buoy data
-    const buoyResponse = await fetch(`${NDBC_BASE_URL}/${buoyId}.txt`);
-    let buoyData = null;
+    // Helper to parse buoy data
+    const parseOrNull = (value: string) => {
+      const num = parseFloat(value);
+      return (!isNaN(num) && num !== 99 && num !== 999) ? num : null;
+    };
+
+    // Fetch wind/pressure from buoy 44009 (closest to Ocean City)
+    const buoyResponse = await fetch(`${NDBC_BASE_URL}/${WIND_BUOY}.txt`);
+    let buoyData: any = {
+      windDirection: null,
+      windSpeed: null,
+      pressure: null,
+      waterTemp: null,
+      waveHeight: null,
+      wavePeriod: null,
+    };
 
     if (buoyResponse.ok) {
       const text = await buoyResponse.text();
@@ -36,18 +56,36 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
 
       if (lines.length >= 3) {
         const dataLine = lines[2].trim().split(/\s+/);
+        console.log(`Buoy ${WIND_BUOY} data:`, dataLine.slice(0, 15).join(' '));
 
         // Format: YY MM DD hh mm WDIR WSPD GST WVHT DPD APD MWD PRES ATMP WTMP DEWP VIS TIDE
-        // Index:  0  1  2  3  4   5    6    7   8    9   10  11  12   13   14   15   16  17
-        buoyData = {
-          windDirection: parseFloat(dataLine[5]) || 0,
-          windSpeed: parseFloat(dataLine[6]) || 0,
-          waveHeight: parseFloat(dataLine[8]) || 0,
-          wavePeriod: parseFloat(dataLine[9]) || 0,
-          pressure: parseFloat(dataLine[12]) || null, // Barometric pressure in hPa
-          waterTemp: dataLine[14] ? celsiusToFahrenheit(parseFloat(dataLine[14])) : null,
-          timestamp: new Date().toISOString(),
-        };
+        buoyData.windDirection = parseOrNull(dataLine[5]);
+        buoyData.windSpeed = parseOrNull(dataLine[6]);
+        buoyData.pressure = parseOrNull(dataLine[12]);
+        buoyData.waterTemp = dataLine[14] ? celsiusToFahrenheit(parseFloat(dataLine[14])) : null;
+      }
+    }
+
+    // Fetch wave data from NOAA WaveWatch III model at specific coordinates
+    if (lat !== null && lon !== null) {
+      try {
+        // WaveWatch III provides modeled wave height and period
+        const waveUrl = `${WAVEWATCH_BASE}/griddap/NWW3_Global_Best.json?swh[(last)][(${lat})][(${lon})],perpw[(last)][(${lat})][(${lon})]`;
+        const waveResponse = await fetch(waveUrl);
+
+        if (waveResponse.ok) {
+          const waveData = await waveResponse.json();
+          // swh = significant wave height (meters), perpw = peak wave period (seconds)
+          if (waveData.table && waveData.table.rows.length > 0) {
+            buoyData.waveHeight = waveData.table.rows[0][3]; // swh in meters
+            if (waveData.table.rows.length > 1) {
+              buoyData.wavePeriod = waveData.table.rows[1][3]; // perpw in seconds
+            }
+            console.log(`WaveWatch III: height=${buoyData.waveHeight}m, period=${buoyData.wavePeriod}s`);
+          }
+        }
+      } catch (error) {
+        console.error('WaveWatch III fetch failed:', error);
       }
     }
 
@@ -134,9 +172,9 @@ console.log(`Ocean data request: lat=${lat}, lon=${lon}, buoyId=${buoyId}`);
         success: true,
         data: {
           sst: sst || buoyData?.waterTemp || 72,
-          waveHeight: buoyData?.waveHeight || 0,
-          wavePeriod: buoyData?.wavePeriod || null,
-          windSpeed: buoyData?.windSpeed || 0,
+          waveHeight: buoyData?.waveHeight !== null ? metersToFeet(buoyData.waveHeight) : null,
+          wavePeriod: buoyData?.wavePeriod ?? null,
+          windSpeed: buoyData?.windSpeed !== null ? mpsToKnots(buoyData.windSpeed) : 0,
           windDirection: buoyData?.windDirection ? degreesToCompass(buoyData.windDirection) : 'Variable',
           chlorophyll: chlorophyll || 2.5,
           currentSpeed: 1.5,
@@ -182,8 +220,15 @@ function celsiusToFahrenheit(celsius: number): number {
   return Math.round((celsius * 9/5 + 32) * 10) / 10;
 }
 
+function metersToFeet(meters: number): number {
+  return Math.round(meters * 3.28084 * 10) / 10;
+}
+
+function mpsToKnots(mps: number): number {
+  return Math.round(mps * 1.94384);
+}
+
 function degreesToCompass(degrees: number): string {
   const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
   const index = Math.round(degrees / 22.5) % 16;
   return directions[index];
-}
