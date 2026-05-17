@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip, useMapEvents } from 'react-leaflet';
 import { LatLngExpression, Icon, DivIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -42,15 +42,16 @@ const KNOWN_STRUCTURES = [
   { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
 ];
 
-// Canyon labels - positioned along canyon axes
+// Canyon labels - positioned along canyon axes (accurate Mid-Atlantic positions)
 const CANYON_LABELS = [
-  { name: "Norfolk Canyon", lat: 36.95, lon: -74.4 },
-  { name: "Washington Canyon", lat: 38.1, lon: -73.75 },
-  { name: "Baltimore Canyon", lat: 38.25, lon: -73.65 },
-  { name: "Wilmington Canyon", lat: 38.45, lon: -73.25 },
-  { name: "Poor Man's Canyon", lat: 38.4, lon: -73.9 },
-  { name: "Hudson Canyon", lat: 39.2, lon: -72.8 },
-  { name: "Spencer Canyon", lat: 39.6, lon: -72.5 },
+  { name: "Norfolk Canyon", lat: 36.9, lon: -74.65 },
+  { name: "Washington Canyon", lat: 38.05, lon: -73.95 },
+  { name: "Baltimore Canyon", lat: 38.35, lon: -73.85 },
+  { name: "Wilmington Canyon", lat: 38.55, lon: -73.55 },
+  { name: "Poor Man's Canyon", lat: 38.45, lon: -74.05 },
+  { name: "Hudson Canyon", lat: 39.1, lon: -73.0 },
+  { name: "Lindenkohl Canyon", lat: 38.75, lon: -73.75 },
+  { name: "Spencer Canyon", lat: 39.45, lon: -72.75 },
 ];
 
 // Create canyon label icon
@@ -96,16 +97,16 @@ const DISTANCE_RINGS = [
   { distance: 100, color: '#ef4444', label: '100nm - Tournament Limit' }
 ];
 
-// Custom marker icons
+// Custom marker icons - smaller, cleaner
 const createMarkerIcon = (rank: number, isPrimary: boolean, isSecondary: boolean) => {
   const color = isPrimary ? '#22c55e' : isSecondary ? '#3b82f6' : '#f59e0b';
-  const size = isPrimary || isSecondary ? 36 : 28;
+  const size = isPrimary || isSecondary ? 24 : 18; // Much smaller
 
   return new Icon({
     iconUrl: `data:image/svg+xml;base64,${btoa(`
       <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10" fill="${color}" stroke="white" stroke-width="2"/>
-        <text x="12" y="16" font-size="12" font-weight="bold" fill="white" text-anchor="middle">${rank}</text>
+        <circle cx="12" cy="12" r="10" fill="${color}" stroke="white" stroke-width="3"/>
+        <text x="12" y="16" font-size="11" font-weight="bold" fill="white" text-anchor="middle">${rank}</text>
       </svg>
     `)}`,
     iconSize: [size, size],
@@ -114,34 +115,34 @@ const createMarkerIcon = (rank: number, isPrimary: boolean, isSecondary: boolean
   });
 };
 
-// Inlet marker
+// Inlet marker - smaller and cleaner
 const inletIcon = new Icon({
   iconUrl: `data:image/svg+xml;base64,${btoa(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10" fill="#0ea5e9" stroke="white" stroke-width="2"/>
-      <circle cx="12" cy="12" r="3" fill="white"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#0ea5e9" stroke="white" stroke-width="3"/>
+      <circle cx="12" cy="12" r="4" fill="white"/>
     </svg>
   `)}`,
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -16]
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+  popupAnchor: [0, -10]
 });
 
-// Structure marker (canyons, banks, lumps)
+// Structure marker (canyons, banks, lumps) - smaller
 const createStructureIcon = (type: string) => {
   const color = type === 'canyon' ? '#a855f7' : type === 'bank' ? '#06b6d4' : '#eab308';
   const symbol = type === 'canyon' ? 'C' : type === 'bank' ? 'B' : 'L';
 
   return new Icon({
     iconUrl: `data:image/svg+xml;base64,${btoa(`
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="4" fill="${color}" stroke="white" stroke-width="2"/>
-        <text x="12" y="16" font-size="12" font-weight="bold" fill="white" text-anchor="middle">${symbol}</text>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="${color}" stroke="white" stroke-width="3"/>
+        <text x="12" y="16" font-size="11" font-weight="bold" fill="white" text-anchor="middle">${symbol}</text>
       </svg>
     `)}`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
-    popupAnchor: [0, -12]
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+    popupAnchor: [0, -8]
   });
 };
 
@@ -165,10 +166,11 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
   // Layer toggles
   const [showStructures, setShowStructures] = useState(true);
   const [showDistanceRings, setShowDistanceRings] = useState(true);
-  const [showSSTCircles, setShowSSTCircles] = useState(true);
-  const [showSSTLabels, setShowSSTLabels] = useState(true);
+  const [showSSTCircles, setShowSSTCircles] = useState(false); // Default off for cleaner map
+  const [showSSTLabels, setShowSSTLabels] = useState(false); // Default off - hover to see temp
   const [showBathymetry, setShowBathymetry] = useState(true);
   const [bathyOpacity, setBathyOpacity] = useState(0.8);
+  const [mapZoom, setMapZoom] = useState(8);
 
 
 
@@ -203,6 +205,19 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
     };
   }).filter(spot => spot.lat !== 0 && spot.lon !== 0);
 
+  // Component to track zoom level
+  function ZoomTracker() {
+    const map = useMapEvents({
+      zoomend: () => {
+        setMapZoom(map.getZoom());
+      },
+    });
+    return null;
+  }
+
+  // Smart label display - only show SST labels when zoomed in or manually enabled
+  const shouldShowSSTLabels = showSSTLabels || mapZoom >= 10;
+
   return (
     <div className="bg-slate-800 rounded-xl overflow-hidden">
       <div className="p-4 border-b border-slate-700">
@@ -222,6 +237,7 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
           scrollWheelZoom={true}
           className="h-full w-full"
         >
+          <ZoomTracker />
           {/* Ocean basemap */}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -261,13 +277,13 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               <Circle
                 key={`sst-${spot.id}`}
                 center={[spot.lat, spot.lon]}
-                radius={3704} // ~2nm diameter
+                radius={2778} // ~1.5nm diameter - smaller for less clutter
                 pathOptions={{
                   color: sstColor,
                   fillColor: sstColor,
-                  fillOpacity: 0.4,
-                  weight: 2,
-                  opacity: 0.8
+                  fillOpacity: 0.3,
+                  weight: 1.5,
+                  opacity: 0.7
                 }}
               />
             );
@@ -299,22 +315,22 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                   click: () => onSelectHotspot?.(index)
                 }}
               >
-                {/* Permanent SST label */}
-                {showSSTLabels && (
+                {/* SST label - permanent when zoomed in or toggled on */}
+                {shouldShowSSTLabels && (
                   <Tooltip
                     permanent
                     direction="top"
-                    offset={[0, -20]}
+                    offset={[0, -12]}
                     className="sst-label"
                   >
                     <div
                       style={{
                         backgroundColor: sstColor,
                         color: 'white',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
+                        padding: '2px 6px',
+                        borderRadius: '3px',
                         fontWeight: 'bold',
-                        fontSize: '12px',
+                        fontSize: '10px',
                         textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
                         whiteSpace: 'nowrap'
                       }}
@@ -485,6 +501,11 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
               />
               <span>Temp Labels</span>
             </label>
+            {!showSSTLabels && mapZoom < 10 && (
+              <p className="text-xs text-slate-500 mt-1 ml-6 italic">
+                Auto-show when zoomed in
+              </p>
+            )}
           </div>
         </div>
 
