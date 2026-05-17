@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
-import { LatLngExpression, Icon } from 'leaflet';
+import { LatLngExpression, Icon, DivIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 interface Hotspot {
@@ -41,6 +41,41 @@ const KNOWN_STRUCTURES = [
   { name: "Poor Man's South", lat: 38.35, lon: -74.0, depth: "500-900ft", type: 'canyon' },
   { name: "The Fingers", lat: 38.6, lon: -73.6, depth: "300-600ft", type: 'ridge' },
 ];
+
+// Canyon labels - positioned along canyon axes
+const CANYON_LABELS = [
+  { name: "Norfolk Canyon", lat: 36.95, lon: -74.4 },
+  { name: "Washington Canyon", lat: 38.1, lon: -73.75 },
+  { name: "Baltimore Canyon", lat: 38.25, lon: -73.65 },
+  { name: "Wilmington Canyon", lat: 38.45, lon: -73.25 },
+  { name: "Poor Man's Canyon", lat: 38.4, lon: -73.9 },
+  { name: "Hudson Canyon", lat: 39.2, lon: -72.8 },
+  { name: "Spencer Canyon", lat: 39.6, lon: -72.5 },
+];
+
+// Create canyon label icon
+const createCanyonLabel = (name: string) => {
+  return new DivIcon({
+    className: 'canyon-label',
+    html: `<div style="
+      color: #f97316;
+      font-weight: bold;
+      font-size: 11px;
+      text-shadow:
+        -1px -1px 0 rgba(0,0,0,0.8),
+        1px -1px 0 rgba(0,0,0,0.8),
+        -1px 1px 0 rgba(0,0,0,0.8),
+        1px 1px 0 rgba(0,0,0,0.8),
+        0 0 4px rgba(0,0,0,0.9);
+      white-space: nowrap;
+      pointer-events: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    ">${name}</div>`,
+    iconSize: [120, 20],
+    iconAnchor: [60, 10]
+  });
+};
 
 
 // SST color scale
@@ -367,6 +402,16 @@ export default function HotspotsMap({ hotspots, selectedPrimary, selectedSeconda
                 </div>
               </Popup>
             </Marker>
+          ))}
+
+          {/* Canyon name labels */}
+          {showBathymetry && CANYON_LABELS.map((canyon) => (
+            <Marker
+              key={`label-${canyon.name}`}
+              position={[canyon.lat, canyon.lon]}
+              icon={createCanyonLabel(canyon.name)}
+              interactive={false}
+            />
           ))}
         </MapContainer>
 
