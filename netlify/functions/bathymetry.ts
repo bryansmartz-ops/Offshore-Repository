@@ -86,16 +86,33 @@ export const handler: Handler = async (event) => {
       }
     });
 
-    // Generate contours at key fishing depths (convert feet to meters)
+    // Generate contours at fishing-optimized intervals
+    // Dense in structure zones (0-300ft), moderate at shelf edge (300-1200ft), sparse in deep water
     const depthLevels = [
+      // Shallow structure fishing - every 50ft
       { feet: 50, meters: 15, label: '50ft' },
       { feet: 100, meters: 30, label: '100ft' },
+      { feet: 150, meters: 46, label: '150ft' },
       { feet: 200, meters: 61, label: '200ft' },
+      { feet: 250, meters: 76, label: '250ft' },
       { feet: 300, meters: 91, label: '300ft' },
+
+      // Shelf edge / canyon zone - every 100ft
+      { feet: 400, meters: 122, label: '400ft' },
+      { feet: 500, meters: 152, label: '500ft' },
       { feet: 600, meters: 183, label: '600ft' },
+      { feet: 700, meters: 213, label: '700ft' },
+      { feet: 800, meters: 244, label: '800ft' },
       { feet: 900, meters: 274, label: '900ft' },
+      { feet: 1000, meters: 305, label: '1000ft' },
+      { feet: 1100, meters: 335, label: '1100ft' },
       { feet: 1200, meters: 366, label: '1200ft' },
+
+      // Deep canyon - every 300ft
+      { feet: 1500, meters: 457, label: '1500ft' },
       { feet: 1800, meters: 549, label: '1800ft' },
+      { feet: 2100, meters: 640, label: '2100ft' },
+      { feet: 2400, meters: 732, label: '2400ft' },
       { feet: 3000, meters: 914, label: '3000ft' }
     ];
 
